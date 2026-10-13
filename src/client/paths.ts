@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 浏览器端缓存键/路径统一出口（PathConst）。
+ * dsh-code-studio client — 浏览器端缓存键/路径统一出口（PathConst）。
  * 统一 localStorage 键前缀（各缓存模块/编辑区/搜索面板共用），避免内联散落；
  * 键带 schema 版本号，未来版本递增时经 sweepLegacyKeys 自动清旧。
  * 浏览器不涉 ~/.dsh 文件系统，这里只管键名 + shared 路由常量。

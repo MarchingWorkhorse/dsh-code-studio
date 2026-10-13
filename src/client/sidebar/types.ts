@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 侧边栏面板契约（类型 + 上下文）。
+ * dsh-code-studio client — 侧边栏面板契约（类型 + 上下文）。
  * 面板 = 活动栏一项 + 面板区一处渲染；新增面板只需注册一条 SidebarPanelDef。
  * 作者 ddj 2026-08-26
  */

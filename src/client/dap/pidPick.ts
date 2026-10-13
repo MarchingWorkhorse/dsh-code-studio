@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 附加目标 pid 决策（纯函数，可单测）。
+ * dsh-code-studio client — 附加目标 pid 决策（纯函数，可单测）。
  * host 侧只对「唯一命中」自动附加；多候选由客户端弹进程选择器（VS Code QuickPick 等价物）。
  * 作者 ddj 2026年09月29号
  */

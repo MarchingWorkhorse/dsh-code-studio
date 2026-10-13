@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — Ctrl+hover 可导航标识符下划线提示。
+ * dsh-code-studio client — Ctrl+hover 可导航标识符下划线提示。
  * 背景：内嵌 Monaco 构建（0.42.0-dev）无 linkDetection contrib，原生不产生 ctrl+hover 下划线，
  * 插件自绘：Ctrl/Meta 按住悬停在"语义 token 标识符"上时给词加下划线装饰，移出/松开即清除。
  * 数据来源于语义 token（每 model+version 缓存 60s），不做逐词 LSP 查询。

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 调试面板四段分栏高度（纯函数 + localStorage 持久）。
+ * dsh-code-studio client — 调试面板四段分栏高度（纯函数 + localStorage 持久）。
  * 对齐 VS Code/CodeBuddy splitview 语义：段间 sash 拖动时相邻两段高度重分配
  * （拖下 = 上段增高、下段减矮；任一段触到夹取界时拖动量被"吸收"，分隔条停在可行位置）。
  * 存储：`edrv.dap.split.<scope>` → { variables, watch, stack, breakpoints }。

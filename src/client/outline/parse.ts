@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 大纲兜底解析器（纯函数，无 DOM/Monaco 依赖，node 可测）。
+ * dsh-code-studio client — 大纲兜底解析器（纯函数，无 DOM/Monaco 依赖，node 可测）。
  * 覆盖无内置 document symbol provider 的语言：markdown/mdx、python、shell、powershell、
  * lua、go、rust、yaml、ini(toml)、花括号语言（c/cpp/csharp/java/php/ruby/kotlin/swift/dart）。
  * TS/JS/JSON/CSS/HTML 有 Monaco 原生 provider，不走这里。

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 「大纲」面板定义（注册表一项）。
+ * dsh-code-studio client — 「大纲」面板定义（注册表一项）。
  * 数据源解析复用 outline/sources 的源注册表（ctx.outlineSources 注入）。
  * 作者 ddj 2026-08-27
  */

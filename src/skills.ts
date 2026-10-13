@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — 插件自带技能组（随包 skills/ 分发的 SKILL.md）。
+ * dsh-code-studio host — 插件自带技能组（随包 skills/ 分发的 SKILL.md）。
  * - 存储：<包根>/skills/<技能名>/SKILL.md（目录式）或 <包根>/skills/<技能名>.md（扁平式），随包发布。
- * - 命名：技能名必须 kebab-case（DSH 硬约束，下划线会被 registry 拒绝）且以 dsh-vscodemode- 开头。
+ * - 命名：技能名必须 kebab-case（DSH 硬约束，下划线会被 registry 拒绝）且以 dsh-codestudio- 开头。
  * - 生效：注册自研 skill provider 到 ctx.skills（ctx.inject 惰性获取，服务缺失时插件仍完整可用）；
  *   文件变更经 fs.watch → control.invalidate() 即时可见。
  * 为什么自研 provider 而不用 @deepseek-ai/dsh-skill-filesystem：见 README「插件技能组」小节。
@@ -17,9 +17,9 @@ import type { Ctx } from './store.js'
 
 // --region 常量
 /** provider 名（注册进 ctx.skills；不得与 'filesystem' / 'openviking' 及保留名 'runtime' 冲突）。 */
-export const SKILL_PROVIDER_NAME = 'dsh-vscodemode'
+export const SKILL_PROVIDER_NAME = 'dsh-CodeStudio'
 /** 技能组前缀白名单：名字不在其中的技能文件被跳过并告警。 */
-export const SKILL_PREFIXES = ['dsh-vscodemode-'] as const
+export const SKILL_PREFIXES = ['dsh-codestudio-'] as const
 /** 候选 rank：对齐 dsh-skill-filesystem 的 CUSTOM_RANK（rank 仅在同一层内决定同名胜负）。 */
 export const SKILL_RANK = 300
 /** 单目录最多扫描的条目数（护栏，镜像 rules.ts 的 RULE_DIR_CAP）。 */

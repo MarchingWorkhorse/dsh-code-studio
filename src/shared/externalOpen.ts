@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 外部深链 URL 契约（Windows launcher / Unity 包 / client 共用）。
+ * dsh-code-studio shared — 外部深链 URL 契约（Windows launcher / Unity 包 / client 共用）。
  * 形态：?<FLAG>=1&<PATHS_KEY>=<enc1>[,<enc2>…] [&<LINE_KEY>=N] [&<COLUMN_KEY>=M]
  * 每个路径独立 percent-encode（encodeURIComponent / Uri.EscapeDataString）后以 `,` 连接：
  * 编码结果不含裸逗号（Windows 路径本身不允许逗号，编码兜底其余字符），URLSearchParams

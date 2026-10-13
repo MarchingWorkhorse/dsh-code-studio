@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — Monaco LSP provider 注册 + 跳转/引用命令。
+ * dsh-code-studio client — Monaco LSP provider 注册 + 跳转/引用命令。
  * 数据层：Definition/Reference/DocumentSymbol/Hover provider（同一文件内跳转 Monaco 原生可用）。
  * 交互层：edrv.goToDefinition（F12）/ edrv.findReferences（Shift+F12 / 右键）均走 Monaco 原生命令；
  * Ctrl+点击同样交给原生（多结果弹 Peek 让用户选、无定义时按 alternativeDefinitionCommand 降级），

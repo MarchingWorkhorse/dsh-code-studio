@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 文件页签右键菜单模型（纯函数，可单测）。
+ * dsh-code-studio client — 文件页签右键菜单模型（纯函数，可单测）。
  * 菜单是「数据」而非 JSX：条目顺序、分组分隔线、禁用规则与键位提示全部在此收敛，
  * EditorView 只把结果映射成 ContextMenu 的 entries 并派发动作。
  *

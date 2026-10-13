@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 侧边栏编辑区桥：可选探测 dsh-better-sidebar 的
+ * dsh-code-studio client — 侧边栏编辑区桥：可选探测 dsh-better-sidebar 的
  * ctx.betterSidebar 服务，并注册「文件编辑」Tab（单实例）。
  * 可选依赖模式：服务缺失时调用方回退到中央页签形态；本模块不注册任何东西。
  * 纯逻辑（探测/初始打开解析/角标计数）可单测，DOM/事件仅存在于 install 路径。

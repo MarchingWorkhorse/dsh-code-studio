@@ -395,7 +395,7 @@ describe('installRulesSection', () => {
       return undefined
     }
     expect(installRulesSection(ctx, testDirs)).toBe(true)
-    expect(captured!.name).toBe('dsh-vscode-mode:rules')
+    expect(captured!.name).toBe('dsh-code-studio:rules')
     expect(captured!.order).toBe(400)
     const provider = captured!.text as (asm: unknown) => string
     const text = provider({ agent: { id: 's1' } })

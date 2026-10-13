@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode — 调试（DAP）双面契约：调试会话状态、事件投影视图、调试配置与
+ * dsh-code-studio — 调试（DAP）双面契约：调试会话状态、事件投影视图、调试配置与
  * edrv.dap.* RPC 载荷。纯类型与纯函数，禁 node/react（同 shared 纯度规则）。
  * 适配器 = 用户已装扩展清单 contributes.debuggers 声明的 DAP 适配器（通用，不限定语言）。
  * 作者 ddj 2026年09月29号 / 2026年09月21号

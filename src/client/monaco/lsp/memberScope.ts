@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 成员补全结果集的形态分类（纯函数，node 可测）。
+ * dsh-code-studio client — 成员补全结果集的形态分类（纯函数，node 可测）。
  *
  * 背景：`ECommon.` 这类成员位置偶尔被错答为**外层作用域集**（`this` 的成员）
  * 或**全局集**（含 `this`/`...` 与大量 `CS_*` xLua 绑定桩），而正确答案应是

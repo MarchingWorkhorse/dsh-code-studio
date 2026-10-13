@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode 代码片段共享数据契约（VS Code 兼容 .code-snippets 文件）。
+ * dsh-code-studio 代码片段共享数据契约（VS Code 兼容 .code-snippets 文件）。
  * 纯类型模块：禁 node/react 导入（与 shared/rules.ts 同约束）。
  * 文件格式与 VS Code 一致：顶层对象 { "<片段名>": { prefix, body, description?, scope? } }，
  * body 可为字符串或字符串数组（数组按行拼接）；scope 为语言 id 或语言 id 数组。

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — Monaco model 跨挂载缓存（按工作区作用域）。
+ * dsh-code-studio client — Monaco model 跨挂载缓存（按工作区作用域）。
  * 编辑区每会话重挂载会销毁实例，但文件 model（内容）与工作区绑定：
  * 按作用域把 model 缓存在模块级，重挂载后 loadContent 命中缓存同步种出内容，
  * 消除切换对话时的加载闪烁。切换作用域时释放上一作用域未附着编辑器的模型

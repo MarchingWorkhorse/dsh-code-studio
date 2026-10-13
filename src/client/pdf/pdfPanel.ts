@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — PDF 面板控制器（命令式 DOM，React 只渲染外壳 div）。
+ * dsh-code-studio client — PDF 面板控制器（命令式 DOM，React 只渲染外壳 div）。
  * 浏览：PDFViewer 组件（虚拟化渲染 + 文本层）；编辑：内置注释编辑器
  * （FreeText 文本框 / Ink 画笔 / Highlight 高亮），保存经 pdfDocument.saveDocument()
  * → base64 → edrv.saveBinary 回写原文件。接线方式对齐官方 viewer（web/app.js）。

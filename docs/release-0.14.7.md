@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.14.7 发布说明
+# dsh-code-studio 0.14.7 发布说明
 
 > 2026-10-12；基线 v0.14.6。SVN 资源管理器状态图标叠加、编辑过程自抵消自动归档与 DAP 帧源码路径修复。没有新增 npm 依赖、Host RPC、数据迁移或扩大 DSH 兼容版本范围。
 
@@ -20,7 +20,7 @@
 
 ## 升级与回退
 
-确认产物可查询后，从 `v0.14.7` Git tag、GitHub Release tgz 或 `dsh-vscode-mode@0.14.7` 安装到实际目标 profile。Desktop 使用其专属安装入口，不套用 Web 示例目录。本次公开发布不自动替换当前本地包、修改 profile、刷新页面或重启 DSH；此前单独批准的本地部署与此次公开发布分别记录。
+确认产物可查询后，从 `v0.14.7` Git tag、GitHub Release tgz 或 `dsh-code-studio@0.14.7` 安装到实际目标 profile。Desktop 使用其专属安装入口，不套用 Web 示例目录。本次公开发布不自动替换当前本地包、修改 profile、刷新页面或重启 DSH；此前单独批准的本地部署与此次公开发布分别记录。
 
 本版源码功能改动涉及 Host 与 Client；替换包后仍应确认当前 Host / Client 的实际加载版本，必要时由用户重启目标 DSH Host 并强制刷新原页面，不把安装完成当作 GUI 生效证据。
 

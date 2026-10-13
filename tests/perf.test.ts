@@ -312,7 +312,7 @@ describe('perfPatch 文本调优', () => {
     expect(patchHasPerfConfig(once)).toBe(true)
     const twice = patchInsertPerfConfig(once)
     expect(patchHasPerfConfig(twice)).toBe(true)
-    const count = twice.split('# dsh-vscode-mode perf tuning (start)').length - 1
+    const count = twice.split('# dsh-code-studio perf tuning (start)').length - 1
     expect(count).toBe(1)
     expect(once).toContain('thresholdRatio: 0.6')
   })
@@ -332,6 +332,6 @@ describe('perfPatch 文本调优', () => {
   it('生成块以换行收尾且含起止标记', () => {
     const block = patchInsertPerfConfig('') 
     expect(block.endsWith('\n')).toBe(true)
-    expect(block).toContain('# dsh-vscode-mode perf tuning (end)')
+    expect(block).toContain('# dsh-code-studio perf tuning (end)')
   })
 })

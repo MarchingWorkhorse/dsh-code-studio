@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 代码片段补全 provider（Monaco IntelliSense）。
+ * dsh-code-studio client — 代码片段补全 provider（Monaco IntelliSense）。
  * 数据源：host snippets.entries（全局 ~/.dsh/snippets + 当前工作区 <工作区>/.dsh/snippets），
  * 条目按 model 语言过滤（language 空串 = 全语言）；条目主体交给 Monaco 片段语法解析
  * （${1:占位} / $TM_FILENAME 等由 InsertAsSnippet 规则展开）。

@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.14.4 发布说明
+# dsh-code-studio 0.14.4 发布说明
 
 > 2026-10-08；基线 v0.14.3。Desktop DSH rc.2 精确兼容、MCP 状态与配置管理修复、空差异栏隐藏。未增加 npm 依赖或新的数据迁移。
 
@@ -22,7 +22,7 @@
 
 ## 升级与回退
 
-确认对应产物已可用后，从固定 `v0.14.4` Git tag、GitHub Release tgz 或 `dsh-vscode-mode@0.14.4` 安装到实际目标 profile。Desktop 应使用该版本的 Desktop 插件安装入口，不把 Web 示例或旧的 `.dsh-desktop` 路径套到当前实例。
+确认对应产物已可用后，从固定 `v0.14.4` Git tag、GitHub Release tgz 或 `dsh-code-studio@0.14.4` 安装到实际目标 profile。Desktop 应使用该版本的 Desktop 插件安装入口，不把 Web 示例或旧的 `.dsh-desktop` 路径套到当前实例。
 
 本版同时修改 Host 与 Client：**升级后重启目标 DSH Host，再对原页面强制刷新**。只刷新页面不能加载新 Host，CSS 热重载也不能替代整页刷新。此次公开发布不自动替换用户现有本地 tgz 安装、不修改 profile 或重启进程。
 

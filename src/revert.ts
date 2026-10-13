@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 回滚/删除（fs + subprocess 操作）。
+ * dsh-code-studio host — 回滚/删除（fs + subprocess 操作）。
  * 迁移自原 src/index.ts 的 revertCall/revertHunk/deleteCreated/restoreFile，语义不改。
  * 作者 ddj 2026-08-20
  */

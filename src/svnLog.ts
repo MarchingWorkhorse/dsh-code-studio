@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — SVN 日志解析（`svn log --xml -v`）。
+ * dsh-code-studio host — SVN 日志解析（`svn log --xml -v`）。
  *
  * 实测要点（svn 1.14.5）：
  * - **默认范围是 `BASE:1`**：工作副本落后时几乎拿不到日志，调用方必须显式 `-r HEAD:1`。

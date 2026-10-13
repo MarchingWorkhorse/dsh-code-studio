@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 大纲源注册表 + 内置数据源（monaco / fallback）。
+ * dsh-code-studio client — 大纲源注册表 + 内置数据源（monaco / fallback）。
  * 解析规则：按优先级降序遍历源，首个非空结果生效；全空 → 空态。
  * monaco 源吃 Monaco 原生 document symbol provider（ts/json/css/html 与未来
  * 第三方注册的 provider）；fallback 源兜底无内置提供方的语言（parse.ts）。

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — DSH 对话文件链接的 0.1.3+ 路由（remote.session 面）。
+ * dsh-code-studio client — DSH 对话文件链接的 0.1.3+ 路由（remote.session 面）。
  * 0.1.3 起 dsh-client-ui-chat 的 openFile 直接调 ctx.remote.session.openWorkspacePath
  * （浏览器→host RPC session/openWorkspacePath），不再经过 workspaces.openPath，
  * 旧路由补丁因此落空；该方法是 getter-only accessor，补丁经 compat.patchAccessor

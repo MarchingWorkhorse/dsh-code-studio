@@ -23,13 +23,13 @@ afterEach(() => {
 function makeHome(): string {
   const home = mkdtempSync(join(tmpdir(), 'dsh-lsp-test-'))
   homes.push(home)
-  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-vscode-mode', 'extensions')
+  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-code-studio', 'extensions')
   return home
 }
 
 /** 在临时 home 安装伪 DotRush 扩展（package.json + LanguageServer/DotRush.dll + runtimeconfig）。 */
 function installDotRush(home: string, version = '26.9.244'): string {
-  const extDir = join(home, 'dsh-vscode-mode', 'extensions', 'nromanov.dotrush-' + version)
+  const extDir = join(home, 'dsh-code-studio', 'extensions', 'nromanov.dotrush-' + version)
   const lsDir = join(extDir, 'extension', 'bin', 'LanguageServer')
   mkdirSync(lsDir, { recursive: true })
   writeFileSync(join(extDir, 'package.json'), JSON.stringify({ publisher: 'nromanov', name: 'dotrush', version }))
@@ -42,7 +42,7 @@ function installDotRush(home: string, version = '26.9.244'): string {
 
 /** 在临时 home 安装伪 ms-dotnettools.csharp 扩展（.roslyn 服务器 dll + 清单）。 */
 function installMsCSharp(home: string, version = '2.75.0'): string {
-  const extDir = join(home, 'dsh-vscode-mode', 'extensions', 'ms-dotnettools.csharp-' + version)
+  const extDir = join(home, 'dsh-code-studio', 'extensions', 'ms-dotnettools.csharp-' + version)
   const roslynDir = join(extDir, '.roslyn')
   mkdirSync(roslynDir, { recursive: true })
   writeFileSync(join(extDir, 'package.json'), JSON.stringify({ publisher: 'ms-dotnettools', name: 'csharp', version }))
@@ -52,7 +52,7 @@ function installMsCSharp(home: string, version = '2.75.0'): string {
 
 /** 在临时 home 安装伪 sumneko.lua 扩展（server/bin/lua-language-server 可执行占位，新布局）。 */
 function installSumneko(home: string, version = '3.13.6'): string {
-  const extDir = join(home, 'dsh-vscode-mode', 'extensions', 'sumneko.lua-' + version)
+  const extDir = join(home, 'dsh-code-studio', 'extensions', 'sumneko.lua-' + version)
   const binDir = join(extDir, 'server', 'bin')
   mkdirSync(binDir, { recursive: true })
   writeFileSync(join(extDir, 'package.json'), JSON.stringify({ publisher: 'sumneko', name: 'lua', version }))

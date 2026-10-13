@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — SVN 能力双面契约（类型/动作表/TortoiseProc argv/变更纯函数）。
+ * dsh-code-studio shared — SVN 能力双面契约（类型/动作表/TortoiseProc argv/变更纯函数）。
  * 底座：svn CLI（跨平台）；TortoiseProc 对话框为 Windows 过渡增强（自研 UI 就绪后按能力标志隐藏）。
  * P2 增补：工作副本变更条目类型与显隐/徽标纯函数（`svn status --xml` 解析结果的消费口径）。
  * Purity rule: no node/react imports（对齐 rpc.ts/types.ts）。

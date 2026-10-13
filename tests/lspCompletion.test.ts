@@ -396,7 +396,7 @@ describe('edrv.lsp.completion handler', () => {
   beforeAll(() => {
     home = mkdtempSync(join(tmpdir(), 'dsh-lsp-completion-'))
     process.env.DSH_HOME = home
-    process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-vscode-mode', 'extensions')
+    process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-code-studio', 'extensions')
   })
   afterAll(() => {
     delete process.env.DSH_HOME

@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — 路径常量与动态路径统一出口（PathConst）。
+ * dsh-code-studio host — 路径常量与动态路径统一出口（PathConst）。
  * 所有 host 侧文件路径/缓存键/路由前缀从这里取，避免散落内联：
- * - 静态：插件缓存根（~/.dsh/dsh-vscode-mode/cache，下分 workspace/ 工作区级与
+ * - 静态：插件缓存根（~/.dsh/dsh-code-studio/cache，下分 workspace/ 工作区级与
  *   user/ 用户级）、日志根、工作区侧车名、路由前缀、静态资源目录（import.meta.url 派生）
  * - 动态：每工作区树缓存文件（workspace/<id>/tree.v<schema>.json）、home 解析
  *   （DSH_HOME → ~/.dsh）
@@ -18,7 +18,7 @@ import { RPC_PATH } from './shared/rpc.js'
 
 // --region 常量
 /** 插件 id（也是 .dsh 下插件工作区目录名）。 */
-export const PLUGIN_ID = 'dsh-vscode-mode'
+export const PLUGIN_ID = 'dsh-code-studio'
 /** DSH 工作区目录名（默认 home 下）。 */
 export const DSH_DIR_NAME = '.dsh'
 /** home 覆盖环境变量（与引擎 resolveDshHome 一致）。 */
@@ -41,7 +41,7 @@ export const SIDECAR_ARCHIVE = '.dsh-edit-review-archive.json'
 /** 旧 debug 日志文件名（工作区，迁移后由插件清理）。 */
 export const DEBUG_LOG = '.dsh-edit-review-debug.log'
 /** 旧树缓存 sidecar 名（工作区，迁移后由插件清理；缓存可重建，删除无损）。 */
-export const LEGACY_TREE_SIDECARS = ['.dsh-edit-review-tree.json', '.dsh-vscode-mode-tree.json']
+export const LEGACY_TREE_SIDECARS = ['.dsh-edit-review-tree.json', '.dsh-code-studio-tree.json']
 
 /** RPC 精确路由（shared 定义，这里统一出口）。 */
 export { RPC_PATH }
@@ -133,7 +133,7 @@ export function dshHome(env: Record<string, string | undefined> = process.env): 
   return resolve(path)
 }
 
-/** 插件缓存根（~/.dsh/dsh-vscode-mode/cache，下分 workspace/ 与 user/ 两级）。 */
+/** 插件缓存根（~/.dsh/dsh-code-studio/cache，下分 workspace/ 与 user/ 两级）。 */
 export function pluginCacheRoot(home = dshHome()): string {
   return join(home, PLUGIN_ID, 'cache')
 }
@@ -153,7 +153,7 @@ export function lspSpecCacheFile(home = dshHome(), schema = LSP_SPEC_CACHE_SCHEM
   return join(userCacheDir(home), 'lsp-specs.v' + schema + '.json')
 }
 
-/** 插件日志根（~/.dsh/dsh-vscode-mode/logs，用户级）。 */
+/** 插件日志根（~/.dsh/dsh-code-studio/logs，用户级）。 */
 export function pluginLogRoot(home = dshHome()): string {
   return join(home, PLUGIN_ID, 'logs')
 }

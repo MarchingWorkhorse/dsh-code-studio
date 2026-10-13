@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — DiffBarEmpty：无文件打开 / 当前文件无差异但有差异文件时的空态浮窗。
+ * dsh-code-studio client — DiffBarEmpty：无文件打开 / 当前文件无差异但有差异文件时的空态浮窗。
  * 迁移自原 src/client/index.ts 的 DiffBarEmpty，语义不改。
  * 作者 ddj 2026-08-20
  */

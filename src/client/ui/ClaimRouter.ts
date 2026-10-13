@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — ClaimRouter：官方 file 认领页签的中转正文。
+ * dsh-code-studio client — ClaimRouter：官方 file 认领页签的中转正文。
  * 官方为每个 `dsh-resource://file/**` 地址开一个认领页签；本组件只做转发：
  * 解析地址 → 送进单一编辑器页签（文件分页由编辑器自带页签栏接管）→ 关闭本中转页签。
  * 转发失败（seat 未就绪等瞬时态）按 3 次 ×150ms 重试；仍失败则就地渲染兜底正文

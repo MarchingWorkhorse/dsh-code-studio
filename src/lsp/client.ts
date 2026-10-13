@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — LSP 客户端（JSON-RPC over stdio）。
+ * dsh-code-studio host — LSP 客户端（JSON-RPC over stdio）。
  * 职责：请求/通知/握手/超时/服务器端请求处理/生命周期。transport 无关性：
  * 只依赖 write/onMessage 契约，便于单测时注入假传输。
  * 作者 ddj 2026-08-27

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode 规则管理共享数据契约（.mdc 规则文件，参考 Codebuddy/Cursor 规则形态）。
+ * dsh-code-studio 规则管理共享数据契约（.mdc 规则文件，参考 Codebuddy/Cursor 规则形态）。
  * 纯类型模块：禁 node/react 导入（与 shared/mcp.ts 同约束）。
  * 作者 ddj 2026年09月03号
  */

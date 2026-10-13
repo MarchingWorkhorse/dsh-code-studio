@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 快捷键命令目录与默认键位（双面契约）。
+ * dsh-code-studio shared — 快捷键命令目录与默认键位（双面契约）。
  * 纯数据模块：host（settings schema 默认值）与 client（执行匹配/设置页）共用。
  * 键位格式：修饰符 + 主键，`+` 连接，如 `Ctrl+Shift+F`；空串 = 未绑定；
  * `|` 连接多个候选（任一命中即触发），如 `Alt+ArrowLeft|Ctrl+Alt+-`。

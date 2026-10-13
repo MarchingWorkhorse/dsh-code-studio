@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑器导航历史（后退/前进）纯逻辑。
+ * dsh-code-studio client — 编辑器导航历史（后退/前进）纯逻辑。
  * 对齐 VSCode Go Back / Go Forward（navigation history）：记录「文件 + 焦点位置」访问轨迹，
  * 后退回到上一处焦点，前进回到下一处，跨文件生效。
  * 数据模型：past（末位 = 当前）+ future 两个栈；record 压栈并清空 future；

@@ -28,7 +28,7 @@ export function planToolOptions(submit: Submit) {
   }
   return {
     name: 'svn_plan_submit',
-    description: 'Submit an SVN change-analysis plan to the current workspace review inbox. This only records the proposal; the user must confirm changes in VSCodeMode. It does not modify or commit files.',
+    description: 'Submit an SVN change-analysis plan to the current workspace review inbox. This only records the proposal; the user must confirm changes in CodeStudio. It does not modify or commit files.',
     parameters: { plan: { type: 'json', required: true, description: 'Analysis proposal with groups, reverts and ignores arrays, using paths from the current SVN working-copy status.' } },
     output: { schema: { type: 'json' }, render },
     isConcurrencySafe: false,
@@ -47,5 +47,5 @@ export async function installPlanTool(ctx: Ctx, submit: Submit): Promise<void> {
   const definition = module.defineTool(planToolOptions(submit))
   /** @author ddj 2026年09月28号 @returns Registration disposer owned by this plugin. */
   function install(): () => void { return ctx.get('tools').register(definition) }
-  ctx.effect(install, 'vscode-mode:svn-plan-submit')
+  ctx.effect(install, 'codestudio:svn-plan-submit')
 }

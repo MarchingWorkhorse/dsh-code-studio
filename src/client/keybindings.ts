@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 快捷键配置模块（解析/匹配/官方目录同步）。
+ * dsh-code-studio client — 快捷键配置模块（解析/匹配/官方目录同步）。
  * 纯逻辑（parseChord/parseChords/formatChord/matchEvent/chordFromEvent/normalizeKey）不依赖 DOM，可单测；
  * 弦表（current）由官方 shortcuts 目录驱动：client/index.ts 经 shortcutsOfficial.bindCatalogChords
  * 订阅官方 catalog 后调 applyOfficialChords（键位持久化/冲突校验/派发全部归官方机制，本模块不再自派发）。

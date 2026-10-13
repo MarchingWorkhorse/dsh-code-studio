@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — Markdown 文件判定（编辑区预览用）。
+ * dsh-code-studio client — Markdown 文件判定（编辑区预览用）。
  * 纯函数、无 DOM/React 依赖，便于单测。
  * @author ddj 2026年09月18号
  */

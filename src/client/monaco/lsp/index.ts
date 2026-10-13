@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — LSP 装配编排。
+ * dsh-code-studio client — LSP 装配编排。
  * setupLsp(monaco)：注册 Monaco provider 与文档跟踪（幂等）；调用方在 Monaco 加载后调用。
  * setSession(id)：会话切换时同步（provider 与文档同步共用）。
  * 作者 ddj 2026-08-27

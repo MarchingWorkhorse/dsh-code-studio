@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode 版本模块测试：解析 / 比较 / 区间 / 版本线标签。
+ * dsh-code-studio 版本模块测试：解析 / 比较 / 区间 / 版本线标签。
  * 作者 ddj 2026-09-02
  */
 import { describe, expect, it } from 'vitest'

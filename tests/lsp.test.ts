@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode tests — LSP 引擎纯函数：坐标换算 / JSON-RPC 帧 / URI 转换 /
+ * dsh-code-studio tests — LSP 引擎纯函数：坐标换算 / JSON-RPC 帧 / URI 转换 /
  * provider 解析 / manager 引用计数 / parseLua 注解大纲。
  * 作者 ddj 2026-08-27
  */
@@ -134,7 +134,7 @@ describe('lsp/providers 解析', () => {
   beforeEach(() => {
     dir = mkdtempSync(join(tmpdir(), 'dsh-lsp-test-'))
     // 隔离真实机器扩展：只扫描临时 extensions 目录（DSH_LSP_EXT_DIRS 覆盖）
-    process.env.DSH_LSP_EXT_DIRS = join(dir, 'dsh-vscode-mode', 'extensions')
+    process.env.DSH_LSP_EXT_DIRS = join(dir, 'dsh-code-studio', 'extensions')
   })
   afterEach(() => {
     delete process.env.DSH_LSP_EXT_DIRS
@@ -157,7 +157,7 @@ describe('lsp/providers 解析', () => {
   })
 
   it('EmmyLua 扩展入口自动发现', () => {
-    const ext = join(dir, 'dsh-vscode-mode', 'extensions', 'tangzx.emmylua-0.9.41')
+    const ext = join(dir, 'dsh-code-studio', 'extensions', 'tangzx.emmylua-0.9.41')
     const exe = join(ext, 'server', 'emmylua_ls' + exeSuffix(process.platform))
     mkdirSync(join(ext, 'server'), { recursive: true })
     writeFileSync(exe, 'x')

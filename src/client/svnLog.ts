@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — SVN 日志状态层（P3）。
+ * dsh-code-studio client — SVN 日志状态层（P3）。
  *
  * 数据源经 svnStore 工厂创建（scope 缓存 + 在途去重 + 事件广播），键为 `scope::target`
  * 复合键——同一工作区下「根的日志」与「某文件的日志」是两份数据，不能共用一个 key。

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — Monaco 加载与语言映射（AMD 构建，离线随包分发）。
+ * dsh-code-studio client — Monaco 加载与语言映射（AMD 构建，离线随包分发）。
  * 迁移自原 src/client/index.ts 的 MONACO_BASE/LANG_BY_EXT/langOf/loadMonaco，语义不改。
  * 作者 ddj 2026-08-20
  */

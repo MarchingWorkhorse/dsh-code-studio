@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 工作区内容搜索（rg --json 主路径 + 有界编排）。
+ * dsh-code-studio host — 工作区内容搜索（rg --json 主路径 + 有界编排）。
  * 命中列由 rg 行内字节偏移转 UTF-16（1-based），可直接供 Monaco 跳转/高亮。
  * 无 fallback：provider 失败抛错，由 RPC 层转错误响应（避免整树读文件）。
  * 作者 ddj 2026年08月26号

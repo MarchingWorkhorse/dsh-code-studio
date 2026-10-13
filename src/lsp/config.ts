@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — LSP 配置读取与 provider 解析装配。
+ * dsh-code-studio host — LSP 配置读取与 provider 解析装配。
  * 配置来源优先级：运行时覆盖（设置页保存，重启失效）> 插件组合配置 > 默认。
- * 原 settings section（ns dsh-vscode-mode.languageServers）命名空间不合法
+ * 原 settings section（ns dsh-code-studio.languageServers）命名空间不合法
  * （DSH settings 仅允许 /^[a-z][a-z0-9-]*$/，点号命名空间永久不可注册），
  * 已降级为配置值（插件组合配置 + 会话内运行时覆盖），不再尝试 settings 安装。
  * 作者 ddj 2026-08-27 / 2026-09-02

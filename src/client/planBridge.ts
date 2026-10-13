@@ -18,7 +18,7 @@ interface PlanProps {
   useTabInfo?: () => { tab?: PlanTab }
   useResource?: (address: string) => { status: string; value?: unknown }
 }
-const CLAIM_ID = 'dsh-vscode-mode/plan'
+const CLAIM_ID = 'dsh-code-studio/plan'
 const CLAIM_KIND = 'edrvPlan'
 const EMPTY_RESOURCE = { status: 'none' }
 

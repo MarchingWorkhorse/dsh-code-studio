@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏「文件管理」面板（懒加载目录树 + SWR 缓存）。
+ * dsh-code-studio client — 侧边栏「文件管理」面板（懒加载目录树 + SWR 缓存）。
  * 展开目录立即渲染（dirs 内存态 → 本地条目缓存兜底），后台刷新（edrv.listDir 走
  * host 树索引，命中近乎零成本）；挂载/切会话从缓存即时恢复展开树；⟳/edrv:refresh
  * 保留旧条目强制后台重列（force）；每次用户发起加载后预取 ≤4 个子目录（排除重型

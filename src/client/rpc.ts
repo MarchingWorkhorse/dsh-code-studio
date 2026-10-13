@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 类型化 RPC 包装 + 诊断日志。
+ * dsh-code-studio client — 类型化 RPC 包装 + 诊断日志。
  * 迁移自原 src/client/index.ts 的 rpc/dbg，语义不改。
  * 诊断开关运行时化：内存缓存 + localStorage 持久（日志弹窗开关即改即生效，免刷新）。
  * 作者 ddj 2026-08-20 / 2026-09-17

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — DSH 核心版本探测与区间匹配（版本适配机制的地基）。
+ * dsh-code-studio host — DSH 核心版本探测与区间匹配（版本适配机制的地基）。
  * 约定：以运行时可解析的 @deepseek-ai/dsh-settings 包版本代表 DSH 核心版本——
  * 核心包发布锁步同版（rc.2 / alpha.2 全树同版实证），且该包是插件动态依赖面、
  * exports 已放行 ./package.json。解析失败按候选降级（dsh-web-app / dsh-base / dsh），

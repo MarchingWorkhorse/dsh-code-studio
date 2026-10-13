@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — PerfSettings：「性能优化」设置子页（会话卫生 + 压缩调优）。
+ * dsh-code-studio client — PerfSettings：「性能优化」设置子页（会话卫生 + 压缩调优）。
  * - 会话盘点：全工作区/每会话体积、活跃标记、官方归档/置顶徽标，按体积排序；
  * - 移出到归档（先规划→确认→执行→可恢复）与归档清除；
  * - DSH 内置压缩调优：写 profile patch（compaction-basic / tool-result-pruner 更低阈值，

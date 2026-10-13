@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 目录快速列取（edrv.listDir 数据来源，树索引 miss 时走这里）。
+ * dsh-code-studio host — 目录快速列取（edrv.listDir 数据来源，树索引 miss 时走这里）。
  * dsh-fs.listDir 对每个子项顺序 realpath+stat（2 次 open/项），在本部署被中介的
  * open（0.3–3s/次）下大目录呈分钟级；这里用原生 readdir(withFileTypes) 一次取型
  * （O(1) open），仅对 symlink/junction（Windows junction 在 dirent 中报 symlink，

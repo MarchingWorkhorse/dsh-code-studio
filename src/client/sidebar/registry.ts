@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 侧边栏面板注册表。
+ * dsh-code-studio client — 侧边栏面板注册表。
  * 镜像 fileOpeners.ts 的注册表模式：create + register(返回注销) + list + subscribe，
  * 由 client/index.ts `ctx.provide('edrvSidebarPanels', registry)` 对外暴露（第三方可注册）。
  * 作者 ddj 2026-08-26

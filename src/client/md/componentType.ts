@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — React 元素类型判定（纯函数，无 React/primitives 依赖）。
+ * dsh-code-studio client — React 元素类型判定（纯函数，无 React/primitives 依赖）。
  *
  * 用途：编辑区 Markdown 预览要判断官方 `MarkdownText` 原语是否可用（旧版 DSH 可能缺该导出）。
  *

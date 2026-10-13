@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 语言服务器 RPC 契约（双面，禁 node/react）。
+ * dsh-code-studio shared — 语言服务器 RPC 契约（双面，禁 node/react）。
  * LSP 请求/响应的 JSON 载荷形状 + 纯函数辅助（Monaco↔LSP 坐标换算等）。
  * 只描述"过 RPC 的载荷"，宿主与语言服务器之间的帧级交互在 host 侧 src/lsp/ 内。
  * 作者 ddj 2026-08-27

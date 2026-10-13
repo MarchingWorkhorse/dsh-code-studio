@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 断点 gutter 右键菜单条目（纯函数，可单测）。
+ * dsh-code-studio client — 断点 gutter 右键菜单条目（纯函数，可单测）。
  * 逐条对齐 CodeBuddy（VS Code 内核）breakpointEditorContribution.getContextMenuActions
  * 与其官方中文语言包译文：
  * - 无断点：添加断点 / 添加条件断点... / 添加记录点... / 添加触发的断点...

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — launch.json「添加配置」片段提取。
+ * dsh-code-studio host — launch.json「添加配置」片段提取。
  * 扫描 VSCode 扩展清单 contributes.debuggers[]：
  * - configurationSnippets[]（label/description/body）优先；缺失时 initialConfigurations[] 兜底
  *   （条目本身就是配置体，label 取 body.name → debugger.label → type）；

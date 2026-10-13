@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 系统集成载荷契约（Windows 右键菜单 + Unity 一键安装/更新）。
+ * dsh-code-studio shared — 系统集成载荷契约（Windows 右键菜单 + Unity 一键安装/更新）。
  * Purity rule: no node/react imports（platform 用 string 表示）。
  * 作者 ddj 2026-09-07
  */

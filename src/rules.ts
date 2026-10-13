@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 规则管理（Codebuddy/Cursor 式 .mdc 规则）。
+ * dsh-code-studio host — 规则管理（Codebuddy/Cursor 式 .mdc 规则）。
  * - 存储：用户规则 DSH_HOME/rules + ~/.dsh/rules（当前目录优先）；项目规则 <工作区>/.dsh/rules。
  * - 格式：frontmatter（description / alwaysApply / globs / enabled）+ markdown 正文；
  *   类型映射 总是=always / 自动=auto(globs) / 手动=manual(仅索引)；enabled 为本插件扩展字段，缺省 true。
@@ -29,7 +29,7 @@ const RULE_SINGLE_CAP = 16 * 1024
 /** 注入时单个作用域（用户/项目）总字节预算。 */
 const RULE_SCOPE_CAP = 64 * 1024
 /** systemPrompt section 名（同层唯一）。 */
-const SECTION_NAME = 'dsh-vscode-mode:rules'
+const SECTION_NAME = 'dsh-code-studio:rules'
 /** section 顺序：persona(0) 与 PLAN_POLICY(500) 之间，规则先于计划策略被读到。 */
 const SECTION_ORDER = 400
 
@@ -578,7 +578,7 @@ export function installRulesSection(ctx: Ctx, dirs = userRuleDirs()): boolean {
       return ''
     }
   }
-  ctx.effect(() => sp.section({ name: SECTION_NAME, order: SECTION_ORDER, text: provider }), 'vscode-mode: rules section')
+  ctx.effect(() => sp.section({ name: SECTION_NAME, order: SECTION_ORDER, text: provider }), 'codestudio: rules section')
   return true
 }
 // --endregion

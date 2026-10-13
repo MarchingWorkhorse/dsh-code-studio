@@ -1,14 +1,14 @@
 /**
- * dsh-vscode-mode host — 工作区目录树索引（.sln 式结构缓存，层 2）。
+ * dsh-code-studio host — 工作区目录树索引（.sln 式结构缓存，层 2）。
  * 内存 Map<cwd, 索引> + 落盘缓存文件（工作区级：
- * ~/.dsh/dsh-vscode-mode/cache/workspace/<cwdHash>/tree.v<schema>.json，路径统一走
+ * ~/.dsh/dsh-code-studio/cache/workspace/<cwdHash>/tree.v<schema>.json，路径统一走
  * paths.ts PathConst）：命中（ts 新鲜且未失效）内存直出 0 IO；列取结果 putIndex 更新
  * 并防抖落盘；agent 写入/手动保存 invalidateIndex 父目录+祖先 → 3s 防抖后台 re-heal
  * （并行、单轮有界、合并并发轮）；TTL 兜底外部改动。缓存写读走原生 node:fs（与引擎
  * settings-file 一致，不占用工作区；沙箱只约束 ctx fs）。文件只存 {name,type}（path 由
  * 目录 rel 还原），落盘上限 400 目录/1500 条目/8MB 硬跳过——只是暖启动快照，正确性
  * 不依赖它。首次使用某 cwd 时清理旧工作区树 sidecar
- * （.dsh-edit-review-tree.json/.dsh-vscode-mode-tree.json，缓存可重建，删除无损）。
+ * （.dsh-edit-review-tree.json/.dsh-code-studio-tree.json，缓存可重建，删除无损）。
  * 纯函数部分导出可单测。
  * 作者 ddj 2026-08-31 / 2026-09-01
  */
@@ -193,7 +193,7 @@ function ensureState(ctx: Ctx, cwd: string): IndexState {
   return state
 }
 
-/** 清理旧工作区树 sidecar（.dsh-edit-review-tree.json/.dsh-vscode-mode-tree.json）。 */
+/** 清理旧工作区树 sidecar（.dsh-edit-review-tree.json/.dsh-code-studio-tree.json）。 */
 export async function removeLegacyTreeSidecars(cwd: string): Promise<void> {
   await Promise.all(LEGACY_TREE_SIDECARS.map(async (name) => {
     try {

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试目标进程枚举（Windows）。
+ * dsh-code-studio host — 调试目标进程枚举（Windows）。
  * 用 PowerShell Get-Process 取 窗口标题/进程名/路径（完整 Unicode，无 GBK 乱码），
  * 等价替代 VS Code 扩展的 emmy_tool.exe list_processes（扩展侧 QuickPick 的数据源），
  * 匹配语义一致：processName 对 窗口标题 或 进程文件名 做**包含**匹配。

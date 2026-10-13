@@ -12,7 +12,7 @@ let dispose: (() => void) | undefined
 
 beforeAll(async () => {
   profile = await mkdtemp(join(dirname(fileURLToPath(import.meta.url)), '.open-inbox-'))
-  await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-vscode-mode': '^0.13.0' } }))
+  await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-code-studio': '^0.13.0' } }))
   const ctx = { get: (name: string) => name === 'profileContext' ? { dir: profile } : undefined } as unknown as Ctx
   dispose = await startOpenInbox(ctx)
 }, 30_000)

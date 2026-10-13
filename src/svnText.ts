@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — SVN **文本输出**解析（svn update/revert/add/commit 均无 `--xml`）。
+ * dsh-code-studio host — SVN **文本输出**解析（svn update/revert/add/commit 均无 `--xml`）。
  *
  * 为什么单独成模块：这些子命令只给人类可读文本，解析必须「宽松 + 原文兜底」，
  * 且共用同一批基元（退出码判定、输出合并/截断、结果行字母表）。与 svnXml.ts 的区别：

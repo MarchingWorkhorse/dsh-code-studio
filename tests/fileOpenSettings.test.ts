@@ -6,7 +6,7 @@ describe('file open settings', () => {
   it('normalizes empty and whitespace values to auto', () => {
     expect(normalizeFileOpenTool(undefined)).toBe('auto')
     expect(normalizeFileOpenTool('  ')).toBe('auto')
-    expect(normalizeFileOpenTool('dsh-vscode-mode')).toBe('dsh-vscode-mode')
+    expect(normalizeFileOpenTool('dsh-code-studio')).toBe('dsh-code-studio')
   })
 
   it('installs settings section with keybindings schema when deps are available', async () => {

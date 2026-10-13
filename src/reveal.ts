@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 在 OS 文件浏览器中打开/定位路径（reveal 能力）。
+ * dsh-code-studio host — 在 OS 文件浏览器中打开/定位路径（reveal 能力）。
  * 纯函数 revealCommand 平台分发 + revealSpawnOpts 启动选项 + revealInExplorer 发射。
  * 文件 → 资源管理器选中定位；目录 → 打开目录；Linux 无通用定位协议 → 打开所在目录。
  *

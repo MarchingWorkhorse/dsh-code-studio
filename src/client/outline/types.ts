@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 大纲契约（归一化符号模型 + 数据源接口）。
+ * dsh-code-studio client — 大纲契约（归一化符号模型 + 数据源接口）。
  * 面板只消费 OutlineSymbol[]，与 Monaco 解耦；未来语言插件（LSP/VSIX 风格，
  * 如 EmmyLua/C#）注册高优先级 OutlineSource 即可接入，无需改动面板。
  * kind 取 monaco SymbolKind 数值（0–25，与 LSP SymbolKind 一致）。

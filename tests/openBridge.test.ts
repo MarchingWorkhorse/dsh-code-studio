@@ -81,7 +81,9 @@ describe('ensureActiveBridge（tmp 端到端）', () => {
     const plain = join(base, 'plain')
     await mkdir(plain, { recursive: true })
     await writeFile(join(plain, 'package.json'), JSON.stringify({ name: 'not-a-profile' }), 'utf8')
-    const ctx = { get: () => undefined } as unknown as Ctx
+    // home 必须注入 fixture：缺省时 findProfileDir 会回退扫描真实 ~/.dsh/profiles，
+    // 开发形态部署（profile 依赖本插件）会让该用例误命中真实 profile（2026-10-14 实测）
+    const ctx = { get: (key: string) => (key === 'dshHomePath' ? () => base : undefined) } as unknown as Ctx
     expect(await ensureActiveBridge(ctx, 'http://127.0.0.1:19387')).toBeNull()
   })
 

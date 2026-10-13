@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 搜索 query 与路径规范化。
+ * dsh-code-studio host — 搜索 query 与路径规范化。
  * 查询只按字面连续片段比较，不解释为正则或 shell 语句。
  * 作者 ddj 2026年08月24号
  */

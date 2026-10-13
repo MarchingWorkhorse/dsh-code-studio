@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — LSP 会话与文档同步（模块级单例）。
+ * dsh-code-studio client — LSP 会话与文档同步（模块级单例）。
  * 跟踪当前会话 + Monaco 打开文档（model 事件驱动），去抖推送 edrv.lsp.sync；
  * 并提供 definition/references/documentSymbol/hover/status 的 RPC 薄封装。
  * 作者 ddj 2026-08-27

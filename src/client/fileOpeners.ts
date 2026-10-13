@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 文件打开器注册表与自动选择。
+ * dsh-code-studio client — 文件打开器注册表与自动选择。
  * @author ddj 2026年08月24号 / 2026年09月09号
  */
 import { SIDEBAR_PLUGIN } from './compat.js'
@@ -7,7 +7,7 @@ import { buildFileAddress } from './officialSidebar.js'
 
 export const AUTO_OPEN_TOOL = 'auto'
 export const SYSTEM_OPEN_TOOL = 'system'
-export const VSCODE_OPEN_TOOL = 'dsh-vscode-mode'
+export const VSCODE_OPEN_TOOL = 'dsh-code-studio'
 export const SIDEBAR_OPEN_TOOL = SIDEBAR_PLUGIN
 /** 官方右侧侧边栏打开器 id（「文件链接使用工具」下拉的官方选项；DSH 0.1.5+）。 */
 export const OFFICIAL_OPEN_TOOL = 'dsh-official-sidebar'
@@ -181,7 +181,7 @@ export interface OfficialOpenResourceService {
 }
 
 /**
- * 文件链接是否由本插件认领官方 file 地址：自动/VSCodeMode 档接管（链接进本插件编辑器），
+ * 文件链接是否由本插件认领官方 file 地址：自动/CodeStudio 档接管（链接进本插件编辑器），
  * 官方侧边栏/system/better-sidebar 档不认领（官方查看器或旧版路由生效）。
  * @author ddj 2026年09月09号
  * @param selected 「文件链接使用工具」当前值

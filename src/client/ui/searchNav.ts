@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 候选列表键盘导航纯函数。
+ * dsh-code-studio client — 候选列表键盘导航纯函数。
  * 从搜索浮窗（QuickOpen）的按键处理中拆出，便于单测；不依赖 React 与 DOM。
  * 导航语义：步进越界**循环**（末位 ↓ 回首位、首位 ↑ 到末位），与命令栏
  * （CommandPalette 的 (min+step) % len）保持一致。

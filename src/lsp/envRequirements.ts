@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — LSP 环境需求检测注册表。
+ * dsh-code-studio host — LSP 环境需求检测注册表。
  * 每个语言注册一个检测器：扫描当前环境，返回未满足的需求清单（含一键安装与官网链接信息）。
  * 新接入 LSP：在 CHECKERS 加一个检测器条目；需要内置安装器时在 INSTALLERS 注册同前缀安装函数。
  * 检测在 status/redetect/configUpdate 时执行（不缓存），保证安装完成后状态即时刷新。

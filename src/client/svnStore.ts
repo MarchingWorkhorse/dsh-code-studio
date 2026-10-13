@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — SVN 数据源通用缓存层（scope 缓存 + 在途去重 + 事件广播）。
+ * dsh-code-studio client — SVN 数据源通用缓存层（scope 缓存 + 在途去重 + 事件广播）。
  *
  * 为什么抽工厂：status/changes 两套实现完全同形（cache/inFlight/latest/emit 四件套），
  * P3 的 log 与 P4 的 commitPlan 还要再来两遍。重复的不只是十几行样板，更关键的是
@@ -27,7 +27,7 @@ export function dshTrace(event: string, data?: unknown): void {
     if (typeof window === 'undefined') return
     const w = window as unknown as { __DSH_DEBUG_LOG__?: Array<Record<string, unknown>> }
     const buf = (w.__DSH_DEBUG_LOG__ = w.__DSH_DEBUG_LOG__ || [])
-    buf.push({ t: Date.now(), plugin: 'dsh-vscode-mode', event, data })
+    buf.push({ t: Date.now(), plugin: 'dsh-code-studio', event, data })
     if (buf.length > 500) buf.splice(0, buf.length - 500)
   } catch { /* 诊断不干扰主流程 */ }
 }

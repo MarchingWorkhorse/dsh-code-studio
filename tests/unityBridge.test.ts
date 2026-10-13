@@ -70,7 +70,7 @@ describe('纯函数', () => {
   it('unityTargetOf 固定到 Packages/com.dsh.editor；unityProjectsFile 固定（分隔符归一后断言）', () => {
     const slash = (p: string): string => p.replace(/\\/g, '/')
     expect(slash(unityTargetOf('D:\\Work\\PopIsland'))).toBe('D:/Work/PopIsland/Packages/com.dsh.editor')
-    expect(slash(unityProjectsFile('C:\\home\\.dsh'))).toBe('C:/home/.dsh/dsh-vscode-mode/unity-projects.json')
+    expect(slash(unityProjectsFile('C:\\home\\.dsh'))).toBe('C:/home/.dsh/dsh-code-studio/unity-projects.json')
   })
 
   it('unitySourceDir 按 moduleUrl 推导（按平台构造合法 file URL）', () => {
@@ -176,16 +176,16 @@ describe('Unity per-profile bridge provisioning', () => {
     const project = await makeProject(base)
     const profile = join(base, 'profile-a')
     await mkdir(profile)
-    await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-vscode-mode': '^0.13.0' } }))
+    await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-code-studio': '^0.13.0' } }))
     const ctx = { get: (name: string) => name === 'profileContext' ? { dir: profile, name: 'desktop' } : undefined } as unknown as Ctx
     const entry = await unityInstall(project, moduleUrl, { ctx, baseUrl: 'http://localhost:4567' })
-    const config = join(profile, 'dsh-vscode-mode', 'bridge', 'dsh-open.ini')
+    const config = join(profile, 'dsh-code-studio', 'bridge', 'dsh-open.ini')
     expect(entry.bridgeConfigPath).toBe(config)
     expect(await readFile(join(project, 'UserSettings', 'dsh-editor.ini'), 'utf8')).toBe('[dsh]\nconfig=' + config + '\n')
     expect(await readFile(config, 'utf8')).toContain('profile=' + profile)
     expect(await readFile(config, 'utf8')).toContain('base=http://localhost:4567')
-    expect(await readFile(join(profile, 'dsh-vscode-mode', 'bridge', 'dsh-open.mjs'), 'utf8')).toContain('requestId')
-    await expect(readFile(join(profile, 'dsh-vscode-mode', 'shell', 'registered.json'))).rejects.toMatchObject({ code: 'ENOENT' })
+    expect(await readFile(join(profile, 'dsh-code-studio', 'bridge', 'dsh-open.mjs'), 'utf8')).toContain('requestId')
+    await expect(readFile(join(profile, 'dsh-code-studio', 'shell', 'registered.json'))).rejects.toMatchObject({ code: 'ENOENT' })
   }, 15_000)
 
   it('installing a second profile leaves the first profile bridge and shell selection intact', async () => {
@@ -194,17 +194,17 @@ describe('Unity per-profile bridge provisioning', () => {
     const project = await makeProject(base)
     const first = join(base, 'profile-a')
     const second = join(base, 'profile-b')
-    const firstConfig = join(first, 'dsh-vscode-mode', 'bridge', 'dsh-open.ini')
+    const firstConfig = join(first, 'dsh-code-studio', 'bridge', 'dsh-open.ini')
     const shellConfig = join(base, 'shell', 'dsh-open.ini')
     await mkdir(dirname(firstConfig), { recursive: true })
     await mkdir(dirname(shellConfig), { recursive: true })
     await mkdir(second)
     await writeFile(firstConfig, 'first-profile-selection')
     await writeFile(shellConfig, 'shell-selected-first-profile')
-    await writeFile(join(second, 'package.json'), JSON.stringify({ dependencies: { 'dsh-vscode-mode': '^0.13.0' } }))
+    await writeFile(join(second, 'package.json'), JSON.stringify({ dependencies: { 'dsh-code-studio': '^0.13.0' } }))
     const ctx = { get: (name: string) => name === 'profileContext' ? { dir: second, name: 'web' } : undefined } as unknown as Ctx
     const entry = await unityInstall(project, moduleUrl, { ctx, baseUrl: 'http://localhost:6789' })
-    expect(entry.bridgeConfigPath).toBe(join(second, 'dsh-vscode-mode', 'bridge', 'dsh-open.ini'))
+    expect(entry.bridgeConfigPath).toBe(join(second, 'dsh-code-studio', 'bridge', 'dsh-open.ini'))
     expect(await readFile(firstConfig, 'utf8')).toBe('first-profile-selection')
     expect(await readFile(shellConfig, 'utf8')).toBe('shell-selected-first-profile')
   }, 15_000)

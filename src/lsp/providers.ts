@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — 语言服务器 provider 解析。
+ * dsh-code-studio host — 语言服务器 provider 解析。
  * 优先级：手动配置 > extmgr 扩展源(Phase 2 挂载) > 自动发现(~/.vscode/extensions、
- * ~/.dsh/dsh-vscode-mode/extensions、PATH)。C# 自动发现覆盖 ms-dotnettools.csharp
+ * ~/.dsh/dsh-code-studio/extensions、PATH)。C# 自动发现覆盖 ms-dotnettools.csharp
  * （Roslyn/OmniSharp）与 DotRush（自带 DotRush.dll 服务器，需对应 .NET 运行时）。
  * 产物 LspProviderSpec：{ ready, argv, cwd, reason }，供 manager 启动服务器。
  * 作者 ddj 2026-08-27

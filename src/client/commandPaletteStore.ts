@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 命令栏开关状态与单实例宿主认领。
+ * dsh-code-studio client — 命令栏开关状态与单实例宿主认领。
  * 命令栏浮层走 createPortal 渲染到 body，但组件必须挂在插件自己的 React 树里：
  * 编辑区有三种形态（官方右侧 Sidebar / better-sidebar / 中央页签），会话切换时旧树先卸载、
  * 新树后挂载，可能出现两个宿主——claimPaletteHost 保证任一时刻只有一个宿主真正渲染浮层。

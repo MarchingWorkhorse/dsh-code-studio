@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 文件页签操作纯函数（关闭族 / 固定 / 路径推导）。
+ * dsh-code-studio client — 文件页签操作纯函数（关闭族 / 固定 / 路径推导）。
  * 页签状态是 EditorView 的 `{ path, pinned }[]`；本模块不触 React/DOM，可 node 单测，
  * 菜单动作（tabMenu）与编辑器（EditorView）共用同一份语义，避免规则散落两处。
  *

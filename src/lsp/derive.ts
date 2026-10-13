@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 定义查找降级链的纯推导函数。
+ * dsh-code-studio host — 定义查找降级链的纯推导函数。
  * 背景：EmmyLua 对局部变量/参数/表字段的 textDocument/definition 常返回空，
  * 但 references(includeDeclaration) 能给出包含声明的条目。
  * 本函数从引用列表推导"声明位置"：同文件、词文本与点击处一致，且点击位置落在某条目内时，

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode 设置安装自适应层测试：legacy / service / none 三策略分支，
+ * dsh-code-studio 设置安装自适应层测试：legacy / service / none 三策略分支，
  * 依赖解析链（schema 包改名 / dsh-settings 可选）、Config volatile 标记（0.1.7 语义）
  * 与 volatile 引用解包（unref/configField）。
  * 作者 ddj 2026-09-02 / 2026-09-18 / 2026-09-23
@@ -24,7 +24,7 @@ import {
   configField,
 } from '../src/fileOpenSettings.js'
 
-const NS = 'dsh-vscode-mode'
+const NS = 'dsh-code-studio'
 const hooks = { setSource: () => {}, onChange: () => {} }
 
 /** 最小 schemastery z 桩（只构造不校验；能力开关控制 default 链结果是否带 .volatile()）。 */

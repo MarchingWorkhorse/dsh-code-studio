@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SVN 日志统计窗（P1-10，对应 TortoiseSVN Statistics 三页 D23）。
+ * dsh-code-studio client — SVN 日志统计窗（P1-10，对应 TortoiseSVN Statistics 三页 D23）。
  *
  * 纯前端聚合当前显示的条目（不发额外 RPC）；统计口径 = 传入条目集合，
  * 即官方「统计覆盖期间 = Log 对话框显示的期间」。内容对齐官方可达子集：

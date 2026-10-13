@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 对话差异 dock 纯函数。
+ * dsh-code-studio client — 对话差异 dock 纯函数。
  * 只负责差异文件轮转和文案，状态查询仍由组件复用现有 edrv.list/summarize。
  * 作者 ddj 2026-08-26
  */

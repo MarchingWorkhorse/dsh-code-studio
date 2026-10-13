@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 跨挂载/跨热重载的待跳转交接（pending nav handoff）。
+ * dsh-code-studio client — 跨挂载/跨热重载的待跳转交接（pending nav handoff）。
  *
  * 为什么必须落 window（第三次事故根因，2026-09-23 实测取证）：
  * 并行改码触发插件 client HMR 热重载（保留 console 中装配日志重复 6-7 轮为证）时，

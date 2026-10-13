@@ -83,7 +83,7 @@ jobs:
           npm config set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
           ok=0
           for attempt in $(seq 1 15); do
-            tarball="$(npm view "dsh-vscode-mode@${version}" dist.tarball 2>/dev/null || true)"
+            tarball="$(npm view "dsh-code-studio@${version}" dist.tarball 2>/dev/null || true)"
             if [ -n "${tarball}" ] && curl -fsSL "${tarball}" -o /tmp/verify.tgz; then
               ok=1
               break

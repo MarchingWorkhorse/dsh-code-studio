@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 防抖保存槽（纯逻辑，可单测）。
+ * dsh-code-studio client — 防抖保存槽（纯逻辑，可单测）。
  *
  * 存在意义（真实缺陷，勿把「取消」与「保存」再合并回一个句柄）：
  * 自动保存由 `schedule(fn, 700)` 承载，而 `schedule` = `ctx.timeout(fn, ms)` 的返回值是

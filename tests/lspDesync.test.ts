@@ -133,7 +133,7 @@ beforeAll(() => {
   home = mkdtempSync(join(tmpdir(), 'dsh-lsp-desync-'))
   process.env.DSH_HOME = home
   // 隔离真实机器扩展：扫描列表指向不存在的临时目录
-  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-vscode-mode', 'extensions')
+  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-code-studio', 'extensions')
 })
 
 afterAll(() => {

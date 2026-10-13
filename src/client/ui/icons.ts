@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — UI 原语图标跨版本出口（消费方导出名保持 ≤0.1.6 旧名）。
+ * dsh-code-studio client — UI 原语图标跨版本出口（消费方导出名保持 ≤0.1.6 旧名）。
  * 背景：DSH 0.1.7 图标命名重构——`Icon<Name>16`（0.1.6 及更旧）→
  * `Icon<Name>Regular/Medium`（0.1.7+，size 参数化 + 双笔画档），旧名在 0.1.7
  * 全树已不存在（整树 grep 实证）。解析策略：namespace import 属性探测，旧名优先

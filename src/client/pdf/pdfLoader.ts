@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — pdf.js 加载器（vendor 产物离线随包，/edrv/vendor/pdfjs/*）。
+ * dsh-code-studio client — pdf.js 加载器（vendor 产物离线随包，/edrv/vendor/pdfjs/*）。
  * 加载链：module script 内按序动态 import build/pdf.mjs（自挂 globalThis.pdfjsLib）→
  * web/pdf_viewer.mjs（从 globalThis.pdfjsLib 解构）→ window.__edrvPdfjs handoff。
  * 用 script 注入而非打包内 import()：客户端包是 CJS，bundler 会改写动态 import 破坏 URL 语义。

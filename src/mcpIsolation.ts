@@ -253,13 +253,13 @@ export function installIsolation(ctx: Ctx): void {
     return filterAssembly(ctx, await next(), context.scope)
   }
   const disposers = [ctx.on('agent/created', onCreated), ctx.on('agent/disposed', onDisposed),
-    ctx.on('tools/change', syncAll), ctx.on('vscode-mode/mcp-change', syncAll),
+    ctx.on('tools/change', syncAll), ctx.on('codestudio/mcp-change', syncAll),
     ctx.on('system-prompt/assemble', filterPrompt), tools.guard(guard)]
   const cleanup = () => {
     for (const dispose of disposers) dispose?.()
     for (const state of states.values()) clearState(state)
     states.clear()
   }
-  ctx.effect(() => cleanup, 'vscode-mode:mcp-isolation')
+  ctx.effect(() => cleanup, 'codestudio:mcp-isolation')
   syncAll()
 }

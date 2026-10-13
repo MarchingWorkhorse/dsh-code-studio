@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — SVN 动作**执行器**表（与 shared/svnActions.ts 的元数据表配对）。
+ * dsh-code-studio client — SVN 动作**执行器**表（与 shared/svnActions.ts 的元数据表配对）。
  *
  * 为什么与元数据分开：元数据要能被 host/shared 引用（纯数据、可单测），而执行器必然带
  * RPC 副作用与 UI 回调。三个入口（命令栏/文件树菜单/页签菜单）与 EditorView 分派都只

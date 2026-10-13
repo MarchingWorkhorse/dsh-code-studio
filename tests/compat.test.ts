@@ -35,7 +35,7 @@ describe('identity constants', () => {
   })
 
   it('包名与路由前缀不漂移', () => {
-    expect(PLUGIN_NAME).toBe('dsh-vscode-mode')
+    expect(PLUGIN_NAME).toBe('dsh-code-studio')
     expect(MCP_PACKAGE).toBe('@deepseek-ai/dsh-mcp-client')
     expect(ROUTE_PREFIX).toBe('/edrv')
   })

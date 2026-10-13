@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 暂停态 Lua DAP hover。
+ * dsh-code-studio client — 暂停态 Lua DAP hover。
  * provider 只在 DAP paused 时工作，按当前 selectedFrameId 求值，并把「表达式值 + 类型 + 可折叠
  * 变量树」渲染成**单个 HTML 块**（`[data-edrv-dap]`）；Alt 切换 LSP 信息由 hover 层做行级显隐
  * （见 hoverTree.ts），因此这里不按 Alt 改变内容，避免依赖 Monaco 的 hover 重算路径。

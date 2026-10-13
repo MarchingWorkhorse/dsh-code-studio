@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 差异区域计算纯函数（可单测）。
+ * dsh-code-studio client — 差异区域计算纯函数（可单测）。
  * 迁移自原 src/client/index.ts 的 diffRegions/trimCommonLines/countLinesBefore，语义不改。
  * 作者 ddj 2026-08-20
  */

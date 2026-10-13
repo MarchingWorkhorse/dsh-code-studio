@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 存储层（sidecar 读写合并 + 归档持久化 + stale 检测）。
+ * dsh-code-studio host — 存储层（sidecar 读写合并 + 归档持久化 + stale 检测）。
  * 迁移自原 src/index.ts 的 fs/ctx IO 部分，语义一字不改。
  * 作者 ddj 2026-08-20
  */

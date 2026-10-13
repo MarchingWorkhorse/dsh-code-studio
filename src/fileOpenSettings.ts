@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 文件链接打开工具 + 快捷键的持久化设置。
+ * dsh-code-studio host — 文件链接打开工具 + 快捷键的持久化设置。
  * 依赖守卫：schemastery 动态加载；@deepseek-ai/dsh-settings 仅作 legacy 探测——
  * rc 线导出 installSettingsSection free function，0.1.2-alpha 起移除（改由 settings
  * 服务的 installSection 方法承载），0.1.7 再移除 installSection（设置并入 profile
@@ -18,7 +18,7 @@ import type { AiConfigPatch, AiConfigView } from './shared/ai.js'
 import { DEFAULT_NATIVE_CSV } from './shared/nativeOpen.js'
 import { log } from './log.js'
 
-export const FILE_OPEN_SETTINGS_NS = 'dsh-vscode-mode'
+export const FILE_OPEN_SETTINGS_NS = 'dsh-code-studio'
 export const FILE_OPEN_DEFAULT = 'auto'
 export interface FileOpenSettings { fileOpenTool: string; integrationBaseUrl: string; svnPath: string; tortoisePath: string }
 export interface FileOpenSettingsState { value: string; revision?: number; update: (value: string, expectedRevision?: number) => Promise<void> }

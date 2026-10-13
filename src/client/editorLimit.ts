@@ -1,6 +1,6 @@
 /**
- * dsh-vscode-mode client — 页签数量上限共享状态。
- * 设置来源：dsh-vscode-mode 命名空间的 maxOpenEditors 字段（通用设置页可调）；
+ * dsh-code-studio client — 页签数量上限共享状态。
+ * 设置来源：dsh-code-studio 命名空间的 maxOpenEditors 字段（通用设置页可调）；
  * 客户端 settings 订阅经 editorLimitApply 写入，编辑器经 getMaxOpenEditors 读取，
  * 变更时由 client/index.ts 派发 edrv:max-open-editors 窗口事件通知编辑器复算淘汰。
  * 形态与 sidebarMin.ts 一致（同一设置同步链路，便于统一维护）。

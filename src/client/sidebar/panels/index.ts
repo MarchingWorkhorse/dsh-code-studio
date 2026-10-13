@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏面板定义（文件管理 + 搜索 + 规则 + SVN 变更）。
+ * dsh-code-studio client — 侧边栏面板定义（文件管理 + 搜索 + 规则 + SVN 变更）。
  * 活动栏图标用官方 UI 原语（跟随 DSH 主题与皮肤）；原语缺失时由 SidebarView 回落文本渲染。
  * 「SVN 变更」带 visible 守卫：仅受 SVN 管理的工作区出现（非 SVN 工作区零变化）。
  * 作者 ddj 2026-08-26 / 2026-09-03 / 2026-09-10 / 2026-09-16

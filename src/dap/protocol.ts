@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — DAP（Debug Adapter Protocol）消息纯类型与守卫。
+ * dsh-code-studio host — DAP（Debug Adapter Protocol）消息纯类型与守卫。
  * 帧格式与 LSP 相同（Content-Length 头），编解码直接复用 lsp/jsonrpc.ts。
  * 消息形状只覆盖本插件消费的子集（DAP 3.x 常用面 + emmylua 适配器扩展）。
  * 作者 ddj 2026年09月29号 / 2026年09月21号

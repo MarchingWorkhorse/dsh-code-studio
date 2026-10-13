@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 图片文件判定、data URL 组装与缩放纯逻辑（编辑区图片预览面板用）。
+ * dsh-code-studio client — 图片文件判定、data URL 组装与缩放纯逻辑（编辑区图片预览面板用）。
  * 纯函数、无 DOM 依赖，便于单测；MIME 表收敛在 shared/rpc.ts（host base64 响应同源）；
  * 缩放：步进/clamp 为纯函数，页签记忆为模块级 Map（会话+路径键，EditorView 卸载清空、不持久化）。
  * @author ddj 2026年09月08号

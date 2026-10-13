@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 官方右侧 Sidebar 桥：探测 DSH 0.1.5-alpha.1+ 的
+ * dsh-code-studio client — 官方右侧 Sidebar 桥：探测 DSH 0.1.5-alpha.1+ 的
  * ctx.sidebarRightTabs / ctx.sidebarRight 服务，两段式注册「文件编辑」Tab
  * （类型定义进注册表，正文进 keyed slot sidebar.right.pane.tab）。
  * 可选依赖模式：服务缺失时调用方回退 better-sidebar / 中央页签；本模块不注册任何东西。
@@ -26,7 +26,7 @@ export const OFFICIAL_SERVICE = 'sidebarRight'
 /** 官方 keyed slot 名（Tab 正文挂点，由官方侧边栏的 rightbar seat 声明）。 */
 export const OFFICIAL_SLOT_NAME = 'sidebar.right.pane.tab'
 /** 本插件 Tab 类型定义 id（官方约定用包名；正文 slot 的 key 与之相同）。 */
-export const OFFICIAL_TAB_ID = 'dsh-vscode-mode'
+export const OFFICIAL_TAB_ID = 'dsh-code-studio'
 /** 本插件 Tab 的类型判别符（ctx.sidebarRight.openTab 的 kind）。 */
 export const OFFICIAL_TAB_KIND = 'edrvEditor'
 /** Tab 标题（与 better-sidebar 形态一致）。 */
@@ -36,7 +36,7 @@ export const OFFICIAL_FILE_PREFIX = 'dsh-resource://file/'
 /** file 地址认领的 patterns（extension 档接管官方 textpreview 的 fallback 认领，注销自动回落）。 */
 export const OFFICIAL_FILE_PATTERN = 'dsh-resource://file/**'
 /** file 资源类型的定义 id（正文 slot 的 key）。 */
-export const OFFICIAL_FILE_TAB_ID = 'dsh-vscode-mode/file'
+export const OFFICIAL_FILE_TAB_ID = 'dsh-code-studio/file'
 /** file 资源类型的 kind（与页类型 edrvEditor 区分：同 kind 只允许一份 extension）。 */
 export const OFFICIAL_FILE_KIND = 'edrvEditorFile'
 

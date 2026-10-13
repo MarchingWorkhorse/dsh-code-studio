@@ -60,9 +60,9 @@ describe('official sidebar opener', () => {
 })
 
 describe('shouldClaimFiles', () => {
-  it('claims only for auto and vscode-mode selections', () => {
+  it('claims only for auto and code-studio selections', () => {
     expect(shouldClaimFiles('auto')).toBe(true)
-    expect(shouldClaimFiles('dsh-vscode-mode')).toBe(true)
+    expect(shouldClaimFiles('dsh-code-studio')).toBe(true)
     expect(shouldClaimFiles(OFFICIAL_OPEN_TOOL)).toBe(false)
     expect(shouldClaimFiles('system')).toBe(false)
     expect(shouldClaimFiles(undefined)).toBe(false)

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — AI 内联补全服务。
+ * dsh-code-studio host — AI 内联补全服务。
  * 一次性非会话调用：配置解析（开关→provider/model 路由→思考档位）→ ctx.llm.stream
  * 流式汇聚（只收 text-delta，reasoning-delta 天然不进补全）→ 早停 → 输出清理。
  * llm 服务经 ctx.get('llm') 惰性获取（不用 inject：缺失时插件仍加载，AI 补全降级）。

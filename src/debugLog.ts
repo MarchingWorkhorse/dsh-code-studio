@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — 诊断文件通道（client 上报 → 缓冲批量落盘）+ 日志文件管理。
+ * dsh-code-studio host — 诊断文件通道（client 上报 → 缓冲批量落盘）+ 日志文件管理。
  * 通道：edrv.debug RPC → 内存缓冲（满/空闲触发）→ 串行读改写
- *       `~/.dsh/dsh-vscode-mode/logs/debug.<cwdHash>.log`（512KB 上限截断保留尾部）。
+ *       `~/.dsh/dsh-code-studio/logs/debug.<cwdHash>.log`（512KB 上限截断保留尾部）。
  * 设计：console 不一定落盘，文件可靠；写失败静默忽略（调试日志不阻塞业务）。
  * 管理：edrv.dlog.* RPC 用的清单/尾部读取/清空三能力；file 参数一律先过
  *       isDebugLogName 白名单（纯文件名、无路径分隔），杜绝穿越出日志根。
@@ -26,7 +26,7 @@ const DEBUG_BUF_CAP = 32 * 1024
 const DEBUG_FLUSH_IDLE_MS = 1000
 /** cwd → 已清理旧工作区 debug 日志标记（一次性）。 */
 const debugLegacyCleaned = new Set<string>()
-/** 诊断回显日志器（终端回显统一带 `[dsh-vscode-mode:debug]` 前缀，级别跟随上报级别）。 */
+/** 诊断回显日志器（终端回显统一带 `[dsh-code-studio:debug]` 前缀，级别跟随上报级别）。 */
 const debugLog = log.child('debug')
 
 /** 诊断日志文件名白名单（cwd hash 命名；请求回传的 file 参数必须整名匹配，防路径穿越）。 */
@@ -46,7 +46,7 @@ export function isDebugLogName(name: string | null | undefined): name is string 
  * 批量落盘一条 debug 日志缓冲：读旧文件 → 追加 → 超上限截断保留尾部 → 一次写回。
  * 串行链保证同一 cwd 的读改写不交错丢行；写失败静默忽略（调试日志不阻塞业务）。
  * @author ddj 2026年09月08号
- * @param cwd 工作区（日志落 ~/.dsh/dsh-vscode-mode/logs/debug.<cwdHash>.log）
+ * @param cwd 工作区（日志落 ~/.dsh/dsh-code-studio/logs/debug.<cwdHash>.log）
  * @param batch 本批日志行
  */
 function flushDebug(cwd: string, batch: string[]): Promise<void> {

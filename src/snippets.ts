@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 代码片段管理（VS Code 兼容 .code-snippets 文件）。
+ * dsh-code-studio host — 代码片段管理（VS Code 兼容 .code-snippets 文件）。
  * - 存储：全局片段 ~/.dsh/snippets/*.code-snippets；项目片段 <工作区>/.dsh/snippets/*.code-snippets
  *   （随仓库共享）。文件名约定与 VS Code 一致：`<language>.code-snippets`（`global.code-snippets`
  *   表示全语言生效）。

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — SVN 能力状态层与动作执行。
+ * dsh-code-studio client — SVN 能力状态层与动作执行。
  *
  * 数据源（status/changes）统一经 svnStore 工厂创建：scope 缓存 + 在途去重 + 事件广播 +
  * 「失败不写缓存」语义由工厂单点保证，本模块只负责各自的 select 与消费侧投影。

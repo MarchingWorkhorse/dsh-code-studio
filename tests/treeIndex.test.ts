@@ -1,7 +1,7 @@
 /**
  * host treeIndex 树索引测试：纯函数（相对化/祖先/序列化/裁剪）+ 状态机
  * （命中/失效/force 重列/后台自愈/落盘加载/旧侧车清理）用真实临时目录 + 假 ctx
- * 集成验证；缓存落盘走 DSH_HOME 注入的临时 home（~/.dsh/dsh-vscode-mode/cache）。
+ * 集成验证；缓存落盘走 DSH_HOME 注入的临时 home（~/.dsh/dsh-code-studio/cache）。
  * 作者 ddj 2026-08-31 / 2026-09-01
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -206,7 +206,7 @@ describe('状态机（真实临时目录 + 假 ctx + 临时 DSH_HOME）', () => 
     disposeIndex(root)
     await new Promise((r) => setTimeout(r, 50))
 
-    // 缓存落在 DSH_HOME/dsh-vscode-mode/cache/，工作区无侧车
+    // 缓存落在 DSH_HOME/dsh-code-studio/cache/，工作区无侧车
     const cachePath = treeCacheFile(root)
     expect(cachePath.startsWith(pluginCacheRoot(home))).toBe(true)
     const text = await readFile(cachePath, 'utf8')

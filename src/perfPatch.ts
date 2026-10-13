@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — profile patch 压缩调优（文本行级，零 YAML 依赖）。
+ * dsh-code-studio host — profile patch 压缩调优（文本行级，零 YAML 依赖）。
  * 在 ~/.dsh/profiles/<profile>/cordis.patch.yml 末尾追加/移除一段带标记注释的
  * id 定向覆盖块（compaction-basic / tool-result-pruner 更低阈值）。
  * 纯文本函数可单测：幂等追加、整段移除、无块原样返回。
@@ -7,9 +7,9 @@
  */
 
 /** 性能块起始标记注释（文件内唯一锚点）。 */
-export const PERF_MARK_START = '# dsh-vscode-mode perf tuning (start)'
+export const PERF_MARK_START = '# dsh-code-studio perf tuning (start)'
 /** 性能块结束标记注释。 */
-export const PERF_MARK_END = '# dsh-vscode-mode perf tuning (end)'
+export const PERF_MARK_END = '# dsh-code-studio perf tuning (end)'
 
 /**
  * 建议的压缩调优 YAML 块（顶层 loader patch 条目，id 定向覆盖）。

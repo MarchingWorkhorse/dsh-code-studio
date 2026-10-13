@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — DAP 变量树纯函数。
+ * dsh-code-studio client — DAP 变量树纯函数。
  * 把 DAP variablesReference 缓存展平成可渲染 sibling rows，避免把子行嵌套进父级
  * 横向 flex 行导致变量重叠；同时限制递归深度与总行数，保护侧栏性能。
  * 作者 ddj 2026年09月29号

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — AI 智能整理分析模块（11-ai-changelist-triage）。
+ * dsh-code-studio host — AI 智能整理分析模块（11-ai-changelist-triage）。
  * 一次性非会话调用：prompt 构造（变更清单 + 可选 diff）→ ctx.llm.stream 流式汇聚
  * （只收 text-delta）→ JSON 解析。llm 复用 inline.ts 的 llmOf；模型路由走独立
  * 「AI 任务模型」配置（taskRouteOf，空则回落补全配置，与内联补全互不干扰）。

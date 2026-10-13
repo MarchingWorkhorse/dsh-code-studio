@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 命令栏筛选与排序（纯函数，可单测）。
+ * dsh-code-studio client — 命令栏筛选与排序（纯函数，可单测）。
  * 匹配语义：查询与索引文本统一小写，空格分词，全部 token 需在 label/id/category
  * 任一字段中以子串出现（中文子串匹配天然成立）。
  * 排序语义：命中字段权重（label 0 < id 1 < category 2）+ 目录序（order 缺省 100）+ 注册序，

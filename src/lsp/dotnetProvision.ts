@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — C# 服务器 .NET 运行时自动配置。
+ * dsh-code-studio host — C# 服务器 .NET 运行时自动配置。
  * DotRush 等服务器需要 .NET 运行时；缺失时从官方 release 元数据解析下载地址，
  * sha512 校验后解压到用户级 dotnet 目录（win: %LOCALAPPDATA%\Microsoft\dotnet，
  * unix: ~/.dotnet），成功后通知监听者重载 provider——用户零手动操作。

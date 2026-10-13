@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 「性能优化」页工作区栏目展开状态持久化（纯函数，可单测）。
+ * dsh-code-studio client — 「性能优化」页工作区栏目展开状态持久化（纯函数，可单测）。
  * 只持久化「已展开」的工作区键集合（默认全部折叠），对齐 explorerCache 的做法：
  * 不缓存会话条目本身，条目由 edrv.perf.inventory 实时返回。
  * 键前缀统一走 paths.ts PathConst（CACHE_KEY.workspaceFold）。

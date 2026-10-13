@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 纯域逻辑（无 ctx/fs/IO 依赖，可直接单测）。
+ * dsh-code-studio host — 纯域逻辑（无 ctx/fs/IO 依赖，可直接单测）。
  * 迁移自原 src/index.ts 的纯函数部分，语义一字不改。
  * 作者 ddj 2026-08-20
  */

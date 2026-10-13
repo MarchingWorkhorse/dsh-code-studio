@@ -17,7 +17,7 @@ afterEach(() => {
 function makeHome(): { home: string; extRoot: string } {
   const home = mkdtempSync(join(tmpdir(), 'dsh-dap-disc-'))
   homes.push(home)
-  const extRoot = join(home, 'dsh-vscode-mode', 'extensions')
+  const extRoot = join(home, 'dsh-code-studio', 'extensions')
   mkdirSync(extRoot, { recursive: true })
   process.env.DSH_LSP_EXT_DIRS = extRoot
   return { home, extRoot }

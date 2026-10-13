@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — EditorView：中央 VSCode 式文件编辑器（编排层）。
+ * dsh-code-studio client — EditorView：中央 VSCode 式文件编辑器（编排层）。
  * 迁移自原 src/client/index.ts 的 EditorView，语义不改；差异自绘已抽到 monaco/diffRender。
  * 职责：页签/QuickOpen/Monaco 编辑器/差异审查（DiffBox/Launcher/Badge 事件装配）/状态栏/自动保存。
  * 状态作用域：页签/视图状态/侧边栏/展开树等 UI 状态按工作区作用域（cwd）隔离，
@@ -39,10 +39,14 @@ import {
 import { useFileWatch } from './useFileWatch.js'
 import { createPdfPanel } from '../pdf/pdfPanel.js'
 import { SvnDiffPanel } from './SvnDiffPanel.js'
+import { GitDiffView } from './GitDiffView.js'
+import { gitDiffBase, gitPatchText, gitStatus } from '../gitStatus.js'
 import { applyOfficial, registerThemes, themeNameOf } from '../monaco/theme.js'
 import { createDiffRenderer } from '../monaco/diffRender.js'
+import { ReviewDiffPanel } from './ReviewDiffPanel.js'
 import { ST, callIdAttr, noopHunk, summarize } from '../state/records.js'
 import { diffRegions } from '../state/regions.js'
+import { reconstructOriginalOf } from '../state/reconstruct.js'
 import { QuickOpen } from './QuickOpen.js'
 import { attachHorizontalWheel } from './horizontalWheel.js'
 import { CommandPalette } from './CommandPalette.js'
@@ -289,6 +293,9 @@ export function EditorView(props) {
   const [svnStatus, setSvnStatus] = React.useState(null) // SVN 能力状态（SvnStatusPayload；null=未加载，SVN 入口隐藏）
   const [svnChanges, setSvnChanges] = React.useState(null) // SVN 变更清单（null=未加载；徽标/菜单判定）
   const [svnDiff, setSvnDiff] = React.useState(null) // 差异视图 { path, base, working, reason, message, leftLabel, rightLabel, scheme, logTarget?, binary?, encodingHint? }（null=关闭；logTarget 存在 = 来自日志弹窗，差异条可返回日志）
+  const [gitChangesOpen, setGitChangesOpen] = React.useState(null) // Git 工作区差异视图（编辑区主体分支；null=关闭，{ initialPath? }=打开）
+  const [gitStatusState, setGitStatusState] = React.useState(null) // git 能力状态（{managed,gitCli}；null=未探测，命令面板 Git 组隐藏）
+  const [reviewDiff, setReviewDiff] = React.useState(null) // VSCode 式审查视图 { path }（null=关闭；数据取自 records/content，开着的只是「当前在审查哪个文件」）
   const [patchDialog, setPatchDialog] = React.useState(null) // W2-1 补丁对话框 { path, text, truncated, binary }（null = 关闭）
   const [sumDialog, setSumDialog] = React.useState(null) // W2-2 目录对比对话框 { path }（null = 关闭）
   const [svnLog, setSvnLog] = React.useState(null) // 日志弹窗 { target, limit, soc?, range? }（null=关闭；P1-4/P1-6 增选项维度）
@@ -526,6 +533,50 @@ export function EditorView(props) {
   }, [pendingRegions])
   lineRegionMapRef.current = lineRegionMap
   const sum = React.useMemo(() => summarize(Object.values(records)), [records])
+
+  // VSCode 式审查视图（ReviewDiffPanel）：审查态下把当前文件的差异与内容投影到双栏 diff。
+  // 审查目标必须是当前活动文件：打开入口统一先 addTab 把目标置为 active，再置 reviewDiff。
+  // 依赖同派：active 变化时若新文件无待处理差异也不强制退出（用户可继续浏览其他文件后手动关闭），
+  // 但审查面板只在「reviewDiff.path 与 active 同文件」时渲染（见 body 分派）。
+  const reviewActive = reviewDiff && active && sameFile(reviewDiff.path, active)
+  // 左侧「修改前」重建：reconstructOriginal 纯函数（host 侧同源语义）——把所有待处理块
+  // 按新→旧顺序从当前内容反解；stale 块反解失败时如实显示 stale 计数，左侧可能不完整。
+  const reviewReconstruct = React.useMemo(() => {
+    if (!reviewActive || !contentReady || typeof content !== 'string') return null
+    const recs = currentRecords.filter((rec) => rec.archived !== true && rec.superseded !== true)
+    return reconstructOriginalOf(recs, content)
+  }, [reviewActive, contentReady, content, currentRecords])
+  const reviewLeft = reviewReconstruct?.content ?? null
+  const reviewStaleCount = (reviewReconstruct?.stale?.length ?? 0) + staleRegions.length
+
+  /**
+   * 打开当前文件的 VSCode 式审查视图（已是审查态则忽略）。
+   * @private @author ddj 2026年10月13号
+   * @param path 目标文件（缺省 = 当前活动文件）
+   */
+  const openReviewDiff = (path) => {
+    const target = path ?? active
+    if (!target) { setStatus('无活动文件'); return }
+    flushSave()
+    saveViewState(active)
+    recordNav()
+    setSvnDiff(null)
+    const normalized = addTabNorm(target, true, false)
+    if (!normalized) return
+    setReviewDiff({ path: normalized })
+    setStatus('差异审查：逐块接受/拒绝修订')
+  }
+  /** 关闭审查视图（回到普通编辑器）。 */
+  const closeReviewDiff = () => {
+    setReviewDiff(null)
+    setStatus('')
+  }
+
+  /** @private @author ddj 2026年10月13号 @param region 审查块 @param reject true=拒绝 @returns Promise<boolean> 是否成功（复用 actHunk，含 records 合并与刷新） */
+  const reviewDecide = (region, reject) => actHunk(region, reject)
+  // 命令栏「差异审查」入口的最新闭包（空依赖监听经 ref 读取）
+  const openReviewDiffRef = React.useRef(null)
+  openReviewDiffRef.current = () => openReviewDiff(activeRef.current ?? undefined)
 
   /** @private @author ddj 2026年10月08号 @param path Disk path. @param select Select tab. @param preview Optional explicit Markdown mode. */
   function addTab(path, select, preview) {
@@ -1682,6 +1733,10 @@ export function EditorView(props) {
       ['edrv.command.svnUpdate', () => runSvnUpdate(activeRef.current ?? '')],
       ['edrv.command.svnRefreshChanges', () => runSvnReload()],
       ['edrv.command.svnDiffBase', () => runSvnDiffBase(activeRef.current)],
+      // Git：命令面板动作（活动文件基线差异 + 项目变更总览 + 完整补丁）
+      ['edrv.command.gitDiffBase', () => { closeCommandPalette(); openGitChanges(activeRef.current) }],
+      ['edrv.command.gitChanges', () => { closeCommandPalette(); openGitChanges() }],
+      ['edrv.command.gitPatch', () => { closeCommandPalette(); runGitPatch() }],
       ['edrv.command.svnAdd', () => runSvnAdd(activeRef.current)],
       ['edrv.command.svnRevertCli', () => runSvnRevertCli(activeRef.current)],
       ['edrv.command.svnLog', () => openSvnLog(activeRef.current || undefined)],
@@ -1720,6 +1775,8 @@ export function EditorView(props) {
       }],
       // 诊断日志弹窗（同片段选择器：执行一条命令即关命令栏，避免残浮层遮挡）
       ['edrv.command.showLogs', () => { closeCommandPalette(); setDlogOpen(true) }],
+      // VSCode 式审查视图（对当前活动文件打开）
+      ['edrv.command.reviewDiff', () => { closeCommandPalette(); openReviewDiffRef.current?.() }],
     ]
     const byName = new Map(handlers)
     const onCommand = (event) => {
@@ -2079,7 +2136,7 @@ export function EditorView(props) {
     viewKeeperRef.current?.bind(String(scope), active, model)
     syncTypeSuggest(ed, monaco)
     setLoadStage((prev) => ({ progress: Math.max(96, prev.progress), message: '创建编辑器视图…' }))
-  }, [monaco, scope, active, content, contentReady, mdPreviewing, svnDiff])
+  }, [monaco, scope, active, content, contentReady, mdPreviewing, svnDiff, reviewActive])
 
   // PDF 面板外壳 ref 回调（div 仅在 PDF 分支渲染，refs 先于 effect 就绪）
   const ensurePdfHost = (node) => { pdfHostRef.current = node }
@@ -2123,7 +2180,7 @@ export function EditorView(props) {
     if (!monaco || !editorRef.current || !active || content === null) return
     diffRendererRef.current.render(monaco, editorRef.current, pendingRegions, sessionId)
     setLoadStage({ progress: 100, message: '编辑器已就绪' })
-  }, [monaco, active, content, pendingRegions, mdPreviewing, svnDiff])
+  }, [monaco, active, content, pendingRegions, mdPreviewing, svnDiff, reviewActive])
 
   React.useEffect(() => () => {
     flushSave()
@@ -2504,7 +2561,7 @@ export function EditorView(props) {
     ed.revealLineInCenter(Math.max(1, target.start ?? 1))
     ed.setPosition({ lineNumber: Math.max(1, target.start ?? 1), column: 1 })
     ed.focus()
-  }, [active, content, contentReady, pendingRegions, focusRequest, monaco, mdPreviewing, svnDiff])
+  }, [active, content, contentReady, pendingRegions, focusRequest, monaco, mdPreviewing, svnDiff, reviewActive])
 
   const jumpTo = (region) => {
     if (editorRef.current) {
@@ -2994,6 +3051,66 @@ export function EditorView(props) {
   }
 
   /**
+   * 打开 git 基线差异视图（HEAD 左 / 工作区右，只读；复用 SvnDiffPanel 双栏渲染）。
+   * @author ddj 2026年10月14号
+   * @param relPath 目标工作区相对路径
+   */
+  const runGitDiffBase = (relPath) => {
+    if (!relPath) { setStatus('无活动文件'); return }
+    setStatus('读取 git 基线差异…')
+    void gitDiffBase(sessionId, relPath).then((outcome) => {
+      if (!outcome.ok) { setStatus(outcome.message); return }
+      setSvnDiff({
+        path: relPath,
+        base: outcome.left,
+        working: outcome.right,
+        reason: outcome.reason,
+        message: outcome.left === null ? '' : outcome.message,
+        leftLabel: 'HEAD',
+        rightLabel: '工作区',
+        scheme: 'edrv-git-base',
+        binary: outcome.binary === true,
+        encodingHint: outcome.encodingHint === true,
+      })
+      setStatus(outcome.message)
+    })
+  }
+
+  /**
+   * 打开 Git 工作区差异视图（编辑区主体分支：左变更列表 / 右双栏 diff）。
+   * @author ddj 2026年10月14号
+   * @param initialPath 初始选中文件（「与 HEAD 比较」入口带活动文件；总览入口不传）
+   */
+  const openGitChanges = (initialPath) => {
+    setGitChangesOpen({ initialPath: initialPath ?? null })
+    if (!gitStatusState) {
+      void gitStatus(sessionId).then((outcome) => {
+        setGitStatusState({ managed: outcome.managed, gitCli: outcome.gitCli })
+        if (outcome.ok && !outcome.managed) setStatus(outcome.message)
+      })
+    }
+  }
+
+  /**
+   * 打开完整 git 补丁预览（git diff HEAD 全仓库，复用 SvnPatchDialog 渲染）。
+   * @author ddj 2026年10月14号
+   */
+  const runGitPatch = () => {
+    setStatus('生成 git 补丁…')
+    void gitPatchText(sessionId, '').then((outcome) => {
+      if (!outcome.ok) { setStatus(outcome.message); return }
+      setPatchDialog({
+        path: '（全仓库）',
+        text: outcome.text,
+        truncated: outcome.truncated,
+        binary: false,
+        gitTitle: true,
+      })
+      setStatus(outcome.message)
+    })
+  }
+
+  /**
    * 打开基线差异视图（BASE 左 / 工作区右，只读）。
    * 编辑区右上差异视图以活动文件为语义：无活动文件直接提示，不猜目标。
    * @author ddj 2026年09月16号
@@ -3003,6 +3120,8 @@ export function EditorView(props) {
     if (!relPath) { setStatus('无活动文件'); return }
     setStatus('读取基线…')
     void svnDiffBase(sessionId, relPath).then((outcome) => {
+      // 非 SVN 工作区时回落 git 基线差异（git 管理的项目无需用户再选入口）
+      if (!outcome.ok && /不受 SVN 管理/.test(outcome.message)) { runGitDiffBase(relPath); return }
       if (!outcome.ok) { setStatus(outcome.message); return }
       setSvnDiff({
         path: relPath,
@@ -3677,6 +3796,12 @@ export function EditorView(props) {
     }, '→'),
     React.createElement('button', { className: 'edrv-chip-btn' + (sidebarOn ? ' edrv-chip-on' : ''), title: '切换面板区 (' + (chordOf('edrv.toggleSidebar') ?? 'Ctrl+B') + ')，图标列常显', onClick: () => setSidebarOn((v) => !v) }, '☰'),
     React.createElement('button', { className: 'edrv-chip-btn', title: '刷新', onClick: reloadFile }, '⟳'),
+    // Git 工作区差异视图入口（常驻；与差异总览角标同级，点击在编辑区主体展开双栏视图）
+    React.createElement('button', {
+      className: 'edrv-chip-btn' + (gitChangesOpen ? ' edrv-chip-on' : ''),
+      title: 'Git 变更（工作区 ↔ HEAD）：左列变更文件，点击行看该文件差异',
+      onClick: () => openGitChanges(),
+    }, 'Git'),
     React.createElement(QuickOpen, { sessionId, onOpen: (p) => openFile(p, false) }))
 
   /**
@@ -3774,6 +3899,39 @@ export function EditorView(props) {
         }
       },
     })
+  } else if (gitChangesOpen) {
+    // Git 工作区差异视图（编辑区主体）：左变更列表 / 右 HEAD↔工作区 双栏 diff。
+    // 「与 HEAD 比较」入口带活动文件自动选中；总览入口从全列表开始。
+    body = React.createElement(GitDiffView, {
+      key: 'edrv-gitview:' + (gitChangesOpen.initialPath ?? ''),
+      monaco,
+      sessionId,
+      initialPath: gitChangesOpen.initialPath,
+      onOpenPatch: runGitPatch,
+      onNote: (message) => setStatus(message),
+      onClose: () => setGitChangesOpen(null),
+    })
+  } else if (reviewActive && monaco) {
+    // VSCode 式审查视图（优先于普通编辑器主体）：双栏 diff + 行内接受/拒绝。
+    // 左侧 = 修改前重建（待处理块反向替换），右侧 = 当前磁盘内容；
+    // 新建文件（create）无修改前内容 → 左侧传 ''（对齐 SVN 面板语义，仍显示差异框）。
+    body = React.createElement(ReviewDiffPanel, {
+      key: 'edrv-review:' + active,
+      monaco,
+      path: active,
+      left: reviewLeft ?? '',
+      right: content ?? '',
+      pending: pendingRegions,
+      staleCount: reviewStaleCount,
+      onDecide: reviewDecide,
+      onAcceptFile: acceptFile,
+      onUndoFile: undoFile,
+      onAcceptAllFiles: acceptAllFiles,
+      onUndoAllFiles: undoAllFiles,
+      allPendingCount: allPending.length,
+      onRefresh: () => reloadFile(true),
+      onClose: closeReviewDiff,
+    })
   } else if (!monaco && !monacoErr) {
     body = loadingBody(loadStage.message, loadStage.progress)
   } else if (monacoErr) {
@@ -3863,6 +4021,7 @@ export function EditorView(props) {
     onOpenOther: (path) => openFile(path, true),
     onOpenLauncher: (tab) => { setLauncherTab(tab || 'pending'); setLauncherOpen(true) },
     onRefresh: reloadFile,
+    onOpenReview: openReviewDiff,
     activePath: active,
     diffIdx: contentReady ? diffIdx : 0,
     diffTotal: displayDiffTotal(contentReady, pendingRegions.length, sum.files.find((file) => sameFile(file.path, active))?.pending ?? 0),
@@ -3887,7 +4046,7 @@ export function EditorView(props) {
   const overlay = launcherOpen
     ? React.createElement(React.Fragment, null,
         React.createElement('div', { style: { position: 'fixed', inset: 0, zIndex: 30 }, onClick: () => setLauncherOpen(false) }),
-        React.createElement(DiffLauncher, { sessionId, sum, tab: launcherTab, onClose: () => setLauncherOpen(false), onOpenFile: (p) => { openFile(p, true); setLauncherOpen(false) } }))
+        React.createElement(DiffLauncher, { sessionId, sum, tab: launcherTab, onClose: () => setLauncherOpen(false), onOpenFile: (p) => { openFile(p, true); setLauncherOpen(false) }, onReviewFile: (p) => { openReviewDiff(p); setLauncherOpen(false) } }))
     : null
 
   // 页签右键菜单：改用通用 ContextMenu 浮层（portal + data-edrv-view + 实测尺寸 clamp +

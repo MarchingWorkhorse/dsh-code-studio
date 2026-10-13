@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — @deepseek-ai/dsh-llm 精简类型（AI 内联补全消费面）。
+ * dsh-code-studio host — @deepseek-ai/dsh-llm 精简类型（AI 内联补全消费面）。
  * 以 profile 实装 0.1.3-alpha.2 d.ts 为准的最小子集；宿主环境经 external 解析，
  * 这里只声明本插件用到的形状（运行时值来自 ctx.get('llm')，无直接 import）。
  * 作者 ddj

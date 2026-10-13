@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试适配器发现（清单驱动，VSCode contributes.debuggers 同源语义）。
+ * dsh-code-studio host — 调试适配器发现（清单驱动，VSCode contributes.debuggers 同源语义）。
  * 扫描全部扩展根（复用 lsp 侧 vscodeExtensionsDirs：~/.vscode/extensions、
  * ~/.vscode-server/extensions、插件扩展目录），读各扩展 package.json 的
  * contributes.debuggers[] 声明，解析为 DapAdapterDecl：

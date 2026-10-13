@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — PerfSizeBadge：对话 header 会话体积指示器。
+ * dsh-code-studio client — PerfSizeBadge：对话 header 会话体积指示器。
  * 5s 轮询当前会话持久化体积（host 仅 stat，近零成本），≥1MB 显示、超阈值变色，
  * 引导"一次任务一个短会话"：会话过大时建议 /compact 或新开会话。
  * 作者 ddj 2026-09-02

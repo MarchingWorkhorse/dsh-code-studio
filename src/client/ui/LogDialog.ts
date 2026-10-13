@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 诊断日志弹窗（居中弹窗形态，ModalShell 外壳）。
+ * dsh-code-studio client — 诊断日志弹窗（居中弹窗形态，ModalShell 外壳）。
  *
  * 形态对齐 SvnLogDialog：单列日志区 + 头部工具栏 + 底部状态行。
  * 数据流：组件自取数据（edrv.dlog.list/read/clear/reveal），EditorView 只负责开与关；

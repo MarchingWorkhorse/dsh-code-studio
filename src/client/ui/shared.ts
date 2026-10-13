@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — UI 共用小工具（按钮样式/状态文案/等宽字体）。
+ * dsh-code-studio client — UI 共用小工具（按钮样式/状态文案/等宽字体）。
  * 迁移自原 src/client/index.ts 的 btn/badgeOf/MONO，语义不改。
  * 作者 ddj 2026-08-20
  */

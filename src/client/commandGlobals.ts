@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 指令系统的全局挂点名约定。
+ * dsh-code-studio client — 指令系统的全局挂点名约定。
  * 单独成模块：装配层（client/index.ts）与读取方（命令栏/第三方）都要用，
  * 放这里可避免 CommandPalette ↔ index 的循环依赖。
  *

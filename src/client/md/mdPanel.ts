@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑区 Markdown 预览面板。
+ * dsh-code-studio client — 编辑区 Markdown 预览面板。
  *
  * 需求 4：.md 文件支持预览。渲染复用官方 UI 原语 MarkdownText（GFM + KaTeX，走 --dsw-*
  * 令牌自动跟随 DSH 主题与皮肤），不引入任何第三方 Markdown 依赖。

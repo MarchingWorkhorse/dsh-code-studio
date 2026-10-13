@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 界面状态镜像（把 `edrv.*` 的 localStorage 状态写穿到 host）。
+ * dsh-code-studio client — 界面状态镜像（把 `edrv.*` 的 localStorage 状态写穿到 host）。
  *
  * 背景：Web GUI 的 origin（含端口）每次启动可能变化，而 localStorage 按 origin 分区，
  * 于是页签/侧栏/预览态等状态「重启就忘」。本模块包装 localStorage 写口：

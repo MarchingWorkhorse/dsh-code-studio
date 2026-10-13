@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — DSH 会话性能管理（会话卫生 + 体积 stat + 侧车摘要）。
+ * dsh-code-studio host — DSH 会话性能管理（会话卫生 + 体积 stat + 侧车摘要）。
  * 职责：
  * - 盘点 ~/.dsh/sessions 全部工作区会话（每会话仅 stat 日志文件，不解压，轻量）；
  * - 移出/恢复/清除：会话目录在 ~/.dsh/sessions 与 ~/.dsh/sessions-archive 间可逆搬迁；

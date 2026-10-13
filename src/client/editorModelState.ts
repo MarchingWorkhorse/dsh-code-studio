@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑器模型可用性探测（模块级，不依赖 React）。
+ * dsh-code-studio client — 编辑器模型可用性探测（模块级，不依赖 React）。
  * 命令可用性判定（快捷键过滤 / 命令栏隐藏 / 执行前置检查）需要「当前是否有活动编辑器」，
  * 而命令目录是模块级常量、拿不到 EditorView 实例，故统一读 DOM 标记。
  *

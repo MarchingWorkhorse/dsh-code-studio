@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 规则 frontmatter 纯函数（解析 + 按类型改写）。
+ * dsh-code-studio client — 规则 frontmatter 纯函数（解析 + 按类型改写）。
  * 与 host parseRuleMdc/ruleTypeOf 语义对齐的浏览器端实现：编辑器类型下拉与
  * 原始 .mdc 文本域双向同步共用；纯字符串运算，禁 node/react 导入。
  * 作者 ddj 2026年09月07号

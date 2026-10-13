@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — dsh-remote-ssh 远程工作区探测与镜像↔远端路径映射。
+ * dsh-code-studio host — dsh-remote-ssh 远程工作区探测与镜像↔远端路径映射。
  * 背景（issue #7）：dsh-remote-ssh 的「原生远程工作区」cwd 指向本机镜像目录
  * （如 ~/.dsh/remote-workspaces/<id>，根下含 .remote-ssh.json {profileId, host,
  * user, remotePath}），agent 的 remote_ssh_write 直写远端；差异审查需要把

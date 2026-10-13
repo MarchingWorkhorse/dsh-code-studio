@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 日志单例（全 host 面唯一日志入口）。
+ * dsh-code-studio host — 日志单例（全 host 面唯一日志入口）。
  * 默认 console 出口；apply() 首行调 bindHostLog(ctx) 切到 ctx.logger（缺失回退 console）。
  * 用法：`import { log } from './log.js'` → `log.debug/info/warn/error(msg)`；子域用 `log.child('scope')`。
  * 作者 ddj 2026-09-08

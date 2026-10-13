@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — edrv.lsp.* RPC handlers。
+ * dsh-code-studio host — edrv.lsp.* RPC handlers。
  * 文档跟踪（openDocs 集合 + root|lang 引用计数）→ 懒启动服务器、用完释放。
  * LSP 配置降级为配置值：插件组合配置 + 会话内运行时覆盖层（原 settings section
  * 命名空间不合法，永久不可注册，见 lsp/config.ts 头注释）。

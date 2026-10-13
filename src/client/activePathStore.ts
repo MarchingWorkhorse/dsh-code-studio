@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 活动编辑器文件路径单点（模块级，不依赖 React）。
+ * dsh-code-studio client — 活动编辑器文件路径单点（模块级，不依赖 React）。
  * 命令目录（ui/commandCatalog）是模块级常量、拿不到 EditorView 实例；其可用性判定
  * 需要「当前活动文件是什么」（如 Markdown 预览切换仅 .md 活动文件吞键），故由
  * EditorView 把 active 状态镜像到本 store，目录按需读取。

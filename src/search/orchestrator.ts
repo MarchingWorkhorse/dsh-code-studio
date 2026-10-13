@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 搜索编排、缓存和旧任务取消。
+ * dsh-code-studio host — 搜索编排、缓存和旧任务取消。
  * 对外只返回旧 RPC 所需的 files/truncated，内部保留 provider 边界。
  * 作者 ddj 2026年08月24号
  */

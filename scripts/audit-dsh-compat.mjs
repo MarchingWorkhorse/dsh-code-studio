@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * dsh-vscode-mode DSH 兼容性审计脚本（版本适配机制例行检查用）。
+ * dsh-code-studio DSH 兼容性审计脚本（版本适配机制例行检查用）。
  * 用法：node scripts/audit-dsh-compat.mjs <dshA根目录> [dshB根目录]
  *      node scripts/audit-dsh-compat.mjs --dump-config-schema <dsh根目录> [profile]
  *      node scripts/audit-dsh-compat.mjs --help
@@ -269,7 +269,7 @@ function patchIssues() {
     issues.push('第' + (i + 1) + '行不是合法序列项：' + line.trim())
   }
   if (items === 0) issues.push('未找到任何顶层 patch 序列项')
-  if (!/id:\s*['"]?dsh-vscode-mode['"]?\s*$/.test(raw)) issues.push('未见 id: dsh-vscode-mode loader 行')
+  if (!/id:\s*['"]?dsh-code-studio['"]?\s*$/.test(raw)) issues.push('未见 id: dsh-code-studio loader 行')
   return issues
 }
 
@@ -296,7 +296,7 @@ function runSchemaCheck(args) {
   if (!dumped.schema.$defs || !dumped.schema.$defs.patchList) issues.push('schema 缺少 $defs.patchList（非 0.1.7 dump 结构）')
   if (!ext) issues.push('schema 缺少 x-cordis 扩展')
   if (ext && ext.complete === false) console.log('[提示] schema 自报 incomplete（x-cordis.complete=false），诊断见 CLI stderr')
-  if (!JSON.stringify(dumped.schema).includes('dsh-vscode-mode')) console.log('[提示] 组合结果未见 dsh-vscode-mode 条目（该 profile 可能未装本插件）')
+  if (!JSON.stringify(dumped.schema).includes('dsh-code-studio')) console.log('[提示] 组合结果未见 dsh-code-studio 条目（该 profile 可能未装本插件）')
   if (issues.length > 0) {
     console.error('[告警] cordis.patch.yml 结构校验未通过：\n' + issues.map((s) => ' - ' + s).join('\n'))
     return 1

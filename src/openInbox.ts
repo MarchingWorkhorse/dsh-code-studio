@@ -14,7 +14,7 @@ import type { Ctx } from './store.js'
  * @param profile Absolute active profile directory.
  * @returns Private inbox root.
  */
-export function inboxDir(profile: string): string { return join(profile, 'dsh-vscode-mode', 'open-inbox') }
+export function inboxDir(profile: string): string { return join(profile, 'dsh-code-studio', 'open-inbox') }
 
 /** @public @author ddj 2026年09月28号
  * Reject symlink and reparse ancestors before filesystem transport operations.

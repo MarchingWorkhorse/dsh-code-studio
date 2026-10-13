@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 「语言服务器」设置子 Tab。
+ * dsh-code-studio client — 「语言服务器」设置子 Tab。
  * 四视图：服务器（状态 + 每语言启用/命令/路径）｜已安装（卸载/更新）｜市场（Open VSX 搜索/安装 + 本地 vsix）｜更新。
  * 状态经 edrv.lsp.detect（检测结果驱动卡片动态显示），配置经 edrv.lsp.configGet/Update，扩展经 edrv.lsp.ext.*。
  * 作者 ddj 2026-08-27 / 2026-09-03
@@ -394,7 +394,7 @@ export function LspSettings() {
       React.createElement('div', { className: 'vsm-lsp-hint' }, '提示：打开对应语言的文件即自动（惰性）启动语言服务器；未配置时编辑器功能不受影响，大纲回退内置解析。')))
   } else if (tab === 'installed') {
     body = panel('已安装扩展', React.createElement(React.Fragment, null,
-      React.createElement('div', { className: 'vsm-lsp-hint' }, '已安装的语言服务器扩展（存于 ~/.dsh/dsh-vscode-mode/extensions/）。语言服务器被自动发现为「扩展」源。'),
+      React.createElement('div', { className: 'vsm-lsp-hint' }, '已安装的语言服务器扩展（存于 ~/.dsh/dsh-code-studio/extensions/）。语言服务器被自动发现为「扩展」源。'),
       installed.length ? installed.map((ext) => React.createElement(InstalledCard, { key: ext.id, ext, busy, onUninstall: uninstallExt, onUpdate: updateExt }))
         : React.createElement('div', { className: 'vsm-mcp-empty' }, '还没有安装扩展（去「市场」或指定本地 .vsix）')))
   } else if (tab === 'market') {

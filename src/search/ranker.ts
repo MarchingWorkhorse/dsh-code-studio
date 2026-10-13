@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 可替换的连续匹配排序器。
+ * dsh-code-studio host — 可替换的连续匹配排序器。
  * 第一版保持 basename 优先和稳定路径序，后续可接 fuzzy scorer。
  * 作者 ddj 2026年08月24号
  */

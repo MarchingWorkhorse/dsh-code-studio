@@ -96,7 +96,7 @@
 ## A. locale 多语言声明（实证 readPluginMeta/dictionariesOf）
 
 - 包根 **`locale/en.json`（必须）+ `locale/zh.json`**，平面键 `title/description`；
-  `package.json files` 已含 `locale`。插件管理页将显示「VSCodeMode」+ 双语简介
+  `package.json files` 已含 `locale`。插件管理页将显示「CodeStudio」+ 双语简介
   （缺省回退 package.json name/description，旧版 DSH 无该读取链零影响）。
 
 ## B. perf 面板官方归档/置顶徽标

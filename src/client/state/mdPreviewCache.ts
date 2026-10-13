@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — Markdown 预览态缓存（localStorage，按工作区作用域）。
+ * dsh-code-studio client — Markdown 预览态缓存（localStorage，按工作区作用域）。
  * 语义对齐编辑器布局记忆：切换页签/刷新/重启后，处于预览态的 Markdown 仍以预览打开。
  * 键 = CACHE_KEY.mdPreview + scope；值为路径数组。解析/归一化纯函数可单测，IO 收在 load/save 两端。
  * 作者 ddj 2026-09-28

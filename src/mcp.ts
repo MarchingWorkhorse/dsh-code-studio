@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — MCP 运行时管理适配层。
+ * dsh-code-studio host — MCP 运行时管理适配层。
  * 只操作已装配的 @deepseek-ai/dsh-mcp-client loader entry，不在浏览器侧连接 MCP。
  * 身份常量（包名/条目前缀/新旧格式判定）统一由 compat 层持有，本模块再导出保持既有 import 面。
  * 作者 ddj 2026年08月22号

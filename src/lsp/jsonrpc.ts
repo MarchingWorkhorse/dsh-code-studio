@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — LSP JSON-RPC 帧编解码（纯函数，node 可测）。
+ * dsh-code-studio host — LSP JSON-RPC 帧编解码（纯函数，node 可测）。
  * LSP over stdio 用 Content-Length 帧：
  *   Content-Length: <n>\r\n\r\n<恰好 n 字节 JSON>
  * 导出：encodeMessage（对象→帧 Buffer）、createFrameParser（流式粘包/拆包）、parseFrame（单帧）。

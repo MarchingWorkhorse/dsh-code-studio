@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试配置文件通用解析（JSONC 清洗 + 全量配置透传）。
+ * dsh-code-studio host — 调试配置文件通用解析（JSONC 清洗 + 全量配置透传）。
  * 纯函数，node 可测。读插件专属 `.dsh/launch.json`（格式与 VS Code launch.json 兼容；
  * 与 `.vscode/launch.json` 互不干扰，旧共用文件仅作首读迁移源）：
  * - 不再限定 emmylua：所有带 name/type 的 configuration 都保留（类型可用性由 discovery 裁决）；

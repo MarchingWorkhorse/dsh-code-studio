@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 文件管理右键菜单框架（类型 + 注册表 + 纯构建函数）。
+ * dsh-code-studio client — 文件管理右键菜单框架（类型 + 注册表 + 纯构建函数）。
  * 镜像 sidebar/registry.ts 的注册表模式：create + register(返回注销) + list + subscribe，
  * 由 client/index.ts `ctx.provide('edrvFileContextMenuItems', registry)` 对外暴露（第三方可注册）。
  * 新增菜单项只需 register 一条 TreeMenuItem，面板在右键打开时经 buildTreeMenu 过滤/排序。

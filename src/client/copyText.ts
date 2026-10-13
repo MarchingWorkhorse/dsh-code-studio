@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 剪贴板写入 + 反馈（页签菜单与文件树菜单共用）。
+ * dsh-code-studio client — 剪贴板写入 + 反馈（页签菜单与文件树菜单共用）。
  * 提取自 EditorView 的 copyText 闭包：无剪贴板 API 或写入失败时降级提示、不抛错。
  * 作者 ddj 2026年09月22号
  */

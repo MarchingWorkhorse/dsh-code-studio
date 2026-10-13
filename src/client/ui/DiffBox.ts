@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — DiffBox：每个文件底部紧凑差异条（per-file hunk + ⋮ 二级菜单）。
+ * dsh-code-studio client — DiffBox：每个文件底部紧凑差异条（per-file hunk + ⋮ 二级菜单）。
  * 迁移自原 src/client/index.ts 的 DiffBox，语义不改。
  * 作者 ddj 2026-08-20
  */
@@ -42,7 +42,7 @@ export function DiffBox(props) {
     pendingRegions = [], staleRegions = [], onAct, onAcceptFile, onUndoFile, onAcceptAllFiles, onUndoAllFiles,
     allPendingCount = 0, onRollback, onJump, otherFiles = [], onOpenOther, onOpenLauncher, onRefresh, activePath,
     diffIdx = 0, diffTotal = 0, fileIdx = 0, fileTotal = 0, onPrevDiff, onNextDiff, onPrevFile, onNextFile,
-    mode = 'editor', onOpenNextFile, dock = false,
+    mode = 'editor', onOpenNextFile, dock = false, onOpenReview,
   } = props
   const [expanded, setExpanded] = React.useState(false)
   const [detailsOpen, setDetailsOpen] = React.useState(false)
@@ -101,7 +101,6 @@ export function DiffBox(props) {
         React.createElement('button', { className: 'edrv-diffmenu-item', disabled: !canAct, onClick: onRollback }, '⟲ 回滚文件'),
         React.createElement('button', { className: 'edrv-diffmenu-item', onClick: onRefresh }, '⟳ 刷新'))
     : null
-
   return React.createElement('div', { className: 'edrv-diffbar edrv-diffbar-dock', 'data-edrv-diffbox': '1', 'data-edrv-diff-mode': 'editor' },
     React.createElement('div', { className: 'edrv-diffbar-row edrv-diffbar-editor-row' },
       React.createElement('div', { className: 'edrv-diffbar-editor-content' },
@@ -118,6 +117,12 @@ export function DiffBox(props) {
         React.createElement('div', { className: 'edrv-diffbar-actions' },
           React.createElement('button', { className: 'edrv-pill edrv-pill-keep', title: '采纳当前文件的全部差异', disabled: !canDecide, onClick: onAcceptFile }, '✓ Keep'),
           React.createElement('button', { className: 'edrv-pill edrv-pill-undo', title: '不采纳当前文件的全部差异（回滚）', disabled: !canDecide, onClick: onUndoFile }, '↩ Undo'),
+          React.createElement('button', {
+            className: 'edrv-pill edrv-pill-ghost',
+            title: '打开 VSCode 式审查视图（双栏 diff，逐块接受/拒绝修订）',
+            disabled: !canAct && !staleRegions.length,
+            onClick: () => onOpenReview?.(activePath),
+          }, '⇔ 审查'),
           React.createElement('button', {
             className: 'edrv-pill edrv-pill-ghost edrv-diff-details-toggle',
             title: detailsOpen ? '收起差异操作' : '展开差异操作',

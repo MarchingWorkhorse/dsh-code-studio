@@ -99,7 +99,7 @@ export class McpRuntime {
    * @sideEffects Refreshes agent restrictions and scoped prompt shadows synchronously.
    */
   private changed(): void {
-    this.ctx.emit?.('vscode-mode/mcp-change')
+    this.ctx.emit?.('codestudio/mcp-change')
   }
 
   /**
@@ -352,7 +352,7 @@ export async function installMcpRuntime(ctx: Ctx): Promise<void> {
     await runtime.dispose()
     runtimes.delete(ctx.root ?? ctx)
   }
-  ctx.effect(() => cleanup, 'vscode-mode:mcp-runtime')
+  ctx.effect(() => cleanup, 'codestudio:mcp-runtime')
   ready = initialize()
   await ready
 }

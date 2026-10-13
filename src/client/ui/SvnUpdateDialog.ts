@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — live SVN update dialog with bounded virtual rows.
+ * dsh-code-studio client — live SVN update dialog with bounded virtual rows.
  * @author ddj 2026年09月24号
  */
 import React from 'react'

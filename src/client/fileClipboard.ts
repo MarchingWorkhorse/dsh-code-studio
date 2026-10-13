@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 文件剪贴板（剪切/复制/粘贴的应用内单槽）。
+ * dsh-code-studio client — 文件剪贴板（剪切/复制/粘贴的应用内单槽）。
  *
  * 浏览器拿不到系统文件剪贴板，按 VS Code 语义做应用内文件剪贴板：
  * 「剪切/复制」只登记源路径，「粘贴」时才走 edrv.fsMove / edrv.fsCopy 真正落盘。

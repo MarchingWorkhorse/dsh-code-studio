@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — launch.json「添加配置」Monaco 补全 provider。
+ * dsh-code-studio client — launch.json「添加配置」Monaco 补全 provider。
  * 仅插件专属 `.dsh/launch.json`（DAP_LAUNCH_REL）且光标位于 configurations 数组插入点
  * （或其后键入过滤词）时出条目；
  * insertText = buildInsertText（纯文本插入，不用 InsertAsSnippet——${file}/${workspaceFolder}

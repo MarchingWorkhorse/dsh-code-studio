@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — Monaco 编辑器 model 路径归一化（纯函数，可单测）。
+ * dsh-code-studio client — Monaco 编辑器 model 路径归一化（纯函数，可单测）。
  * 与 EditorView 原 modelPathOf 逐字同逻辑，提取共享防止"编辑器切换断点"与
  * "调试面板新增断点"两处口径漂移（断点表 key 必须同源）。
  * 作者 ddj 2026年09月21号

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 大纲「lsp」源：经 host LSP documentSymbol 解析（优先于 monaco/fallback）。
+ * dsh-code-studio client — 大纲「lsp」源：经 host LSP documentSymbol 解析（优先于 monaco/fallback）。
  * LSP 服务器未就绪时返回 [] → resolveOutline 自动落入下一优先级（fallback 兜底），不阻塞面板。
  * 作者 ddj 2026-08-27
  */

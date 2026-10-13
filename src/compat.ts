@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 兼容层：与其他插件 / DSH 版本的统一探测、适配、护栏与自诊断。
+ * dsh-code-studio host — 兼容层：与其他插件 / DSH 版本的统一探测、适配、护栏与自诊断。
  * 职责：身份常量（包名 / MCP 条目前缀 / 路由前缀）、外部插件探测、路由冲突与重复装配检测、
  *       兼容性报告构建（RPC edrv.compat 与启动日志共用）。
  * 注意：与 mcp.ts 存在模块环（compat 提供身份常量、mcp 提供 entriesOf），
@@ -20,7 +20,7 @@ import { ROUTE_PREFIX } from './paths.js'
 
 export { ROUTE_PREFIX }
 
-export const PLUGIN_NAME = 'dsh-vscode-mode'
+export const PLUGIN_NAME = 'dsh-code-studio'
 export const MCP_PACKAGE = '@deepseek-ai/dsh-mcp-client'
 /** 项目级 MCP 的 loader entry id 固定前缀（区分 profile 全局 MCP；loader id 不能用 ':'，故用 '.'）。 */
 export const PROJECT_ENTRY_PREFIX = 'vsm-mcp.'

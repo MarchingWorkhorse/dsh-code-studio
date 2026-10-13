@@ -1,17 +1,17 @@
 /**
- * dsh-vscode-mode — 统一日志核心（双面共享，平台中立）。
+ * dsh-code-studio — 统一日志核心（双面共享，平台中立）。
  * 输出规范：
- * - 格式：`[dsh-vscode-mode][:scope] 消息`；前缀只在模块内部拼接，业务代码禁止手写前缀
+ * - 格式：`[dsh-code-studio][:scope] 消息`；前缀只在模块内部拼接，业务代码禁止手写前缀
  * - 级别语义：debug=诊断明细 / info=装配与路由里程碑 / warn=降级与兼容回退 / error=失败
  * - 出口：host 面经 bindHostLog(ctx) 绑定 ctx.logger（缺失回退 console）；client 面固定 console
- * - 诊断文件通道（edrv.debug → ~/.dsh/dsh-vscode-mode/logs/）见 debugLog.ts，与本模块前缀共用
+ * - 诊断文件通道（edrv.debug → ~/.dsh/dsh-code-studio/logs/）见 debugLog.ts，与本模块前缀共用
  * 新增日志一律 `import { log } from '../log.js'`（client 为 './log.js'）后调 log.debug/info/warn/error；
  * 子域日志用 log.child('scope')，禁止另起 console。
  * 作者 ddj 2026-09-08
  */
 
 /** 插件统一日志前缀（与包安装名一致）。 */
-export const LOG_PREFIX = '[dsh-vscode-mode]'
+export const LOG_PREFIX = '[dsh-code-studio]'
 
 /** 日志级别（与 console 方法名对齐）。 */
 export type LoggerLevel = 'debug' | 'info' | 'warn' | 'error'
@@ -51,7 +51,7 @@ export function ctxLogSink(ctx: unknown): LoggerSink {
 }
 
 /**
- * 拼一行日志：`[dsh-vscode-mode][:scope] 消息`（scope 为空省略冒号段）。
+ * 拼一行日志：`[dsh-code-studio][:scope] 消息`（scope 为空省略冒号段）。
  * @author ddj 2026年09月08号
  * @param scope 子域（可空）
  * @param message 消息文本
@@ -70,7 +70,7 @@ export interface PluginLogger {
   error(message: string): void
   /** 更换出口（同一实例树共享，host 装配期绑定 ctx.logger 用；client 单例不调用）。 */
   bind(sink: LoggerSink): void
-  /** 派生带子域前缀的新实例（共享出口，如 log.child('debug') → `[dsh-vscode-mode:debug]`）。 */
+  /** 派生带子域前缀的新实例（共享出口，如 log.child('debug') → `[dsh-code-studio:debug]`）。 */
   child(scope: string): PluginLogger
 }
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — VSCodeMode 设置区：通用 / MCP 管理 / 语言服务器 / 性能优化 / 兼容性。
+ * dsh-code-studio client — CodeStudio 设置区：通用 / MCP 管理 / 语言服务器 / 性能优化 / 兼容性。
  * （快捷键统一由 DSH 官方快捷键机制管理：通用页只提供「打开官方快捷键配置」跳转入口，
  *   插件不再自建录键编辑器，也不再注册独立「快捷键」设置区。）
  * MCP 管理 Tab 下含三个子页签：我的 MCP（profile 全局）/ 项目 MCP（各项目 .mcp.json）/ MCP 市场（占位）。
@@ -295,7 +295,7 @@ function svnStatusText(info) {
 
 /**
  * SVN 设置节：路径覆盖 + 检测状态行。
- * 写入经 SettingsContext（namespace dsh-vscode-mode）；状态经 svn.status 直测（force），
+ * 写入经 SettingsContext（namespace dsh-code-studio）；状态经 svn.status 直测（force），
  * 并监听 edrv:svn-status 事件跟随编辑器侧重测结果刷新。
  * @author ddj 2026年09月16号
  */
@@ -633,7 +633,7 @@ export function McpSettings(props) {
   else if (tab === 'ai') body = React.createElement(AiSettings, null)
   else body = React.createElement(PerfSettings, null)
   return React.createElement('section', { className: 'vsm-mcp-page' },
-    React.createElement('header', { className: 'vsm-mcp-header' }, React.createElement('div', null, React.createElement('h2', null, 'VSCodeMode'), React.createElement('p', null, '管理当前 profile 与各项目的 Model Context Protocol 服务。'))),
+    React.createElement('header', { className: 'vsm-mcp-header' }, React.createElement('div', null, React.createElement('h2', null, 'CodeStudio'), React.createElement('p', null, '管理当前 profile 与各项目的 Model Context Protocol 服务。'))),
     React.createElement('nav', { className: 'vsm-mcp-tabs' }, React.createElement('button', { className: tab === 'general' ? 'active' : '', onClick: () => setTab('general') }, '通用'), React.createElement('button', { className: tab === 'mcp' ? 'active' : '', onClick: () => setTab('mcp') }, 'MCP 管理'), React.createElement('button', { className: tab === 'lsp' ? 'active' : '', onClick: () => setTab('lsp') }, '语言服务器'), React.createElement('button', { className: tab === 'ai' ? 'active' : '', onClick: () => setTab('ai') }, 'AI 补全'), React.createElement('button', { className: tab === 'perf' ? 'active' : '', onClick: () => setTab('perf') }, '性能优化'), React.createElement('button', { className: tab === 'compat' ? 'active' : '', onClick: () => setTab('compat') }, '兼容性')),
     error && React.createElement('div', { className: 'vsm-mcp-error vsm-mcp-banner' }, error),
     body,

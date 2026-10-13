@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — AI 补全设置卡片。
+ * dsh-code-studio client — AI 补全设置卡片。
  * 开关 + 模型下拉（edrv.ai.models 目录，按 provider 分组，默认「自动」）+
  * 思考强度下拉（随所选模型的 efforts 元数据动态渲染：无档位隐藏；含「跟随默认」）。
  * 保存走 edrv.ai.configUpdate；保存后广播 edrv:ai-config 事件让 provider 即时生效。

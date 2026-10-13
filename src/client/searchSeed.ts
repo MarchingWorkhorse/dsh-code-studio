@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 工作区搜索的「选区种子」。
+ * dsh-code-studio client — 工作区搜索的「选区种子」。
  *
  * 需求：Ctrl+Shift+F 时若编辑器有选中，把选中文本自动填入搜索框。
  * 链路：EditorView 从 Monaco 取选区文本 → seedQueryOf 归一 → setSearchSeed 存入一次性槽

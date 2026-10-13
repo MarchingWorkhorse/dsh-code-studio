@@ -1,12 +1,12 @@
 ---
-name: dsh-vscodemode-mcp
-description: 配置、新增、启用或排查 dsh-vscode-mode 的 MCP 服务：全局「我的 MCP」、项目 .mcp.json、agent 连接实例、工具/资源/指令隔离、mcp.* RPC、命名冲突与连接状态。
-whenToUse: 用户要求新增、修改、启停或排查 VSCodeMode MCP 配置，或判断项目工具、资源、服务器指令为何不可见或被拒绝时。
+name: dsh-codestudio-mcp
+description: 配置、新增、启用或排查 dsh-code-studio 的 MCP 服务：全局「我的 MCP」、项目 .mcp.json、agent 连接实例、工具/资源/指令隔离、mcp.* RPC、命名冲突与连接状态。
+whenToUse: 用户要求新增、修改、启停或排查 CodeStudio MCP 配置，或判断项目工具、资源、服务器指令为何不可见或被拒绝时。
 ---
 
-# dsh-vscodemode-mcp — MCP 配置与使用
+# dsh-codestudio-mcp — MCP 配置与使用
 
-本技能覆盖 dsh-vscode-mode 的 MCP 管理面。连接由 DSH Host 内的官方 `@deepseek-ai/dsh-mcp-client` 插件维护；浏览器只管理配置。
+本技能覆盖 dsh-code-studio 的 MCP 管理面。连接由 DSH Host 内的官方 `@deepseek-ai/dsh-mcp-client` 插件维护；浏览器只管理配置。
 
 ## 1. 先确定作用域
 
@@ -23,7 +23,7 @@ whenToUse: 用户要求新增、修改、启停或排查 VSCodeMode MCP 配置�
 
 ## 2. UI 与连接语义
 
-设置 → VSCodeMode → MCP 管理，包含「我的 MCP」「项目 MCP」「MCP 市场」（占位）。项目服务在所选项目内管理。
+设置 → CodeStudio → MCP 管理，包含「我的 MCP」「项目 MCP」「MCP 市场」（占位）。项目服务在所选项目内管理。
 
 保存项目服务会写入 `.mcp.json` 并更新匹配的活动 agent；没有活动 agent 时保存为待挂载配置。启用不会凭空创建会话。每个新 agent 的串行 `agent/created` 监听会读取最新配置并等待其官方插件启动；插件装配时也会接入已经存在的 agent。
 
@@ -100,7 +100,7 @@ whenToUse: 用户要求新增、修改、启停或排查 VSCodeMode MCP 配置�
 ## 5. 命名与迁移
 
 - `serverName` 使用 `/^[A-Za-z0-9_-]{1,32}$/`；允许下划线，与技能名规则不同。
-- VSCodeMode 管理的全局和所有项目配置之间名称唯一，包括未启用和没有活动 agent 的配置。官方 MCP 还会拒绝同一个 agent scope 中的重复名称。
+- CodeStudio 管理的全局和所有项目配置之间名称唯一，包括未启用和没有活动 agent 的配置。官方 MCP 还会拒绝同一个 agent scope 中的重复名称。
 - 工具名是 `mcp__<serverName>__<原始工具名>`。共享资源工具通过 `arguments.server` 选择服务器。
 - 不同服务名称不得以 `__` 形成前缀交叠，例如 `alpha` 与 `alpha__nested`：原始工具名也允许 `__`，官方编码不能唯一反解，不能靠最长前缀猜归属。保存与 reconcile 双向检查全局/所有项目（含禁用项）；历史歧义工具执行时 fail-closed 且不计入任何服务。独立含 `__` 的名称仍合法。
 - 项目稳定 id 仍是 `vsm-mcp.<workspaceHash>.<serverName>`，用于 UI/RPC 身份；0.13 起不再代表全局 loader entry。

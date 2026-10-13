@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 命令栏浮层（Ctrl+Shift+P / F1）。
+ * dsh-code-studio client — 命令栏浮层（Ctrl+Shift+P / F1）。
  * 订阅 commandPaletteStore 的开关状态；候选来自注入的指令注册表（window.dsh.edrvCommands），
  * 过滤/排序复用 commandSearch 纯函数；↑↓ 选择、Enter 执行、Esc 或点击遮罩关闭。
  * 浮层经 createPortal 渲染到 body，故不受编辑区三种形态（官方侧栏/better-sidebar/中央页签）影响；

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SVN 基线差异视图（P2 的 BASE ↔ 工作区比较）。
+ * dsh-code-studio client — SVN 基线差异视图（P2 的 BASE ↔ 工作区比较）。
  *
  * 实际渲染由通用 `SideBySideDiff`（F5）承担：本文件只把「基线差异」的语义
  * （BASE 侧缺失时的文案、左侧标签）映射到通用组件上，避免 Monaco 逻辑出现两份。
@@ -42,7 +42,7 @@ export function SvnDiffPanel(props) {
   const note = blocked
     ? guardNote
     : (noBase
-      ? (reason === 'no-pristine' ? NO_PRESTINE_NOTE : (reason === 'not-exist' ? '该版本尚无此文件，无可比较内容' : '读取基线失败'))
+      ? (reason === 'no-pristine' ? NO_PRESTINE_NOTE : (reason === 'no-head' ? '该文件在 HEAD 中不存在（新增/未跟踪文件），无法比较' : (reason === 'not-exist' ? '该版本尚无此文件，无可比较内容' : '读取基线失败')))
       : '')
   const shownMessage = blocked ? '' : (encodingHint ? '内容可能非 UTF-8，显示可能乱码' + (message ? '；' + message : '') : message)
   return React.createElement(SideBySideDiff, {

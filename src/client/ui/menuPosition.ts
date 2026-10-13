@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 右键菜单 viewport 定位纯函数。
+ * dsh-code-studio client — 右键菜单 viewport 定位纯函数。
  * 将视口边界 clamp 从 React 渲染层拆出，便于复用和单测。
  * 作者 ddj 2026-08-28 / 2026-09-03
  */

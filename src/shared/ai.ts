@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — AI 内联补全契约与纯函数（双面，禁 node/react）。
+ * dsh-code-studio shared — AI 内联补全契约与纯函数（双面，禁 node/react）。
  * 只放"过 RPC 的载荷形状"与无副作用变换：窗口裁剪、prompt 拼装、输出清理。
  * host 与语言模型之间的流式交互在 host 侧 src/ai/inline.ts。
  * 作者 ddj

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 只读并排差异视图（Monaco createDiffEditor 的通用封装）。
+ * dsh-code-studio client — 只读并排差异视图（Monaco createDiffEditor 的通用封装）。
  *
  * 三处共用同一实现，避免各自处理 Monaco 的 model 生命周期与已知坑：
  * - P2 基线差异（BASE ↔ 工作区）

@@ -11,7 +11,7 @@
 #
 # `id` 是稳定身份：profile 用户层（或任何更晚的补丁层）用该 id 做"id 定向覆盖"
 # 即可合并自定义 config（例如自定义图标目录）：
-#   - id: dsh-vscode-mode
+#   - id: dsh-code-studio
 #     config:
 #       imageDir: /path/to/icons
 # 注意：是覆盖（override），不是再 insert 一次同 id 的行，否则触发
@@ -33,5 +33,5 @@
 # 另：0.1.7 起 `dsh.bundle.patch` 支持 `patch: string | string[]`（有序列表，
 # 逐层施加），本包单文件写法保持兼容，无需改动。
 - insert:
-    - id: dsh-vscode-mode
-      name: 'dsh-vscode-mode'
+    - id: dsh-code-studio
+      name: 'dsh-code-studio'

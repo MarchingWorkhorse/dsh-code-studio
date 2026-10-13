@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode 兼容层双面契约 — 与其他插件 / DSH 版本的探测与自诊断报告。
+ * dsh-code-studio 兼容层双面契约 — 与其他插件 / DSH 版本的探测与自诊断报告。
  * Purity rule: no node/react imports (same as types.ts / rpc.ts)。
  * 作者 ddj 2026-08-24 / 2026-09-02
  */

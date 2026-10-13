@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏「规则」面板（Codebuddy 规则管理形态）。
+ * dsh-code-studio client — 侧边栏「规则」面板（Codebuddy 规则管理形态）。
  * 双 Tab：用户规则（~/.dsh/rules/）与项目规则（<工作区>/.dsh/rules/）；
  * 列表行 = 文件名 + 相对提示，第二行类型徽标与描述，右侧 编辑/删除 图标 + 滑动启用开关；
  * 新建/编辑 = 顶部面包屑 + 规则类型下拉（总是/自动/手动）+ 描述/globs 控件，与原始 .mdc

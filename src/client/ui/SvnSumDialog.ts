@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SVN 目录对比对话框（W2-2，任意两修订的变更列表）。
+ * dsh-code-studio client — SVN 目录对比对话框（W2-2，任意两修订的变更列表）。
  *
  * 形态对齐日志弹窗的 Show Range 输入 + 变更面板列表：修订区间输入 → `svn.diffSum`
  * （summarize）→ 动作字母 + 相对路径列表。纯展示不做逐文件动作（与 TortoiseSVN

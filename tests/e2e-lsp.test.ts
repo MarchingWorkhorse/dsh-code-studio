@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode tests — 端到端（需 DSH_E2E=1 才执行；默认整组跳过）。
+ * dsh-code-studio tests — 端到端（需 DSH_E2E=1 才执行；默认整组跳过）。
  * 验证：真实 LuaLS 自动发现（extmgr 安装的 sumneko.lua 扩展）→ 插件 transport+client+server
  * 启动真实 lua-language-server → initialize/didOpen → documentSymbol/hover/definition/references。
  * 运行：$env:DSH_E2E='1'; node node_modules/vitest/vitest.mjs run tests/e2e-lsp.test.ts

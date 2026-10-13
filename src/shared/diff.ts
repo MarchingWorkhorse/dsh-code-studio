@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared diff primitives — 快照指纹、hunk 规范化与安全定位。
+ * dsh-code-studio shared diff primitives — 快照指纹、hunk 规范化与安全定位。
  * 不依赖 Node/React，host 与 browser 共用，避免各层用不同 indexOf 语义。
  * 作者 ddj 2026-08-24
  */

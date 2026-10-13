@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode — 统一日志模块单测：格式拼接、级别路由、child 作用域、bind 换出口、ctxLogSink 回退。
+ * dsh-code-studio — 统一日志模块单测：格式拼接、级别路由、child 作用域、bind 换出口、ctxLogSink 回退。
  * 作者 ddj 2026-09-08
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'

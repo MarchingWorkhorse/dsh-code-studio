@@ -49,11 +49,11 @@ afterAll(async () => {
 // --region 纯函数：frontmatter 解析
 describe('parseSkillMd', () => {
   it('标准 frontmatter：name/description/正文，缺省可见性皆 true', () => {
-    const parsed = parseSkillMd(skill('dsh-vscodemode-demo', '', '   正文\n'))
+    const parsed = parseSkillMd(skill('dsh-codestudio-demo', '', '   正文\n'))
     expect(isParsedSkill(parsed)).toBe(true)
     if (!isParsedSkill(parsed)) return
-    expect(parsed.name).toBe('dsh-vscodemode-demo')
-    expect(parsed.description).toBe('描述 dsh-vscodemode-demo')
+    expect(parsed.name).toBe('dsh-codestudio-demo')
+    expect(parsed.description).toBe('描述 dsh-codestudio-demo')
     expect(parsed.invocation).toEqual({ modelInvocable: true, userInvocable: true })
     // 正文整体 trim（与官方 provider 的 content: parsed.body.trim() 一致）
     expect(parsed.body).toBe('正文')
@@ -61,79 +61,79 @@ describe('parseSkillMd', () => {
 
   it('缺 frontmatter / 未闭合 / 首行非 --- → 拒绝', () => {
     expect(isParsedSkill(parseSkillMd('# 只是 markdown\n'))).toBe(false)
-    expect(isParsedSkill(parseSkillMd('---\nname: dsh-vscodemode-a\n'))).toBe(false)
-    expect(isParsedSkill(parseSkillMd('前置说明\n---\nname: dsh-vscodemode-a\ndescription: d\n---\n'))).toBe(false)
+    expect(isParsedSkill(parseSkillMd('---\nname: dsh-codestudio-a\n'))).toBe(false)
+    expect(isParsedSkill(parseSkillMd('前置说明\n---\nname: dsh-codestudio-a\ndescription: d\n---\n'))).toBe(false)
   })
 
   it('下划线技能名被拒（DSH 硬约束），大写与空名同样被拒', () => {
-    const underscore = parseSkillMd(skill('dsh_vscodemode_mcp'))
+    const underscore = parseSkillMd(skill('dsh_CodeStudio_mcp'))
     expect(isParsedSkill(underscore)).toBe(false)
     if (!isParsedSkill(underscore)) expect(underscore.error).toContain('kebab-case')
-    expect(isParsedSkill(parseSkillMd(skill('Dsh-Vscodemode-Mcp')))).toBe(false)
+    expect(isParsedSkill(parseSkillMd(skill('dsh-codestudio-Mcp')))).toBe(false)
     expect(isParsedSkill(parseSkillMd(skill('')))).toBe(false)
   })
 
   it('空 description 被拒', () => {
-    const bad = parseSkillMd('---\nname: dsh-vscodemode-a\ndescription: ""\n---\nB\n')
+    const bad = parseSkillMd('---\nname: dsh-codestudio-a\ndescription: ""\n---\nB\n')
     expect(isParsedSkill(bad)).toBe(false)
     if (!isParsedSkill(bad)) expect(bad.error).toContain('description')
   })
 
   it('whenToUse 可选带上', () => {
-    const parsed = parseSkillMd(skill('dsh-vscodemode-a', 'whenToUse: 用户提到 MCP 时\n'))
+    const parsed = parseSkillMd(skill('dsh-codestudio-a', 'whenToUse: 用户提到 MCP 时\n'))
     if (!isParsedSkill(parsed)) throw new Error('应解析成功')
     expect(parsed.whenToUse).toBe('用户提到 MCP 时')
   })
 
   it('可见性布尔：disable-model-invocation / user-invocable 各轴独立', () => {
-    const model = parseSkillMd(skill('dsh-vscodemode-a', 'disable-model-invocation: true\n'))
+    const model = parseSkillMd(skill('dsh-codestudio-a', 'disable-model-invocation: true\n'))
     if (!isParsedSkill(model)) throw new Error('应解析成功')
     expect(model.invocation).toEqual({ modelInvocable: false, userInvocable: true })
-    const user = parseSkillMd(skill('dsh-vscodemode-a', 'user-invocable: false\n'))
+    const user = parseSkillMd(skill('dsh-codestudio-a', 'user-invocable: false\n'))
     if (!isParsedSkill(user)) throw new Error('应解析成功')
     expect(user.invocation).toEqual({ modelInvocable: true, userInvocable: false })
   })
 
   it('布尔字面量宽容（yes/no/on/off/1/0，大小写不敏感）', () => {
-    const yes = parseSkillMd(skill('dsh-vscodemode-a', 'disable-model-invocation: YES\n'))
+    const yes = parseSkillMd(skill('dsh-codestudio-a', 'disable-model-invocation: YES\n'))
     if (!isParsedSkill(yes)) throw new Error('应解析成功')
     expect(yes.invocation.modelInvocable).toBe(false)
-    const off = parseSkillMd(skill('dsh-vscodemode-a', 'user-invocable: off\n'))
+    const off = parseSkillMd(skill('dsh-codestudio-a', 'user-invocable: off\n'))
     if (!isParsedSkill(off)) throw new Error('应解析成功')
     expect(off.invocation.userInvocable).toBe(false)
   })
 
   it('非布尔字面量报错，不静默当默认值', () => {
-    const bad = parseSkillMd(skill('dsh-vscodemode-a', 'disable-model-invocation: maybe\n'))
+    const bad = parseSkillMd(skill('dsh-codestudio-a', 'disable-model-invocation: maybe\n'))
     expect(isParsedSkill(bad)).toBe(false)
     if (!isParsedSkill(bad)) expect(bad.error).toContain('布尔')
   })
 
   it('遗留驼峰键被拒并指向规范键（对齐官方语义）', () => {
-    const legacy = parseSkillMd(skill('dsh-vscodemode-a', 'disableModelInvocation: true\n'))
+    const legacy = parseSkillMd(skill('dsh-codestudio-a', 'disableModelInvocation: true\n'))
     expect(isParsedSkill(legacy)).toBe(false)
     if (!isParsedSkill(legacy)) {
       expect(legacy.error).toContain('disableModelInvocation')
       expect(legacy.error).toContain('disable-model-invocation')
     }
-    expect(isParsedSkill(parseSkillMd(skill('dsh-vscodemode-a', 'userInvocable: true\n')))).toBe(false)
+    expect(isParsedSkill(parseSkillMd(skill('dsh-codestudio-a', 'userInvocable: true\n')))).toBe(false)
   })
 
   it('CRLF 与 BOM 容错', () => {
-    const crlf = parseSkillMd('\uFEFF---\r\nname: dsh-vscodemode-a\r\ndescription: d\r\n---\r\n正文\r\n')
+    const crlf = parseSkillMd('\uFEFF---\r\nname: dsh-codestudio-a\r\ndescription: d\r\n---\r\n正文\r\n')
     expect(isParsedSkill(crlf)).toBe(true)
-    if (isParsedSkill(crlf)) expect(crlf.name).toBe('dsh-vscodemode-a')
+    if (isParsedSkill(crlf)) expect(crlf.name).toBe('dsh-codestudio-a')
   })
 
   it('引号值与块标量（| 与 >）', () => {
-    const quoted = parseSkillMd('---\nname: "dsh-vscodemode-a"\ndescription: \'带 空格\'\n---\nB\n')
+    const quoted = parseSkillMd('---\nname: "dsh-codestudio-a"\ndescription: \'带 空格\'\n---\nB\n')
     if (!isParsedSkill(quoted)) throw new Error('应解析成功')
-    expect(quoted.name).toBe('dsh-vscodemode-a')
+    expect(quoted.name).toBe('dsh-codestudio-a')
     expect(quoted.description).toBe('带 空格')
-    const literal = parseSkillMd(skill('dsh-vscodemode-a', 'whenToUse: |\n  第一行\n  第二行\n'))
+    const literal = parseSkillMd(skill('dsh-codestudio-a', 'whenToUse: |\n  第一行\n  第二行\n'))
     if (!isParsedSkill(literal)) throw new Error('应解析成功')
     expect(literal.whenToUse).toBe('第一行\n第二行')
-    const folded = parseSkillMd(skill('dsh-vscodemode-a', 'whenToUse: >\n  第一行\n  第二行\n'))
+    const folded = parseSkillMd(skill('dsh-codestudio-a', 'whenToUse: >\n  第一行\n  第二行\n'))
     if (!isParsedSkill(folded)) throw new Error('应解析成功')
     expect(folded.whenToUse).toBe('第一行 第二行')
   })
@@ -142,10 +142,10 @@ describe('parseSkillMd', () => {
 
 // --region 纯函数：前缀白名单
 describe('hasGroupPrefix', () => {
-  it('只认 dsh-vscodemode- 前缀', () => {
-    expect(SKILL_PREFIXES[0]).toBe('dsh-vscodemode-')
-    expect(hasGroupPrefix('dsh-vscodemode-mcp')).toBe(true)
-    expect(hasGroupPrefix('dsh-vscode-mode-dev')).toBe(false)
+  it('只认 dsh-codestudio- 前缀', () => {
+    expect(SKILL_PREFIXES[0]).toBe('dsh-codestudio-')
+    expect(hasGroupPrefix('dsh-codestudio-mcp')).toBe(true)
+    expect(hasGroupPrefix('dsh-code-studio-dev')).toBe(false)
     expect(hasGroupPrefix('modsearch')).toBe(false)
     expect(hasGroupPrefix('')).toBe(false)
   })
@@ -164,7 +164,7 @@ describe('skillsDirOf', () => {
   })
 
   it('随包 skills/ 目录与 provider 常量可用', () => {
-    expect(SKILL_PROVIDER_NAME).toBe('dsh-vscodemode')
+    expect(SKILL_PROVIDER_NAME).toBe('dsh-CodeStudio')
     // 常量护栏：provider 名不得撞官方 'filesystem' 与保留名 'runtime'
     expect(SKILL_PROVIDER_NAME).not.toBe('filesystem')
     expect(SKILL_PROVIDER_NAME).not.toBe('runtime')
@@ -179,17 +179,17 @@ describe('listSkills / provider', () => {
 
   it('目录式与扁平式都能发现；非前缀被跳过', async () => {
     const group = await makeGroup({
-      'dsh-vscodemode-alpha/SKILL.md': skill('dsh-vscodemode-alpha'),
-      'dsh-vscodemode-flat.md': skill('dsh-vscodemode-flat'),
+      'dsh-codestudio-alpha/SKILL.md': skill('dsh-codestudio-alpha'),
+      'dsh-codestudio-flat.md': skill('dsh-codestudio-flat'),
       'other-b/SKILL.md': skill('other-b'),
     })
     created.push(group.cleanup)
     const found = await listSkills(group.dir)
-    expect(found.map((item) => item.name).sort()).toEqual(['dsh-vscodemode-alpha', 'dsh-vscodemode-flat'])
+    expect(found.map((item) => item.name).sort()).toEqual(['dsh-codestudio-alpha', 'dsh-codestudio-flat'])
   })
 
   it('候选契约满足 registry 校验：provider/rank/source/invocation/path', async () => {
-    const group = await makeGroup({ 'dsh-vscodemode-a/SKILL.md': skill('dsh-vscodemode-a') })
+    const group = await makeGroup({ 'dsh-codestudio-a/SKILL.md': skill('dsh-codestudio-a') })
     created.push(group.cleanup)
     const [candidate] = await listSkills(group.dir)
     expect(candidate.provider).toBe(SKILL_PROVIDER_NAME)
@@ -197,9 +197,9 @@ describe('listSkills / provider', () => {
     expect(candidate.source).toBe('bundled')
     expect(typeof candidate.invocation.modelInvocable).toBe('boolean')
     expect(typeof candidate.invocation.userInvocable).toBe('boolean')
-    expect(norm(candidate.path ?? '')).toMatch(/dsh-vscodemode-a\/SKILL\.md$/)
+    expect(norm(candidate.path ?? '')).toMatch(/dsh-codestudio-a\/SKILL\.md$/)
     // 目录式技能的资源基址 = 技能目录（供正文相对路径解析）
-    expect(candidate.resourceBase).toEqual({ kind: 'directory', path: join(group.dir, 'dsh-vscodemode-a') })
+    expect(candidate.resourceBase).toEqual({ kind: 'directory', path: join(group.dir, 'dsh-codestudio-a') })
   })
 
   it('目录不存在 → 空数组，不抛', async () => {
@@ -208,43 +208,43 @@ describe('listSkills / provider', () => {
 
   it('损坏/无 frontmatter 的文件被跳过，其余仍可用', async () => {
     const group = await makeGroup({
-      'dsh-vscodemode-good/SKILL.md': skill('dsh-vscodemode-good'),
-      'dsh-vscodemode-bad/SKILL.md': '# 没有 frontmatter\n',
-      'dsh-vscodemode-under/SKILL.md': skill('dsh_vscodemode_under'),
+      'dsh-codestudio-good/SKILL.md': skill('dsh-codestudio-good'),
+      'dsh-codestudio-bad/SKILL.md': '# 没有 frontmatter\n',
+      'dsh-codestudio-under/SKILL.md': skill('dsh_CodeStudio_under'),
     })
     created.push(group.cleanup)
     const found = await listSkills(group.dir)
-    expect(found.map((item) => item.name)).toEqual(['dsh-vscodemode-good'])
+    expect(found.map((item) => item.name)).toEqual(['dsh-codestudio-good'])
   })
 
   it('根目录裸 .md（无 frontmatter）不会产出候选', async () => {
     const group = await makeGroup({
       'README.md': '# 说明文档\n',
-      'dsh-vscodemode-a/SKILL.md': skill('dsh-vscodemode-a'),
+      'dsh-codestudio-a/SKILL.md': skill('dsh-codestudio-a'),
     })
     created.push(group.cleanup)
     const found = await listSkills(group.dir)
-    expect(found.map((item) => item.name)).toEqual(['dsh-vscodemode-a'])
+    expect(found.map((item) => item.name)).toEqual(['dsh-codestudio-a'])
   })
 
   it('provider.get 返回完整正文；文件消失 → undefined', async () => {
-    const group = await makeGroup({ 'dsh-vscodemode-a/SKILL.md': skill('dsh-vscodemode-a', '', '正文 A\n') })
+    const group = await makeGroup({ 'dsh-codestudio-a/SKILL.md': skill('dsh-codestudio-a', '', '正文 A\n') })
     created.push(group.cleanup)
     const provider = newSkillProvider(group.dir, noopControl)
     expect(provider.name).toBe(SKILL_PROVIDER_NAME)
     const [candidate] = await provider.list()
     const definition = await provider.get(candidate)
     expect(definition?.content).toBe('正文 A')
-    await rm(join(group.dir, 'dsh-vscodemode-a', 'SKILL.md'), { force: true })
+    await rm(join(group.dir, 'dsh-codestudio-a', 'SKILL.md'), { force: true })
     await expect(provider.get(candidate)).resolves.toBeUndefined()
   })
 
   it('provider.get 在名字被改后返回 undefined（让 registry 失效缓存）', async () => {
-    const group = await makeGroup({ 'dsh-vscodemode-a/SKILL.md': skill('dsh-vscodemode-a') })
+    const group = await makeGroup({ 'dsh-codestudio-a/SKILL.md': skill('dsh-codestudio-a') })
     created.push(group.cleanup)
     const provider = newSkillProvider(group.dir, noopControl)
     const [candidate] = await provider.list()
-    await writeFile(join(group.dir, 'dsh-vscodemode-a', 'SKILL.md'), skill('dsh-vscodemode-renamed'), 'utf8')
+    await writeFile(join(group.dir, 'dsh-codestudio-a', 'SKILL.md'), skill('dsh-codestudio-renamed'), 'utf8')
     await expect(provider.get(candidate)).resolves.toBeUndefined()
   })
 })
@@ -263,11 +263,11 @@ describe('随包技能组', () => {
     }
   })
 
-  it('dsh-vscodemode-mcp 存在且正文非空、覆盖 MCP 关键面', async () => {
+  it('dsh-codestudio-mcp 存在且正文非空、覆盖 MCP 关键面', async () => {
     const dir = skillsDirOf(import.meta.url)
     const found = await listSkills(dir)
-    const mcp = found.find((item) => item.name === 'dsh-vscodemode-mcp')
-    expect(mcp, '缺少 skills/dsh-vscodemode-mcp/SKILL.md（或 package.json files 漏发 skills/）').toBeDefined()
+    const mcp = found.find((item) => item.name === 'dsh-codestudio-mcp')
+    expect(mcp, '缺少 skills/dsh-codestudio-mcp/SKILL.md（或 package.json files 漏发 skills/）').toBeDefined()
     if (!mcp) return
     const control = { signal: new AbortController().signal, invalidate: () => {} }
     const definition = await newSkillProvider(dir, control).get(mcp)

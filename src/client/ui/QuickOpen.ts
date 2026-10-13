@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — QuickOpen：顶部搜索框（Ctrl+P 打开文件）。
+ * dsh-code-studio client — QuickOpen：顶部搜索框（Ctrl+P 打开文件）。
  * 快捷键随配置（edrv.quickOpen），占位文案同步当前键位。
  * 候选浮窗支持鼠标点击与键盘导航（↑↓ 切换高亮、Enter 打开高亮项、Esc 关闭）；
  * 输入法组词中不消费按键（中文候选词确认优先）。

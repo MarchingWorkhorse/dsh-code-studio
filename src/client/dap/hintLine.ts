@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 断点 hover 预览判定（纯函数，可单测）。
+ * dsh-code-studio client — 断点 hover 预览判定（纯函数，可单测）。
  * 对齐 VS Code `breakpointEditorContribution` 的 onMouseMove 分支：
  *   `(target.type === GUTTER_GLYPH_MARGIN || target.type === GUTTER_LINE_NUMBERS) &&
  *    canSetBreakpointsIn(model) && marginFreeFromNonDebugDecorations(line)` → 显示 hint。

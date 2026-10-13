@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 调试工具条拖拽位置纯逻辑。
+ * dsh-code-studio client — 调试工具条拖拽位置纯逻辑。
  * 位置按工作区 scope 持久化；拖动结果始终 clamp 在编辑区边界内。
  * 作者 ddj 2026年09月29号
  */

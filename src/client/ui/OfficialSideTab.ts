@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — OfficialSideTab：DSH 官方右侧 Sidebar「文件编辑」页签正文包装。
+ * dsh-code-studio client — OfficialSideTab：DSH 官方右侧 Sidebar「文件编辑」页签正文包装。
  * 用途：页类型 Tab（edrvEditor）经 navigation.params（openPath/focusDiff/line）打开；
  * 兼作 file 认领转发（ClaimRouter）失败时的兜底正文（就地挂编辑器，旧行为）。
  * 派发既有 edrv:open-editor 事件复用 EditorView 打开流；按会话 key 保证切会话干净重建。

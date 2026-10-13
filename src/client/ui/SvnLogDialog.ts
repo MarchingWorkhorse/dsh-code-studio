@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SVN 日志弹窗（P3，居中弹窗形态，TortoiseSVN Revision Log Dialog 对标）。
+ * dsh-code-studio client — SVN 日志弹窗（P3，居中弹窗形态，TortoiseSVN Revision Log Dialog 对标）。
  *
  * 蓝图：plans/svn-integration/06-log-ui-reference.md（§5 P0 全量，2026-09-17 实施）。
  * 布局（P0-14 起为 TortoiseSVN 同款上中下三段全宽）：

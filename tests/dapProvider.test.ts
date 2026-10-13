@@ -18,7 +18,7 @@ afterEach(() => {
 function makeHome(debuggers: unknown[], files: string[] = []): string {
   const home = mkdtempSync(join(tmpdir(), 'dsh-dap-spec-'))
   homes.push(home)
-  const extRoot = join(home, 'dsh-vscode-mode', 'extensions')
+  const extRoot = join(home, 'dsh-code-studio', 'extensions')
   const extDir = join(extRoot, 'x.mock-1.0.0')
   mkdirSync(extDir, { recursive: true })
   writeFileSync(join(extDir, 'package.json'), JSON.stringify({ publisher: 'x', name: 'mock', version: '1.0.0', contributes: { debuggers } }))
@@ -39,7 +39,7 @@ describe('resolveAdapterSpec', () => {
     expect(spec).toBeTruthy()
     expect(spec!.type).toBe('emmylua_attach')
     expect(spec!.command).toBe(process.execPath)
-    expect(spec!.args).toEqual([join(home, 'dsh-vscode-mode', 'extensions', 'x.mock-1.0.0', 'out', 'attach.js')])
+    expect(spec!.args).toEqual([join(home, 'dsh-code-studio', 'extensions', 'x.mock-1.0.0', 'out', 'attach.js')])
     expect(spec!.extensionId).toBe('x.mock')
   })
 
@@ -49,7 +49,7 @@ describe('resolveAdapterSpec', () => {
     ], ['dbg/clrdbg.exe'])
     const spec = resolveAdapterSpec('coreclr', true, home)
     expect(spec).toBeTruthy()
-    expect(spec!.command).toBe(join(home, 'dsh-vscode-mode', 'extensions', 'x.mock-1.0.0', 'dbg', 'clrdbg.exe'))
+    expect(spec!.command).toBe(join(home, 'dsh-code-studio', 'extensions', 'x.mock-1.0.0', 'dbg', 'clrdbg.exe'))
     expect(spec!.args).toEqual(['--interpreter=vscode'])
   })
 

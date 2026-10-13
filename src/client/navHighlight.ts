@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 跳转目标高亮区间推导（纯函数，不依赖 monaco/DOM）。
+ * dsh-code-studio client — 跳转目标高亮区间推导（纯函数，不依赖 monaco/DOM）。
  *
  * 背景：Monaco 原生跳转在 resolve 出定义后会把选区 `collapseToStart` 再交给 opener，
  * 于是插件拿到的是**零宽区间**（start === end）。零宽 range 挂装饰渲染不出任何可见

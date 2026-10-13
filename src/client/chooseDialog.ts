@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 工作区选择弹窗（深链打开规则 1）。
+ * dsh-code-studio client — 工作区选择弹窗（深链打开规则 1）。
  * 复用与「添加 MCP」一致的 vsm-mcp-modal / vsm-mcp-dialog 模态（页面居中卡片 + 遮罩 + 主题
  * token），React portal 挂 body；Esc / 遮罩点击 / 取消 → null（中止流程不改任何状态）。
  * 作者 ddj 2026-09-07

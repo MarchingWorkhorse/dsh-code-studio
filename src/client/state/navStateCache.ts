@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑器导航历史存档（localStorage，按工作区作用域）。
+ * dsh-code-studio client — 编辑器导航历史存档（localStorage，按工作区作用域）。
  * 语义：刷新/重启后「后退/前进」双栈与当前位置仍在（对齐 VSCode navigation history 的体感，
  * 只是延长到跨会话/跨 origin）。条目不含 viewState——它体积大且已由 viewStateCache 按路径存档。
  * 键 = CACHE_KEY.navHistory + scope；序列化/解析为纯函数，IO 收在 load/save 两端。

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — edrv.ai.* RPC handlers。
+ * dsh-code-studio host — edrv.ai.* RPC handlers。
  * inline：AI 内联补全（一次调用一次结果，无状态）；models：模型目录（缓存）；
  * configGet/configUpdate：settings section 的 AI 字段读写。
  * 作者 ddj

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏「SVN 变更」面板（工作副本状态视图）。
+ * dsh-code-studio client — 侧边栏「SVN 变更」面板（工作副本状态视图）。
  *
  * 形态对齐 TortoiseSVN「Check for Modifications」的**列表 + 分组 + 行内动作**骨架：
  * 头部（标题 / 工作副本根名 / ⟳）+ 显示开关（未版本控制 / 忽略项）+ 批量条 +

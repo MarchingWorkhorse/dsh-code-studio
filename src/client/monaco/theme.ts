@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — Monaco 主题：官方令牌跟随 + 现役双套回落。
+ * dsh-code-studio client — Monaco 主题：官方令牌跟随 + 现役双套回落。
  * 优先级：官方代码/UI 令牌（--shiki-* / --dsw-alias-*，DSH 0.1.5+ 主题体系，
  * 含第三方皮肤）→ edrv-dark / edrv-light 两套内置配色（旧版 DSH 或令牌缺失）。
  * 明暗判定：body[data-ds-dark-theme]（官方）→ 根 data-theme（旧皮肤）→ prefers-color-scheme。

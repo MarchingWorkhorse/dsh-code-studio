@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 通用浮动右键菜单（createElement 风格、类型化）。
+ * dsh-code-studio client — 通用浮动右键菜单（createElement 风格、类型化）。
  * 非阻塞式关闭：window capture 监听（点击菜单外/右键菜单外/Esc 关闭），
  * 不拦截菜单外事件，允许同一事件内由发起方切换/重开菜单。
  * 条目支持 danger/disabled/separator，复用既有 edrv-ctxmenu* 样式类。

@@ -23,13 +23,13 @@ afterEach(() => {
 function makeHome(): string {
   const home = mkdtempSync(join(tmpdir(), 'dsh-envreq-test-'))
   homes.push(home)
-  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-vscode-mode', 'extensions')
+  process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-code-studio', 'extensions')
   return home
 }
 
 /** 在临时 home 安装伪 DotRush 扩展（可指定 runtimeconfig 版本号，99.0.0 必然缺失）。 */
 function installDotRush(home: string, version = '26.9.244', runtimeVersion = '10.0.0'): string {
-  const extDir = join(home, 'dsh-vscode-mode', 'extensions', 'nromanov.dotrush-' + version)
+  const extDir = join(home, 'dsh-code-studio', 'extensions', 'nromanov.dotrush-' + version)
   const lsDir = join(extDir, 'extension', 'bin', 'LanguageServer')
   mkdirSync(lsDir, { recursive: true })
   writeFileSync(join(extDir, 'package.json'), JSON.stringify({ publisher: 'nromanov', name: 'dotrush', version }))

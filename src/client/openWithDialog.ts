@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 「打开方式…」选择弹窗（资源管理器右键、文件目标专属）。
+ * dsh-code-studio client — 「打开方式…」选择弹窗（资源管理器右键、文件目标专属）。
  * 列出 fileOpeners 注册表中当前可用的打开器（本插件/官方侧栏/系统等），
  * 选中即调用该打开器 open()；复用 ModalShell 视觉，Esc/遮罩/取消 = 不打开。
  * 作者 ddj 2026年09月22号

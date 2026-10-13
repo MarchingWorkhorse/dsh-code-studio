@@ -1,5 +1,5 @@
-# swap-vscode-mode.ps1
-# Fix: the running DSH loads a stale npm copy of dsh-vscode-mode.
+# swap-code-studio.ps1
+# Fix: the running DSH loads a stale npm copy of dsh-code-studio.
 # This script waits for DSH to exit, moves the stale copy aside, and
 # replaces it with a junction to the dev working directory so the
 # freshly-built lib/ (with the MCP management UI) is what DSH loads.
@@ -8,14 +8,14 @@
 #   1. Fully exit DSH (the app, not just the browser tab). You may run this
 #      script FIRST; it will wait until DSH is gone.
 #   2. Run this script (right-click -> Run with PowerShell, or:
-#         powershell -ExecutionPolicy Bypass -File swap-vscode-mode.ps1
+#         powershell -ExecutionPolicy Bypass -File swap-code-studio.ps1
 #   3. Restart DSH.
 
 $target = 'D:\Work\ToolsDev\DeepSeekHarnessPlugin\packages\dsh-edit-review'
 $base   = Join-Path $env:USERPROFILE '.dsh\profiles\web\node_modules'
-$pkg    = Join-Path $base 'dsh-vscode-mode'
+$pkg    = Join-Path $base 'dsh-code-studio'
 
-Write-Host '== dsh-vscode-mode swap script =='
+Write-Host '== dsh-code-studio swap script =='
 Write-Host "Package path: $pkg"
 Write-Host "Dev source  : $target"
 
@@ -35,7 +35,7 @@ Write-Host 'DSH is stopped.'
 
 # --- 2) move stale copy aside ---
 if (Test-Path $pkg) {
-    $stale = Join-Path $base ('dsh-vscode-mode.stale-' + (Get-Date -Format 'HHmmss'))
+    $stale = Join-Path $base ('dsh-code-studio.stale-' + (Get-Date -Format 'HHmmss'))
     Move-Item -Path $pkg -Destination $stale -Force
     Write-Host "Moved stale npm copy to: $stale"
 }
@@ -50,7 +50,7 @@ Write-Host "client.js size: $len (expect 109125 = MCP build)"
 
 # --- 4) report ---
 if ($len -eq 109125) {
-    Write-Host 'OK: latest build is now linked. Restart DSH and check Settings -> VSCodeMode.'
+    Write-Host 'OK: latest build is now linked. Restart DSH and check Settings -> CodeStudio.'
 } else {
     Write-Host 'WARNING: client.js size differs from expected build; verify the dev build is up to date.'
 }

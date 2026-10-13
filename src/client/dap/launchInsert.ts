@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — launch.json「添加配置」插入定位与插入文本构造（纯函数，node 可测）。
+ * dsh-code-studio client — launch.json「添加配置」插入定位与插入文本构造（纯函数，node 可测）。
  * 插入语义对齐 VS Code「添加配置」：光标落在 `"configurations": [` 下一行行首
  * （单行数组落在 `[ 后），新配置插到数组开头；插入文本自带缩进与尾逗号，按纯文本插入
  * （不用 Monaco snippet 语法——${file}/${workspaceFolder} 是 DAP 运行期变量，必须原样落盘）。

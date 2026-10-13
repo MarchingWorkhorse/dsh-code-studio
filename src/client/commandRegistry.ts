@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 指令注册表（命令栏与快捷键系统的唯一数据源）。
+ * dsh-code-studio client — 指令注册表（命令栏与快捷键系统的唯一数据源）。
  * 镜像 sidebar/registry.ts 的注册表模式：register 返回注销器、list/subscribe 可订阅；
  * 额外提供 run(id)：先做可用性判定再执行，运行体异常一律捕获上报，绝不让命令抛出到事件循环。
  * 重复 id 按「后注册者生效」覆盖，旧注销器带身份校验（不会误删新实例，见 releaseRegistry）。

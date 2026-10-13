@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 会话级差异 dock store。
+ * dsh-code-studio client — 会话级差异 dock store。
  * EditorView 发布当前编辑上下文，conversation.input.dock 唯一读取并渲染。
  * 作者 ddj 2026年08月26号
  */

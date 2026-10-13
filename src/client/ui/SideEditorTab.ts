@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SideEditorTab：betterSidebar「文件编辑」Tab 的组件包装。
+ * dsh-code-studio client — SideEditorTab：betterSidebar「文件编辑」Tab 的组件包装。
  * 把 TabComponentProps（scope/tab/visible）映射为 EditorView 侧栏形态 props，
  * 并按会话 key 保证切会话状态干净重建；创建种子的初始打开在挂载后投递一次。
  * 作者 ddj 2026年08月25号

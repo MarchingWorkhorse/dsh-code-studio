@@ -1,6 +1,6 @@
 /**
- * dsh-vscode-mode host — VSIX 扩展管理器（extmgr）。
- * 管理 DSH 专属扩展目录（~/.dsh/dsh-vscode-mode/extensions/），支持：
+ * dsh-code-studio host — VSIX 扩展管理器（extmgr）。
+ * 管理 DSH 专属扩展目录（~/.dsh/dsh-code-studio/extensions/），支持：
  * 本地 .vsix 安装、Open VSX 市场搜索/下载安装、卸载、更新检测与安装。
  * 已装扩展作为 LSP provider 的"扩展源"（kind=extension），见 providers.ts。
  * 作者 ddj 2026-08-27

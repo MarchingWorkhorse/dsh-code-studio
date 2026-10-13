@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 纯 Node ZIP 解压（零依赖，跨平台）。
+ * dsh-code-studio host — 纯 Node ZIP 解压（零依赖，跨平台）。
  * 供 extmgr 解包 VSIX 使用；只实现 VSIX 需要的子集：
  * 读取 EOCD + 中央目录，支持 stored(0)/deflate(8)，忽略 zip64（VSIX < 4GB）。
  * 作者 ddj 2026-08-27

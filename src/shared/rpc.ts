@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode RPC contract — method names, per-method request/ok payloads,
+ * dsh-code-studio RPC contract — method names, per-method request/ok payloads,
  * and the typed handler map shared by the host dispatcher and the client
  * fetch wrapper. 载荷形状与历史实现一字不差，仅把隐式约定类型化。
  *
@@ -20,6 +20,7 @@ import type { SnippetEntry, SnippetInfo, SnippetProject, SnippetRefInput, Snippe
 import type { LspCompletionItem, LspCompletionList, LspEnvInstallState, LspExtInfo, LspExtUpdate, LspHover, LspLocation, LspMarketItem, LspPosition, LspSemanticTokens, LspServerStatus, LspSignatureHelp, LspSymbol } from './lsp.js'
 import type { AiConfigPatch, AiConfigView, AiDirectoryView, AiInlineRequest, AiInlineResult } from './ai.js'
 import type { SvnAction, SvnAiPlan, SvnChangeEntry, SvnConflictArtifact, SvnDiffRevResult, SvnIgnoreItem, SvnLogEntry, SvnRemoteOutdatedEntry, SvnStatusPayload, SvnSumEntry, SvnUpdatePoll, SvnUpdateResult, SvnUpdateState } from './svn.js'
+import type { GitChangeEntry, GitStatusPayload } from './git.js'
 import type { DapAction, DapAdapterInfo, DapBreakpointAck, DapBreakpointInput, DapConfigSnippet, DapConfigSource, DapDebugConfig, DapFrameView, DapPhase, DapPollResult, DapProcessInfo, DapScopeView, DapVariableView } from './dap.js'
 import { DAP_ACTIONS } from './dap.js'
 import { appUrl } from './appUrl.js'
@@ -464,6 +465,10 @@ export interface RpcRequestMap {
   'snippets.remove': SnippetRefInput
   'snippets.entries': { sessionId?: string }
   'svn.status': { sessionId?: string; force?: boolean }
+  'git.status': { sessionId?: string; force?: boolean }
+  'git.changes': { sessionId?: string; force?: boolean }
+  'git.diffBase': { sessionId?: string; path: string }
+  'git.patchText': { sessionId?: string; path?: string }
   'svn.changes': { sessionId?: string; force?: boolean }
   'svn.explorerStatus': { sessionId?: string; force?: boolean }
   'svn.explorerView': SvnViewRequest
@@ -626,6 +631,10 @@ export interface RpcOkMap {
   'snippets.remove': object
   'snippets.entries': { entries: SnippetEntry[] }
   'svn.status': SvnStatusPayload
+  'git.status': GitStatusPayload & { ok: boolean; error?: string }
+  'git.changes': { repoRoot: string; entries: GitChangeEntry[]; truncated: boolean }
+  'git.diffBase': { ok: boolean; left: string | null; right: string; reason?: string; error?: string; binary?: boolean; encodingHint?: boolean }
+  'git.patchText': { ok: boolean; text?: string; truncated?: boolean; error?: string }
   'svn.changes': { wcRoot: string; entries: SvnChangeEntry[]; truncated: boolean }
   'svn.explorerStatus': { entries: SvnChangeEntry[]; truncated: boolean; prefix: string }
   'svn.explorerView': SvnViewPayload

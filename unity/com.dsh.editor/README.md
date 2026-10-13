@@ -4,11 +4,11 @@ Unity 外部脚本编辑器通过当前用户私有的 OPEN REQUEST/ACK 文件�
 
 ## 安装
 
-在 DSH 设置 → VSCodeMode → 系统集成中添加 Unity 项目并安装/更新内嵌包，或在 Unity Package Manager 中选择本包。切回 Unity 后，在 Preferences → External Tools → External Script Editor 中选择 **DSH 文件编辑**。
+在 DSH 设置 → CodeStudio → 系统集成中添加 Unity 项目并安装/更新内嵌包，或在 Unity Package Manager 中选择本包。切回 Unity 后，在 Preferences → External Tools → External Script Editor 中选择 **DSH 文件编辑**。
 
-DSH 安装 Unity 集成时会为当前 profile 准备独立的 `<profile>/dsh-vscode-mode/bridge`，并在项目的 `UserSettings/dsh-editor.ini` 写入 `config=<绝对桥接INI路径>`；无需先注册资源管理器菜单，也不会覆盖其他 profile 的菜单配置。
+DSH 安装 Unity 集成时会为当前 profile 准备独立的 `<profile>/dsh-code-studio/bridge`，并在项目的 `UserSettings/dsh-editor.ini` 写入 `config=<绝对桥接INI路径>`；无需先注册资源管理器菜单，也不会覆盖其他 profile 的菜单配置。
 
-**DSH 桥接配置**字段为每个 Unity 项目单独保存。填写绝对路径时使用该显式覆盖；留空时，后台先读取本项目的安装提示，只有提示文件不存在才回退 `$DSH_HOME/dsh-vscode-mode/shell/dsh-open.ini`。未设 `DSH_HOME` 时旧目录以用户目录中的 `.dsh` 为根。提示损坏、相对路径或目标配置不可读会通过 Unity Console 报告错误，不会猜测端口或切换 profile。清空字段可恢复自动选择。
+**DSH 桥接配置**字段为每个 Unity 项目单独保存。填写绝对路径时使用该显式覆盖；留空时，后台先读取本项目的安装提示，只有提示文件不存在才回退 `$DSH_HOME/dsh-code-studio/shell/dsh-open.ini`。未设 `DSH_HOME` 时旧目录以用户目录中的 `.dsh` 为根。提示损坏、相对路径或目标配置不可读会通过 Unity Console 报告错误，不会猜测端口或切换 profile。清空字段可恢复自动选择。
 
 ## 配置契约
 

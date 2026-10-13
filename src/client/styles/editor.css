@@ -1,4 +1,4 @@
-/* dsh-vscode-mode 编辑区样式（原 ensureEdrvStyles 字符串，落盘为真 .css，由 tsdown CSS-inline 注入） */
+/* dsh-code-studio 编辑区样式（原 ensureEdrvStyles 字符串，落盘为真 .css，由 tsdown CSS-inline 注入） */
 /* 主题：跟随官方 --dsw-alias-* 令牌（DSH 明暗与第三方皮肤生效）。
    本作用域不再重定义官方令牌（旧实现曾在此硬覆盖浅色盘，导致插件不跟随 DSH 主题）；
    旧环境/缺令牌场景由每条声明的 var(--dsw-alias-*, 回落值) 兜底。
@@ -404,6 +404,15 @@
 /* W2-3 远端更新提示条（工具条上方；warn = 失败降级） @author ddj 2026-09-20 */
 [data-edrv-view] .edrv-svn-hintbar { display: flex; align-items: center; gap: 6px; margin: 0 10px 4px 12px; padding: 3px 8px; border-radius: 5px; background: var(--dsw-alias-bg-layer-2, #f0f4f4); color: var(--dsw-alias-label-secondary, #52606d); font-size: 11px; flex-shrink: 0; }
 [data-edrv-view] .edrv-svn-hintbar-warn { background: rgba(217, 83, 79, 0.12); color: var(--dsw-alias-state-error-primary, #d9534f); }
+/* ===== VSCode 式审查视图（ReviewDiffPanel：双栏 diff + 行内接受/拒绝） @author ddj 2026-10-13 ===== */
+[data-edrv-view] .edrv-review { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+/* 操作反馈 flash（决策后短暂显示于工具条） */
+[data-edrv-view] .edrv-review-flash { padding: 1px 8px; border-radius: 999px; background: var(--dsw-alias-bg-layer-2, #f0f4f4); color: var(--dsw-alias-state-success-primary, #0f9d58); font-size: 11px; flex-shrink: 0; }
+/* 待处理修订条（工具条下方、diff 编辑器上方）：行内逐块 接受/拒绝 */
+[data-edrv-view] .edrv-review-hunkbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 3px 10px; border-bottom: 1px solid var(--dsw-alias-border-l1, #e0e6e8); flex-shrink: 0; max-height: 64px; overflow-y: auto; }
+[data-edrv-view] .edrv-review-chip { display: inline-flex; align-items: center; gap: 3px; padding: 1px 3px; border: 1px solid var(--dsw-alias-border-l1, #e0e6e8); border-radius: 6px; flex-shrink: 0; }
+[data-edrv-view] .edrv-review-chip-loc { border: none; background: transparent; padding: 1px 4px; font-family: var(--ds-font-family-code, ui-monospace, monospace); font-size: 11px; color: var(--dsw-alias-label-secondary, #52606d); cursor: pointer; white-space: nowrap; }
+[data-edrv-view] .edrv-review-chip-loc:hover { color: var(--dsw-alias-brand-primary, #0f9d58); }
 /* W2-5 疑似改名标记（行内 ⇄；hover 见 tooltip） */
 [data-edrv-view] .edrv-svn-pair-mark { flex-shrink: 0; color: var(--dsw-alias-state-warn-primary, #7c3aed); font-size: 11px; cursor: help; }
 /* W2-1 补丁对话框 / W2-2 目录对比对话框 @author ddj 2026-09-20 */
@@ -972,3 +981,21 @@
    不再用 sticky / `:has()`：滚动链在 .monaco-hover-content 上，sticky 会被滚走。 */
 [data-edrv-view] .monaco-hover[data-edrv-hint-host="1"] { padding-bottom: 22px; }
 [data-edrv-view] [data-edrv-hint="1"] { position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; height: 22px; padding: 2px 8px; font-size: 11px; line-height: 18px; color: var(--dsw-alias-label-tertiary, #8a949b); background: var(--dsw-alias-bg-overlay, #ffffff); border-top: 1px solid var(--dsw-alias-border-l1, #e0e6e8); }
+
+/* Git 变更总览弹窗（复用 svn 弹窗骨架；仅补行尾暂存备注） @author ddj 2026年10月14号 */
+[data-edrv-view] .edrv-git-row-note { flex-shrink: 0; font-size: 10px; color: var(--dsw-alias-label-tertiary, #9aa5b1); }
+
+/* Git 工作区差异视图（编辑区主体：左变更列表 / 右双栏 diff） @author ddj 2026年10月14号 */
+[data-edrv-view] .edrv-gitview { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+[data-edrv-view] .edrv-gitview-bar { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-bottom: 1px solid var(--dsw-alias-border-l1, #e0e6e8); flex-shrink: 0; }
+[data-edrv-view] .edrv-gitview-title { font-size: 12px; font-weight: 600; color: var(--dsw-alias-label-primary, #1f2933); }
+[data-edrv-view] .edrv-gitview-body { display: flex; flex: 1; min-height: 0; }
+[data-edrv-view] .edrv-gitview-list { width: 260px; flex-shrink: 0; overflow: auto; border-right: 1px solid var(--dsw-alias-border-l1, #e0e6e8); padding: 4px; }
+[data-edrv-view] .edrv-gitview-diff { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+[data-edrv-view] .edrv-gitview-diff > .edrv-svndiff { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+[data-edrv-view] .edrv-gitview-diff > .edrv-svndiff > .edrv-svndiff-host { flex: 1; min-height: 0; }
+[data-edrv-view] .edrv-git-file { display: flex; align-items: center; gap: 6px; height: 22px; padding: 0 6px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
+[data-edrv-view] .edrv-git-file:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(15,157,88,.08)); }
+[data-edrv-view] .edrv-git-file-active { background: var(--dsw-alias-interactive-bg-hover, rgba(15,157,88,.14)); }
+[data-edrv-view] .edrv-git-file-path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--dsw-alias-label-primary, #1f2933); font-size: 12px; }
+[data-edrv-view] .edrv-git-empty { padding: 24px 16px; font-size: 12px; color: var(--dsw-alias-label-secondary, #52606d); text-align: center; }

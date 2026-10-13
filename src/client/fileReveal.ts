@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 「在文件浏览器中打开」RPC 包装（树菜单与 Monaco 右键共用）。
+ * dsh-code-studio client — 「在文件浏览器中打开」RPC 包装（树菜单与 Monaco 右键共用）。
  * 归一化为 { ok, error? }，不抛异常；无会话/异常降级返回错误文案。
  * 作者 ddj 2026-08-27
  */

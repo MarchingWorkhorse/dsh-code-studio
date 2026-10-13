@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 原生打开范围的运行时状态（设置值缓存 + 官方打开 handler）。
+ * dsh-code-studio client — 原生打开范围的运行时状态（设置值缓存 + 官方打开 handler）。
  * 职责：
  * 1. 缓存设置字段 `nativeOpenExts` 的解析结果（mountSettingsSyncs 的 keybindings 同步
  *    块每拍推送；旧版设置无该字段 → 保持默认集，与 deferToOfficial 同源 shared 事实源）；

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — AI 智能整理弹窗（11-ai-changelist-triage）。
+ * dsh-code-studio client — AI 智能整理弹窗（11-ai-changelist-triage）。
  *
  * 双阶段单弹窗：
  * - 预览（run = null）：按**整理功能**划分三个分组卡（建议分组 changelist / 建议还原 revert /

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏「大纲」面板。
+ * dsh-code-studio client — 侧边栏「大纲」面板。
  * 数据源经 resolveOutline（源注册表，优先级降序、首个非空生效）解析当前活动文件符号：
  * monaco 源吃原生 document symbol provider，fallback 源兜底无内置提供方的语言。
  * 交互：点击符号跳转编辑器、▸/▾ 折叠、光标所在符号高亮、空/加载/错误态。

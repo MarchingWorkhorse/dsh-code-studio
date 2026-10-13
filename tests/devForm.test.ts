@@ -10,7 +10,7 @@ const MANIFEST = `{
   "private": true,
   "dependencies": {
     "dsh-other": "^1.0.0",
-    "dsh-vscode-mode": "link:D:/Work/ToolsDev/DeepSeekHarnessPlugin/packages/dsh-edit-review"
+    "dsh-code-studio": "link:D:/Work/ToolsDev/DeepSeekHarnessPlugin/packages/dsh-edit-review"
   }
 }
 `
@@ -19,7 +19,7 @@ describe('planManifest', () => {
   it('开启开发形态写入 link: 依赖并保留其他字段', () => {
     const next = planManifest(MANIFEST, true, 'D:\\Work\\repo', '0.1.16')
     const parsed = JSON.parse(next)
-    expect(parsed.dependencies['dsh-vscode-mode']).toBe('link:D:/Work/repo')
+    expect(parsed.dependencies['dsh-code-studio']).toBe('link:D:/Work/repo')
     expect(parsed.dependencies['dsh-other']).toBe('^1.0.0')
     expect(parsed.name).toBe('dsh-profile-web')
     expect(next.startsWith('{')).toBe(true)
@@ -28,13 +28,13 @@ describe('planManifest', () => {
   it('关闭开发形态写入版本依赖（^当前版本）', () => {
     const next = planManifest(MANIFEST, false, '', '0.1.16')
     const parsed = JSON.parse(next)
-    expect(parsed.dependencies['dsh-vscode-mode']).toBe('^0.1.16')
+    expect(parsed.dependencies['dsh-code-studio']).toBe('^0.1.16')
   })
 
   it('容忍 UTF-8 BOM 输入且输出无 BOM', () => {
     const next = planManifest('\uFEFF' + MANIFEST, false, '', '0.1.16')
     expect(next.startsWith('\uFEFF')).toBe(false)
-    expect(JSON.parse(next).dependencies['dsh-vscode-mode']).toBe('^0.1.16')
+    expect(JSON.parse(next).dependencies['dsh-code-studio']).toBe('^0.1.16')
   })
 
   it('非法 JSON 或缺失 dependencies 时抛错', () => {
@@ -120,13 +120,13 @@ describe('setDevForm transactions', () => {
     root = mkdtempSync(join(tmpdir(), 'dsh-devform-txn-'))
     dir = join(root, 'profile')
     source = join(root, 'source')
-    link = join(dir, 'node_modules', 'dsh-vscode-mode')
+    link = join(dir, 'node_modules', 'dsh-code-studio')
     mkdirSync(link, { recursive: true })
     mkdirSync(source)
-    writeFileSync(join(source, 'package.json'), '{"name":"dsh-vscode-mode"}')
+    writeFileSync(join(source, 'package.json'), '{"name":"dsh-code-studio"}')
     writeFileSync(join(source, 'keep.txt'), 'source survives')
     writeFileSync(join(link, 'original.txt'), 'installed version')
-    manifest = '{"dependencies":{"dsh-vscode-mode":"^0.11.0","other":"^1"}}\n'
+    manifest = '{"dependencies":{"dsh-code-studio":"^0.11.0","other":"^1"}}\n'
     writeFileSync(join(dir, 'package.json'), manifest)
     writeFileSync(join(dir, 'pnpm-lock.yaml'), 'original lock')
   })
@@ -141,7 +141,7 @@ describe('setDevForm transactions', () => {
     expect(readFileSync(join(dir, 'package.json'), 'utf8')).toBe(manifest)
     expect(readFileSync(join(link, 'original.txt'), 'utf8')).toBe('installed version')
     expect(spawn).not.toHaveBeenCalled()
-    expect(readdirSync(dir).some((name) => name.startsWith('.vscode-mode-backup-'))).toBe(false)
+    expect(readdirSync(dir).some((name) => name.startsWith('.code-studio-backup-'))).toBe(false)
   })
 
   it('uses desktop runner argv/env with inherit stdio and commits a source junction', async () => {
@@ -157,7 +157,7 @@ describe('setDevForm transactions', () => {
     expect(spec.stdio).toEqual({ stdout: 'inherit', stderr: 'inherit', stdin: 'ignore' })
     expect(spec.env).toMatchObject({ ELECTRON_RUN_AS_NODE: '1', CUSTOM_TOKEN: 'explicit' })
     expect(spec.env.DEEPSEEK_API_KEY).toBeUndefined()
-    expect(readdirSync(dir).some((name) => name.startsWith('.vscode-mode-backup-'))).toBe(false)
+    expect(readdirSync(dir).some((name) => name.startsWith('.code-studio-backup-'))).toBe(false)
   })
 
   it('rolls back manifest, lockfile and installed directory on nonzero install', async () => {
@@ -175,7 +175,7 @@ describe('setDevForm transactions', () => {
   it('restores a junction on rejected install without deleting its real source', async () => {
     rmSync(link, { recursive: true })
     symlinkSync(source, link, 'junction')
-    const original = JSON.stringify({ dependencies: { 'dsh-vscode-mode': 'link:' + source } })
+    const original = JSON.stringify({ dependencies: { 'dsh-code-studio': 'link:' + source } })
     writeFileSync(join(dir, 'package.json'), original)
     const spawn = vi.fn(() => ({ done: Promise.reject(new Error('spawn ENOENT')) }))
     expect((await setDevForm(contextOf(dir, spawn), false)).ok).toBe(false)

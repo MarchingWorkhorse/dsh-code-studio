@@ -22,7 +22,7 @@ beforeEach(async () => {
   profile = join(fixture.home, 'profiles', 'desktop')
   await mkdir(profile, { recursive: true })
   await mkdir(shellInstallDir(), { recursive: true })
-  await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-vscode-mode': '^0.13.0' } }))
+  await writeFile(join(profile, 'package.json'), JSON.stringify({ dependencies: { 'dsh-code-studio': '^0.13.0' } }))
   commands.length = 0
 })
 afterEach(async () => { dispose?.(); dispose = undefined; await rm(fixture.home, { recursive: true, force: true }) })

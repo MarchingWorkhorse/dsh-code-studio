@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 名称输入弹窗（新建文件/新建文件夹/重命名共用）。
+ * dsh-code-studio client — 名称输入弹窗（新建文件/新建文件夹/重命名共用）。
  * 复用 ModalShell（.vsm-mcp-dialog 视觉 + data-edrv-view 作用域 + Esc/遮罩关闭）；
  * 确认返回输入文本（首尾空白已去），取消/Esc/遮罩/空输入返回 null。
  * 重命名时默认选中主名（不含扩展名），与 VS Code 行为一致。

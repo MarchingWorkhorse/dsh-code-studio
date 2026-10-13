@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — 资源管理器右键菜单「在 DSH 文件编辑中打开」（跨平台）。
+ * dsh-code-studio host — 资源管理器右键菜单「在 DSH 文件编辑中打开」（跨平台）。
  * - Windows：launcher（assets/shell/dsh-open.cs 经 csc 编译 WinExe，csc 缺失降级 ps1）安装到
- *   ~/.dsh/dsh-vscode-mode/shell/，HKCU\Software\Classes 三类菜单键（`*`/Directory/Directory\Background）。
+ *   ~/.dsh/dsh-code-studio/shell/，HKCU\Software\Classes 三类菜单键（`*`/Directory/Directory\Background）。
  * - Linux：dsh-open.sh + GNOME Files（Nautilus）右键脚本 + KDE Dolphin 服务菜单（纯文件写入）。
  * - macOS：dsh-open.sh（Finder 快速操作由用户按配方手动创建，自动检测/移除）。
  * 生命周期：注册成功写 marker；启动按 marker 升级 launcher 文件，不反复重写系统注册。
@@ -97,7 +97,7 @@ export function menuKeyPaths(leaf: string = SHELL_MENU_LEAF): { files: string; d
 }
 
 /**
- * launcher 安装目录（~/.dsh/dsh-vscode-mode/shell）。
+ * launcher 安装目录（~/.dsh/dsh-code-studio/shell）。
  * @author ddj 2026年09月07号
  * @param home DSH home（测试可注入）
  * @returns 安装目录绝对路径
@@ -187,7 +187,7 @@ export function iniContent(baseUrl: string, metadata: Record<string, string> = {
 export function nautilusScript(launcherPath: string): string {
   return [
     '#!/usr/bin/env bash',
-    '# 由 dsh-vscode-mode 生成：GNOME Files（Nautilus）右键脚本 → DSH 文件编辑',
+    '# 由 dsh-code-studio 生成：GNOME Files（Nautilus）右键脚本 → DSH 文件编辑',
     'launcher=' + "'" + launcherPath.replace(/'/g, "'\"'\"'") + "'",
     'args=()',
     'while IFS= read -r line; do',
@@ -452,7 +452,7 @@ export async function shellMenuRemove(ctx: Ctx, baseUrl: string): Promise<ShellI
  */
 export function shellMenuLifecycle(ctx: Ctx): () => void {
   let disposed = false
-  void restoreOnLoad(ctx, () => disposed).catch((error) => console.warn('[dsh-vscode-mode] launcher migration failed:', error))
+  void restoreOnLoad(ctx, () => disposed).catch((error) => console.warn('[dsh-code-studio] launcher migration failed:', error))
   return () => { disposed = true }
 }
 

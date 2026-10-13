@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 资源管理栏目录条目缓存（SWR：旧数据即时渲染 + 后台刷新）。
+ * dsh-code-studio client — 资源管理栏目录条目缓存（SWR：旧数据即时渲染 + 后台刷新）。
  * 与 explorerCache（展开状态持久化）互补：本文件只缓存目录条目数据，键按工作区作用域隔离。
  * 纯函数（序列化/解析/裁剪）导出可单测；内存镜像 Map 同步读避免每次渲染 parse
  * localStorage，落盘 300ms 防抖；配额满/隐私模式 try/catch 降级纯内存。

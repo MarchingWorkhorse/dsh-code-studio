@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑器指令目录（纯元数据）。
+ * dsh-code-studio client — 编辑器指令目录（纯元数据）。
  * 「一条命令 = 一条注册数据」：命令栏、快捷键设置页与 Monaco 右键菜单
  * 全部从本表读取；新增一条能力只需在 EDITOR_COMMANDS 追加一项（默认键位见 shared/keybindings SHORTCUT_PROFILES）。
  * run 只派发 `edrv.command.*` 窗口事件，不直接触碰 React/Monaco（`edrv.command.` 前缀
@@ -189,6 +189,35 @@ function svnEventOf(action: SvnActionDef): string {
 }
 
 /**
+ * 命令栏 Git 动作（文件基线差异 / 项目变更总览 / 完整补丁）。
+ *
+ * 为什么不按「git 仓库内」显隐：探测失败缓存会让命令永久消失（2026-10-14 实测：
+ * DSH 刚重启后会话未就绪 → 探测失败被缓存 → 命令隐藏，用户再也找不到入口）。
+ * 与「查看诊断日志」同口径始终可见，非 git 工作区点击后由弹窗/状态栏给出明确提示。
+ * @author ddj 2026年10月14号
+ * @returns 命令定义数组
+ */
+function gitPaletteDefs(): CommandDef[] {
+  return [
+    {
+      id: 'edrv.gitDiffBase', label: 'Git：与 HEAD 比较（当前文件基线差异）', category: 'Git', order: 10,
+      available: needsModel,
+      run: () => emit('gitDiffBase'),
+    },
+    {
+      id: 'edrv.gitChanges', label: 'Git：查看项目变更（工作区完整修订差异）', category: 'Git', order: 11,
+      available: alwaysAvailable,
+      run: () => emit('gitChanges'),
+    },
+    {
+      id: 'edrv.gitPatch', label: 'Git：生成完整补丁（git diff HEAD）', category: 'Git', order: 12,
+      available: alwaysAvailable,
+      run: () => emit('gitPatch'),
+    },
+  ]
+}
+
+/**
  * 编辑器内置指令目录（顺序 = 快捷键设置页展示顺序）。
  * 键位派发已归官方 shortcuts 机制：默认键位表在 shared/keybindings.ts 的 SHORTCUT_PROFILES，
  * 由 client/index.ts 经 shortcutsOfficial.registerOfficialShortcuts 注册，本目录只管
@@ -246,6 +275,11 @@ export const EDITOR_COMMANDS: readonly CommandDef[] = [
     run: () => emit('showLogs'),
   },
   {
+    id: 'edrv.reviewDiff', label: '差异审查：打开审查视图（逐块接受/拒绝修订）', category: '视图', order: 26,
+    available: needsModel,
+    run: () => emit('reviewDiff'),
+  },
+  {
     id: 'edrv.navigateBack', label: '后退（导航历史）', category: '导航', order: 10,
     available: needsModel,
     run: () => emit('navigateBack'),
@@ -297,6 +331,8 @@ export const EDITOR_COMMANDS: readonly CommandDef[] = [
   },
   // SVN（动作清单来自 shared/svnActions.ts：三入口共用一份显隐规则）
   ...svnPaletteDefs(),
+  // Git（工作区在 git 仓库内时可用；探测一次即缓存，非 git 工作区自动隐藏）
+  ...gitPaletteDefs(),
 ]
 
 /**

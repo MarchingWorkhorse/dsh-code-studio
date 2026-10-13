@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 编辑区与原生 composer 的几何边界计算。
+ * dsh-code-studio client — 编辑区与原生 composer 的几何边界计算。
  * @author ddj 2026年08月26号
  */
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 代码片段选择器（VS Code「Configure Snippets」形态）。
+ * dsh-code-studio client — 代码片段选择器（VS Code「Configure Snippets」形态）。
  *
  * 形态：**居中浮窗 + 二级弹窗**，复用插件原生模态样式（mcp.css 的 .vsm-mcp-dialog，
  * 与「添加 MCP」「工作区选择」同源），不自造视觉。

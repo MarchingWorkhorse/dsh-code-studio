@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 会话作用域解析（跨 DSH 版本适配）。
+ * dsh-code-studio client — 会话作用域解析（跨 DSH 版本适配）。
  *
  * 背景：DSH 0.1.6-alpha.2 随「客户端 Session 多实例共存」移除了 `sessions.list`
  * 快照的 `current` / `currentAddress` 字段（alpha.1 及更早仍发布 `current`）。

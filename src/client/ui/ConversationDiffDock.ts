@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 会话级差异 dock。
+ * dsh-code-studio client — 会话级差异 dock。
  * conversation.input.dock 是唯一实例：普通对话显示摘要，文件编辑页显示完整操作条。
  * 作者 ddj 2026-08-26
  */

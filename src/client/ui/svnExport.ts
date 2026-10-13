@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 前端导出工具（W1-4：变更列表/日志列表 → CSV/HTML 文件下载）。
+ * dsh-code-studio client — 前端导出工具（W1-4：变更列表/日志列表 → CSV/HTML 文件下载）。
  *
  * 纯前端拼装：Blob + 隐式 `<a download>` 触发，不经 host、不写工作副本；
  * CSV 前置 UTF-8 BOM 保证 Excel 直开中文不乱码；导出物只在本地，不含凭据、不外发。

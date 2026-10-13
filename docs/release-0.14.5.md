@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.14.5 发布说明
+# dsh-code-studio 0.14.5 发布说明
 
 > 2026-10-09；基线 v0.14.4。计划模式接入与行内差异显示修复。没有新增 npm 依赖、Host RPC、数据迁移或扩大 DSH 兼容版本范围。
 
@@ -27,7 +27,7 @@
 
 ## 升级与回退
 
-确认产物可用后，从 `v0.14.5` Git tag、GitHub Release tgz 或 `dsh-vscode-mode@0.14.5` 安装到实际目标 profile；Desktop 使用其专属插件安装入口，不套用 Web 示例目录。本次公开发布不自动替换用户本地包、修改 profile 或重启进程。
+确认产物可用后，从 `v0.14.5` Git tag、GitHub Release tgz 或 `dsh-code-studio@0.14.5` 安装到实际目标 profile；Desktop 使用其专属插件安装入口，不套用 Web 示例目录。本次公开发布不自动替换用户本地包、修改 profile 或重启进程。
 
 本版功能改动在 Client；替换插件包后建议重启目标 DSH Host 并强制刷新原页面，确保实际加载新的客户端与 CSS。热重载不能代替 CSS 整页刷新。验证计划页签前应确认当前运行版本，而非只看磁盘版本号。
 

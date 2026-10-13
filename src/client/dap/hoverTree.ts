@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 暂停态 hover 变量树（成员全量直显 + 折叠展开 + 子级懒加载）。
+ * dsh-code-studio client — 暂停态 hover 变量树（成员全量直显 + 折叠展开 + 子级懒加载）。
  *
  * 形态：复用 Monaco 内置 hover 面板。调试内容由 hover.ts 渲染成**单个 HTML 块**
  * （`[data-edrv-dap]`），本模块负责：

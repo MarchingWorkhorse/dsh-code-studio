@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 官方 shortcuts 服务桥接层。
+ * dsh-code-studio client — 官方 shortcuts 服务桥接层。
  * 职责四件：① 运行时探测 ctx.shortcuts（可选服务，有界重试，不进 inject——旧版 DSH 无此服务
  * 时不阻断装配）；② safeRegister 逐命令注册（官方 register 对重复 id/保留默认/组合重叠抛错，
  * 冲突时去掉默认键位降级注册，绝不阻断插件加载）；③ 官方命令定义构建（commandCatalog → 官方
@@ -320,7 +320,7 @@ export function bindCatalogChords(service: ShortcutsServiceLike, onChange: (chor
 }
 
 /**
- * 唤起官方快捷键弹窗（VSCodeMode 通用页的跳转入口用；插件不再自建录键界面）。
+ * 唤起官方快捷键弹窗（CodeStudio 通用页的跳转入口用；插件不再自建录键界面）。
  * 官方入口不可用（旧版 DSH / registry 缺失）或唤起失败时返回可读说明，
  * 供设置页原样展示：不抛错、不阻断设置渲染。
  * @author ddj 2026年09月28号
@@ -395,7 +395,7 @@ export async function resetPluginKeys(service: ShortcutsServiceLike): Promise<{ 
   return { reset }
 }
 
-const MIGRATION_KEY = 'dsh-vscode-mode.shortcuts-migrated.v1.'
+const MIGRATION_KEY = 'dsh-code-studio.shortcuts-migrated.v1.'
 
 /**
  * 当前快捷键运行平台的迁移标记键；不同 Web/Desktop 和操作系统分别处理。

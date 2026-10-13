@@ -1,8 +1,8 @@
 /**
- * dsh-vscode-mode host — Unity 内嵌包一键安装/更新。
+ * dsh-code-studio host — Unity 内嵌包一键安装/更新。
  * 机制：把包源目录 unity/com.dsh.editor 复制为 <Unity项目根>/Packages/com.dsh.editor
  * （Unity 内嵌包自动发现，无需改 manifest.json）；安装/更新同入口（整目录替换）；
- * 卸载 = 删除目标目录。登记清单存 ~/.dsh/dsh-vscode-mode/unity-projects.json。
+ * 卸载 = 删除目标目录。登记清单存 ~/.dsh/dsh-code-studio/unity-projects.json。
  * 安全：只触碰固定目标目录；项目根须含 Assets + ProjectSettings；目标已存在且
  * package.json name 不是本包 → 拒绝覆盖。纯路径构造与项目特征判定可单测。
  * 作者 ddj 2026-09-07
@@ -38,7 +38,7 @@ export function unitySourceDir(moduleUrl: string = import.meta.url): string {
 }
 
 /**
- * 项目登记清单文件（~/.dsh/dsh-vscode-mode/unity-projects.json）。
+ * 项目登记清单文件（~/.dsh/dsh-code-studio/unity-projects.json）。
  * @author ddj 2026年09月07号
  * @param home DSH home（测试可注入）
  * @returns 清单文件绝对路径

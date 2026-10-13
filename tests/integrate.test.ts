@@ -79,21 +79,21 @@ describe('POSIX 注册（纯路径/内容，跨平台分隔符归一）', () => 
       '/home/u/.local/share/kservices5/ServiceMenus/dsh-editor.desktop',
     ])
     expect(slash(finderWorkflowPath('/Users/u'))).toBe('/Users/u/Library/Services/在 DSH 文件编辑中打开.workflow')
-    expect(slash(markerFile('/home/u/.dsh'))).toBe('/home/u/.dsh/dsh-vscode-mode/shell/registered.json')
+    expect(slash(markerFile('/home/u/.dsh'))).toBe('/home/u/.dsh/dsh-code-studio/shell/registered.json')
     expect(LAUNCHER_SH).toBe('dsh-open.sh')
   })
 
   it('Nautilus 脚本内容：shebang + launcher 引用 + 多选循环', () => {
-    const script = nautilusScript('/home/u/.dsh/dsh-vscode-mode/shell/dsh-open.sh')
+    const script = nautilusScript('/home/u/.dsh/dsh-code-studio/shell/dsh-open.sh')
     expect(script.startsWith('#!/usr/bin/env bash')).toBe(true)
     expect(script).toContain('NAUTILUS_SCRIPT_SELECTED_FILE_PATHS')
     expect(script).toContain('shell/' + LAUNCHER_SH)
   })
 
   it('Dolphin 服务菜单内容：Exec 引号包裹 + %F 多选', () => {
-    const menu = dolphinMenu('/home/u/.dsh/dsh-vscode-mode/shell/dsh-open.sh')
+    const menu = dolphinMenu('/home/u/.dsh/dsh-code-studio/shell/dsh-open.sh')
     expect(menu).toContain('Name=在 DSH 文件编辑中打开')
-    expect(menu).toContain('Exec="/home/u/.dsh/dsh-vscode-mode/shell/dsh-open.sh" %F')
+    expect(menu).toContain('Exec="/home/u/.dsh/dsh-code-studio/shell/dsh-open.sh" %F')
     expect(menu).toContain('KonqPopupMenu/Plugin')
   })
 })

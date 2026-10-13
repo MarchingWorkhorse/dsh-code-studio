@@ -1,4 +1,4 @@
 {
-  "title": "VSCodeMode",
+  "title": "CodeStudio",
   "description": "VSCode-like coding on DSH: Monaco editor with tabs and QuickOpen, command palette, agent edit review, SVN integration, and LSP smartness."
 }

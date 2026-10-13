@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试适配器规格解析：按调试类型从扩展清单声明（discovery）
+ * dsh-code-studio host — 调试适配器规格解析：按调试类型从扩展清单声明（discovery）
  * 解析 spawn 规格，通用不限定语言：
  * - runtime='node' → node 跑 js 入口（emmylua 形态，等价旧 process.execPath 硬编码）；
  * - 无 runtime → program 即原生可执行（clrdbg/monodbg 形态，args 为清单声明如 --interpreter=vscode）；

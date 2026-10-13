@@ -1,4 +1,4 @@
-/** dsh-vscode-mode Host composition. @author ddj 2026年09月28号 */
+/** dsh-code-studio Host composition. @author ddj 2026年09月28号 */
 import { registerRoutes } from './routes.js'
 import { captureToolResult } from './capture.js'
 import { closeArchiveDbs } from './archiveDb.js'
@@ -25,6 +25,7 @@ import { disposeAllServers, hookExitReclaim } from './lsp/transport.js'
 import { createAiRpc } from './ai/rpc.js'
 import { createFileVersions } from './fileVersions.js'
 import { createSvnRpc } from './svn.js'
+import { createGitRpc } from './gitRpc.js'
 import { createDapRpc } from './dap/rpc.js'
 import { installRulesSection } from './rules.js'
 import { installSkillGroup } from './skills.js'
@@ -32,7 +33,7 @@ import type { RpcHandlerMap, RpcMethod, RpcRequestMap } from './shared/rpc.js'
 import type { Registry } from './registry.js'
 import type { Ctx } from './store.js'
 
-export const name = 'dsh-vscode-mode'
+export const name = 'dsh-code-studio'
 export const inject = ['sessions', 'fs', 'webServer', 'loader', 'tools', 'workspaceRegistry', 'agents']
 /** Shared settings schema; volatile fields remain live across supported Host generations. */
 export const Config = buildSettingsSchema(z as unknown as SettingsDeps['z'], { volatile: true })
@@ -55,9 +56,10 @@ function createRuntime(ctx: Ctx, config: unknown) {
   const lspRpc = createLspRpc({ ctx, pluginConfig: config, manager: lspManager })
   const aiRpc = createAiRpc({ ctx, settings })
   const svnRpc = createSvnRpc({ ctx, settings })
+  const gitRpc = createGitRpc({ ctx })
   const dapRpc = createDapRpc(ctx)
   const fileVersions = createFileVersions(ctx)
-  return { registry, searcher, contentSearcher, lspManager, lspRpc, aiRpc, svnRpc, dapRpc, fileVersions }
+  return { registry, searcher, contentSearcher, lspManager, lspRpc, aiRpc, svnRpc, gitRpc, dapRpc, fileVersions }
 }
 
 /**
@@ -87,12 +89,12 @@ function attachRuntime(ctx: Ctx, runtime: Runtime): void {
     runtime.fileVersions.dispose()
     closeArchiveDbs()
     disposeAllServers()
-    const tasks = [() => runtime.lspManager.disposeAll(), () => runtime.svnRpc.dispose(), () => runtime.dapRpc.dispose()]
+    const tasks = [() => runtime.lspManager.disposeAll(), () => runtime.svnRpc.dispose(), () => runtime.gitRpc.dispose(), () => runtime.dapRpc.dispose()]
     await Promise.allSettled(tasks.map((run) => Promise.resolve().then(run)))
   }
   ctx.on('tools/result', onResult)
   ctx.on('session/disposed', onDisposed)
-  ctx.effect(() => cleanup, 'vscode-mode:runtime')
+  ctx.effect(() => cleanup, 'codestudio:runtime')
   hookExitReclaim()
 }
 
@@ -122,9 +124,9 @@ export async function apply(ctx: Ctx, config?: unknown): Promise<void> {
   installContent(ctx)
   /** @author ddj 2026年09月28号 @param method RPC name. @param args Typed request. @returns RPC result. */
   function dispatch<M extends RpcMethod>(method: M, args: RpcRequestMap[M]) {
-    const { registry, searcher, contentSearcher, lspRpc, aiRpc, fileVersions, svnRpc, dapRpc } = runtime
+    const { registry, searcher, contentSearcher, lspRpc, aiRpc, fileVersions, svnRpc, gitRpc, dapRpc } = runtime
     return handleRpc(ctx, registry, method, args, searcher, contentSearcher, lspRpc.handlers,
-      aiRpc.handlers, fileVersions, svnRpc.handlers as Partial<RpcHandlerMap>, dapRpc.handlers)
+      aiRpc.handlers, fileVersions, svnRpc.handlers as Partial<RpcHandlerMap>, dapRpc.handlers, gitRpc.handlers as Partial<RpcHandlerMap>)
   }
   /** @author ddj 2026年09月28号 @param warning Startup compatibility diagnostic. */
   function noteWarning(warning: string): void { warnings.push(warning) }
@@ -141,15 +143,15 @@ export async function apply(ctx: Ctx, config?: unknown): Promise<void> {
   /** @author ddj 2026年09月28号 @param args Session-bound plan. @returns Validated inbox result. */
   function submitPlan(args: RpcRequestMap['svn.aiPlanSubmit']) { return dispatch('svn.aiPlanSubmit', args) }
   await installPlanTool(ctx, submitPlan)
-  ctx.effect(mountInbox, 'vscode-mode:open-inbox')
-  ctx.effect(() => shellMenuLifecycle(ctx), 'vscode-mode:integration')
+  ctx.effect(mountInbox, 'codestudio:open-inbox')
+  ctx.effect(() => shellMenuLifecycle(ctx), 'codestudio:integration')
   /** @author ddj 2026年10月12号 @returns Active-profile bridge disposer; failures never block boot. */
   async function provisionBridge(): Promise<() => void> {
     try { await ensureActiveBridge(ctx, await integrationBaseUrlOf(ctx)) }
     catch (error) { noteWarning('外部打开桥接未就绪：' + String(error)) }
     return () => {}
   }
-  ctx.effect(provisionBridge, 'vscode-mode:bridge')
+  ctx.effect(provisionBridge, 'codestudio:bridge')
   void sweepTreeCache()
   await logCompatSummary(ctx, warnings)
   log.info('编辑差异审查已装配（认证路由、项目 MCP 作用域、SVN 方案工具与外部打开通道）')

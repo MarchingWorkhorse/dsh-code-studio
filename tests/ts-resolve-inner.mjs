@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode — node 原生测试 .js→.ts 解析重映射钩子（仅导出 resolve）。
+ * dsh-code-studio — node 原生测试 .js→.ts 解析重映射钩子（仅导出 resolve）。
  * 注册入口见 tests/ts-resolve.mjs（node --import）。作者 ddj
  */
 import { existsSync } from 'node:fs'

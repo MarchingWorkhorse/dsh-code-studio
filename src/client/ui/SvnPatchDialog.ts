@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — SVN 补丁预览对话框（W2-1 Create Patch）。
+ * dsh-code-studio client — SVN 补丁预览对话框（W2-1 Create Patch）。
  *
  * 承载 `svn.patchText` 的产物：只读 pre 展示 + 复制/保存两个出口。
  * 文案强调「仅生成」——本对话框不做也不提供补丁应用（P5 另议）；
@@ -25,7 +25,8 @@ import { downloadText } from './svnExport.js'
  */
 export function SvnPatchDialog(props) {
   const { path, text, truncated, binary, onNote, onClose } = props
-  const fileName = 'svn-patch-' + String(path || 'wc').split(/[\\/]/).pop().replace(/[^\w.-]+/g, '_') + '.patch'
+  const gitMode = props.gitTitle === true
+  const fileName = (gitMode ? 'git-patch-' : 'svn-patch-') + String(path || 'wc').split(/[\\/]/).pop().replace(/[^\w.-]+/g, '_') + '.patch'
 
   /** 复制补丁全文（剪贴板不可用时提示手动复制）。 */
   const copyText = () => {
@@ -47,7 +48,7 @@ export function SvnPatchDialog(props) {
     onClose,
   },
     React.createElement('div', { className: 'edrv-svn-patch-head' },
-      React.createElement('h3', { className: 'edrv-svnlog-title' }, 'SVN 补丁（仅生成，不应用）'),
+      React.createElement('h3', { className: 'edrv-svnlog-title' }, gitMode ? 'Git 补丁（仅生成，不应用）' : 'SVN 补丁（仅生成，不应用）'),
       React.createElement('span', { className: 'edrv-svnlog-target', title: path || '' }, path || '（工作副本根）'),
       React.createElement('span', { style: { flex: 1 } }),
       React.createElement('button', { className: 'edrv-svn-act', title: '关闭', onClick: onClose }, '✕')),

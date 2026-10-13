@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 补全结果的前缀感知截断（纯函数，node 可测）。
+ * dsh-code-studio host — 补全结果的前缀感知截断（纯函数，node 可测）。
  * 背景：RPC 层按固定上限硬截断补全条目，而本仓库的 xLua 绑定桩
  * （Assets/Scripts/EmmyLuaDefine，形如 CS_IslandSplash_Extensions_Common_ArrayExtension）
  * 有上万个全局，字母序会把项目自身全局（ECommon / EActivity 等）挤到上限之外；

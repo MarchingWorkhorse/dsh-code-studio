@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 捕获层：监听 tools/result，把 edit/write/remote_ssh_write
+ * dsh-code-studio host — 捕获层：监听 tools/result，把 edit/write/remote_ssh_write
  * 差异落成审查记录。
  * 迁移自原 src/index.ts 的 tools/result 处理；2026-09-23（issue #7）增补
  * remote_ssh_write：远端工作区会话里 agent 直写远端的全量覆写——before 取本地

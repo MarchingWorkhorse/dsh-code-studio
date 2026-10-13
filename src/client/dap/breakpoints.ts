@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 调试断点集合（纯函数 + localStorage 持久）。
+ * dsh-code-studio client — 调试断点集合（纯函数 + localStorage 持久）。
  * 存储：`edrv.dap.bp.<scope>` → Record<relPath, BpEntry[]>（行升序）。
  * scope 与编辑器状态作用域一致（workspaceScopeOf 产物），跨刷新保留。
  * 作者 ddj 2026年09月29号

@@ -1,5 +1,5 @@
 #!/bin/bash
-# dsh-vscode-mode build: compile host (esm) + client (cjs) via tsdown.
+# dsh-code-studio build: compile host (esm) + client (cjs) via tsdown.
 # Self-contained: local devDependencies only, no DSH source checkout needed.
 # (dsv-super-injector dev_build_plugin invokes this script.)
 set -euo pipefail
@@ -12,10 +12,10 @@ if [ ! -d node_modules ] || [ ! -x node_modules/.bin/tsdown ]; then
   exit 1
 fi
 
-echo "=== dsh-vscode-mode: clean lib ==="
+echo "=== dsh-code-studio: clean lib ==="
 npm run --silent prebuild
 
-echo "=== dsh-vscode-mode: tsdown (host + client) ==="
+echo "=== dsh-code-studio: tsdown (host + client) ==="
 npm run --silent build
 
 echo "=== build complete (lib/index.js + lib/client.js) ==="

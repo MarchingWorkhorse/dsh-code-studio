@@ -1,6 +1,6 @@
 # 指令系统与命令栏（Command Palette）
 
-> 面向 dsh-vscode-mode 插件开发者与二次开发者。
+> 面向 dsh-code-studio 插件开发者与二次开发者。
 > 相关代码：`src/client/ui/commandCatalog.ts`、`src/client/commandRegistry.ts`、
 > `src/client/commandBridge.ts`、`src/client/commandPaletteStore.ts`、
 > `src/client/ui/CommandPalette.ts`、`src/client/commandSearch.ts`。
@@ -37,7 +37,7 @@ React 状态**：编辑器未挂载时装配、卸载后依然安全。
 ## 3. 命令栏（Ctrl+Shift+P / F1）
 
 - 默认键位：`Ctrl+Shift+P`（主候选）与 `F1`（VS Code 同款第二候选），由共享表
-  `shared/keybindings.ts` 提供；改绑/解绑走 DSH 官方快捷键配置（设置 → VSCodeMode →
+  `shared/keybindings.ts` 提供；改绑/解绑走 DSH 官方快捷键配置（设置 → CodeStudio →
   通用 →「打开官方快捷键配置」，或 `Ctrl+/`）。
 - 交互：输入即过滤（大小写不敏感、空格分词 AND、中文子串可命中）、`↑/↓` 选择、
   `Enter` 执行、`Esc` 或点击遮罩关闭；每行显示「命令名 · 分类 · 当前键位」。

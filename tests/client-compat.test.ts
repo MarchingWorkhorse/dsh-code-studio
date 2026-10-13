@@ -303,6 +303,6 @@ describe('patchAccessor', () => {
 describe('external plugin constants', () => {
   it('侧栏插件名与包身份稳定', () => {
     expect(SIDEBAR_PLUGIN).toBe('dsh-better-sidebar')
-    expect(PLUGIN_NAME).toBe('dsh-vscode-mode')
+    expect(PLUGIN_NAME).toBe('dsh-code-studio')
   })
 })

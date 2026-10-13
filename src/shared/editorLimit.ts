@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 编辑器页签数量上限的常量与归一化（host 与 client 双面契约）。
+ * dsh-code-studio shared — 编辑器页签数量上限的常量与归一化（host 与 client 双面契约）。
  *
  * 纯数据模块：host（settings schema 默认值）与 client（淘汰判定）共用，禁止 import
  * 浏览器 API 或 Node API。

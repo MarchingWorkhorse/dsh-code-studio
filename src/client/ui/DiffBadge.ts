@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — DiffBadge：header 差异角标（仅工作区有差异时显示）。
+ * dsh-code-studio client — DiffBadge：header 差异角标（仅工作区有差异时显示）。
  * 迁移自原 src/client/index.ts 的 DiffBadge，语义不改。
  * 作者 ddj 2026-08-20
  */

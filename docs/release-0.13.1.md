@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.13.1 发布说明
+# dsh-code-studio 0.13.1 发布说明
 
 > 发布准备记录，2026-09-28。基线为已发布的 `v0.13.0`（tag `75dd3d8`，该基线 CI 与
 > GitHub Release 已确认通过）。本版是设置面收敛的补丁版本：移除插件自建的独立
@@ -12,7 +12,7 @@
   `src/client/ui/ShortcutSettings.ts`），以及随之失去消费者的共享录制模块
   `src/client/shortcutRecorder.ts` 与其单测 —— 键位查看、录键、冲突校验与恢复默认
   全部由官方弹窗承担，避免同一套录键逻辑两处维护。
-- VSCodeMode → 通用页新增「快捷键」面板：说明键位由官方机制统一管理，并提供
+- CodeStudio → 通用页新增「快捷键」面板：说明键位由官方机制统一管理，并提供
   「打开官方快捷键配置」按钮（`openOfficialShortcuts()` →
   `registry.invoke('shortcuts.open')`；官方入口缺失或唤起失败时就地给出手动打开方式，
   不抛错、不阻断设置渲染）。

@@ -24,9 +24,9 @@ afterEach(async () => {
   vi.restoreAllMocks()
 })
 
-/** 日志根（与 host pluginLogRoot 同布局：<DSH_HOME>/dsh-vscode-mode/logs）。 */
+/** 日志根（与 host pluginLogRoot 同布局：<DSH_HOME>/dsh-code-studio/logs）。 */
 function logRoot(): string {
-  return join(home, 'dsh-vscode-mode', 'logs')
+  return join(home, 'dsh-code-studio', 'logs')
 }
 
 describe('isDebugLogName 白名单', () => {

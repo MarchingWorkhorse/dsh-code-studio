@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 断点行内编辑浮层（逐项对齐 VS Code/CodeBuddy breakpointWidget）。
+ * dsh-code-studio client — 断点行内编辑浮层（逐项对齐 VS Code/CodeBuddy breakpointWidget）。
  *
  * 权威结构（CodeBuddy workbench.desktop.main.js）：
  * - **View Zone**（`changeViewZones(z => z.addZone({ afterLineNumber, heightInLines, domNode, afterColumnAffinity:1 }))`）

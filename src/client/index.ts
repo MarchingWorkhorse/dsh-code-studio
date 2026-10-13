@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 浏览器半入口：slot 注册 + 装配。
+ * dsh-code-studio client — 浏览器半入口：slot 注册 + 装配。
  * 挂点：官方右侧 Sidebar「文件编辑」Tab（DSH 0.1.5+，对话+编辑同屏）> betterSidebar Tab
  * （归档，仅旧版 DSH 回退）> conversation.view 中央页签 + conversation.input.dock 差异条 + header 差异角标。
  * 与 Host 通信：同源 fetch('/edrv/rpc')（shared/rpc 契约）。
@@ -107,7 +107,7 @@ function setupCommands(ctx: any): CommandBridge {
     bridge.dispose()
     commandsBridge = null
     if (host[REGISTRY_GLOBAL] === bridge.registry) delete host[REGISTRY_GLOBAL]
-  }, 'vscode-mode: command registry')
+  }, 'codestudio: command registry')
   log.info('指令系统已装配：' + bridge.registry.list().length + ' 条指令，Ctrl+Shift+P 打开命令栏')
   return bridge
 }
@@ -159,7 +159,7 @@ export async function apply(ctx: any): Promise<void> {
       ])
     } catch (error) { /* 水合失败已在镜像内降级 */ }
   }
-  ctx.effect(() => () => { void flushUiState() }, 'vscode-mode: ui state flush')
+  ctx.effect(() => () => { void flushUiState() }, 'codestudio: ui state flush')
   ctx.effect(() => {
     let disposed = false
     let attempts = 0
@@ -182,7 +182,7 @@ export async function apply(ctx: any): Promise<void> {
       disposed = true
       restore?.()
     }
-  }, 'vscode-mode: settings document editor route')
+  }, 'codestudio: settings document editor route')
 
   // 指令系统（命令栏 + 指令注册表）先装配：命令栏在被任何 React slot 渲染前即可唤起
   const commands = setupCommands(ctx)
@@ -192,15 +192,15 @@ export async function apply(ctx: any): Promise<void> {
     window.dispatchEvent(new CustomEvent('edrv:reload-status', { detail: message }))
     window.alert(message)
   }
-  ctx.effect(() => installPageReload(flushPageState, notifyReload), 'vscode-mode: guarded page reload')
+  ctx.effect(() => installPageReload(flushPageState, notifyReload), 'codestudio: guarded page reload')
 
   const registry: FileOpenerRegistry = createFileOpenerRegistry()
   const workspaces = ctx.get('workspaces')
   const sessions = ctx.get('sessions')
-  ctx.effect(() => installPlanBridge(ctx, schedule), 'vscode-mode: plan integration')
+  ctx.effect(() => installPlanBridge(ctx, schedule), 'codestudio: plan integration')
 
   // 外部深链落地：Windows 右键菜单 / Unity 外部编辑器 → 浏览器 URL 参数 → 打开规则路由
-  ctx.effect(() => setupExtOpen(ctx), 'vscode-mode: external open')
+  ctx.effect(() => setupExtOpen(ctx), 'codestudio: external open')
 
   // Monaco 加载时机：不再 DSH 启动即预热，改为进入会话界面（当前会话出现）后再后台加载，
   // 用户点开「文件编辑」页签即用；空闲时仍由 EditorView 挂载兜底加载。
@@ -226,7 +226,7 @@ export async function apply(ctx: any): Promise<void> {
       preloadedFor = scope.sessionId
       schedulePreload()
     }
-    ctx.effect(() => subscribeScope(ctx, onScopeChange), 'vscode-mode: monaco session trigger')
+    ctx.effect(() => subscribeScope(ctx, onScopeChange), 'codestudio: monaco session trigger')
     onScopeChange()
   }
   // 会话切换 → 编辑 Tab 跨会话自动恢复：上一会话编辑区激活时，新会话自动展开并激活
@@ -243,7 +243,7 @@ export async function apply(ctx: any): Promise<void> {
       restoreEditorTab(officialService.service, schedule)
     }
     return subscribeScope(ctx, () => schedule(check, 0))
-  }, 'vscode-mode: editor tab restore')
+  }, 'codestudio: editor tab restore')
   const originalOpenPath = workspaces?.openPath
   // 设置桥：服务不进 inject（0.1.6 settingsScope / 0.1.7 configForms 桥名互斥，写死任一
   // 都会在另一版本停等）→ compat.settingsBridge 探测 + 晚到 15×2s 有界重试，命中后重挂同步
@@ -276,20 +276,20 @@ export async function apply(ctx: any): Promise<void> {
   ]
 
   ctx.provide('fileOpeners', registry)
-  ctx.effect(() => registry.register(vscodeOpener()), 'vscode-mode: file opener')
+  ctx.effect(() => registry.register(vscodeOpener()), 'codestudio: file opener')
 
   // 侧边栏面板注册表（对外 provide，供本插件/第三方注册面板；文件管理为面板 #1）
   const sidebarPanels = createSidebarPanelRegistry()
   ctx.provide('edrvSidebarPanels', sidebarPanels)
-  ctx.effect(() => sidebarPanels.register(createFilePanel()), 'vscode-mode: sidebar panel')
+  ctx.effect(() => sidebarPanels.register(createFilePanel()), 'codestudio: sidebar panel')
   // 搜索面板：活动栏「搜索」页签（Ctrl+Shift+F 唤起，VSCode 搜索视图形态）
-  ctx.effect(() => sidebarPanels.register(createSearchPanel()), 'vscode-mode: sidebar panel search')
+  ctx.effect(() => sidebarPanels.register(createSearchPanel()), 'codestudio: sidebar panel search')
   // 规则面板：活动栏「规则」页签（Codebuddy 规则管理形态：用户/项目规则 + 启用开关，host 注入生效）
-  ctx.effect(() => sidebarPanels.register(createRulesPanel()), 'vscode-mode: sidebar panel rules')
+  ctx.effect(() => sidebarPanels.register(createRulesPanel()), 'codestudio: sidebar panel rules')
   // SVN 变更面板：活动栏「SVN 变更」页签（工作副本状态列表；visible 守卫使非 SVN 工作区不出现）
-  ctx.effect(() => sidebarPanels.register(createSvnPanel()), 'vscode-mode: sidebar panel svn')
+  ctx.effect(() => sidebarPanels.register(createSvnPanel()), 'codestudio: sidebar panel svn')
   // 调试面板：活动栏「调试」页签（VS Code 调试视图四段布局 + REPL；DAP 桥接）
-  ctx.effect(() => sidebarPanels.register(createDebugPanel()), 'vscode-mode: sidebar panel debug')
+  ctx.effect(() => sidebarPanels.register(createDebugPanel()), 'codestudio: sidebar panel debug')
   // 客户端（重）装配对账：host 的 DapSession 常驻，而本模块状态随刷新/HMR 归零，
   // 不对账则调试面板与暂停态 hover 静默失效（见 dapStore.resync）。
   void dapStore.resync()
@@ -297,26 +297,26 @@ export async function apply(ctx: any): Promise<void> {
   const fileMenuItems = createTreeMenuRegistry()
   ctx.provide('edrvFileContextMenuItems', fileMenuItems)
   for (const item of createDefaultFileMenuItems()) {
-    ctx.effect(() => fileMenuItems.register(item), 'vscode-mode: file context menu item ' + item.id)
+    ctx.effect(() => fileMenuItems.register(item), 'codestudio: file context menu item ' + item.id)
   }
   // 大纲源注册表（公开预留口）：第三方语言插件（LSP/VSIX 等）注册更高优先级源即可覆盖兜底
   const outlineSources = createOutlineSourceRegistry()
   ctx.provide('edrvOutlineSources', outlineSources)
-  ctx.effect(() => registerBuiltinOutlineSources(outlineSources), 'vscode-mode: outline sources')
+  ctx.effect(() => registerBuiltinOutlineSources(outlineSources), 'codestudio: outline sources')
   // LSP 大纲源（priority 60）：lua/csharp 有 host 服务器时优先生效，否则自动落入 fallback
-  ctx.effect(() => outlineSources.register(createLspOutlineSource()), 'vscode-mode: outline lsp source')
-  ctx.effect(() => sidebarPanels.register(createOutlinePanel()), 'vscode-mode: sidebar panel outline')
+  ctx.effect(() => outlineSources.register(createLspOutlineSource()), 'codestudio: outline lsp source')
+  ctx.effect(() => sidebarPanels.register(createOutlinePanel()), 'codestudio: sidebar panel outline')
   ctx.effect(() => registry.register({
     id: 'system', label: '系统默认应用', priority: 0,
     open: (path: string) => originalOpenPath.call(workspaces, path),
-  }), 'vscode-mode: system file opener')
+  }), 'codestudio: system file opener')
   ctx.effect(() => {
     const sidebar = scanSidebar(ctx)
     return sidebar ? registry.register(sidebar) : undefined
-  }, 'vscode-mode: sidebar file opener')
+  }, 'codestudio: sidebar file opener')
   // 官方侧边栏正文组件装配（页类型正文；兼作 file 认领转发失败时的兜底正文）
   const officialRenderTab = (props: Record<string, unknown>) => React.createElement(OfficialSideTab, Object.assign({}, props, { schedule, addToConversation, sidebarPanels, outlineSources, fileMenuItems, fileOpeners: registry, sessions, readSessionScope: () => readSessionScope(ctx) }))
-  /** 官方 file 地址认领同步：自动/VSCodeMode 档认领（转发进单一编辑器页签），其余交官方查看器。 */
+  /** 官方 file 地址认领同步：自动/CodeStudio 档认领（转发进单一编辑器页签），其余交官方查看器。 */
   const syncFileClaim = (): void => {
     const official = officialService
     const want = official !== undefined && shouldClaimFiles(selected)
@@ -324,7 +324,7 @@ export async function apply(ctx: any): Promise<void> {
       // 认领正文只做转发：文件分页收归编辑器自带页签栏，官方侧栏不再按文件分裂编辑器实例
       const renderTab = createClaimRouter({ service: official.service, schedule, fallback: officialRenderTab })
       const disposer = registerOfficialFileClaim({ tabs: official.tabs, slots: ctx.slots, renderTab })
-      if (disposer !== null) claimDisposer = ctx.effect(() => disposer, 'vscode-mode: official file claim')
+      if (disposer !== null) claimDisposer = ctx.effect(() => disposer, 'codestudio: official file claim')
       return
     }
     if (!want && claimDisposer !== null) {
@@ -362,10 +362,10 @@ export async function apply(ctx: any): Promise<void> {
       }
       sync()
       return scope.subscribe(sync)
-    }, 'vscode-mode: file opener setting sync')
+    }, 'codestudio: file opener setting sync')
     // 界面偏好同步：侧边栏最小宽度（sidebarMinWidth）→ 派发 edrv:sidebar-min-width 通知编辑器重夹
     // 页签上限（maxOpenEditors）→ 派发 edrv:max-open-editors 通知编辑器复算淘汰
-    // （快捷键配置已归官方 shortcuts 机制，目录弦表同步见 'vscode-mode: official shortcuts' effect）
+    // （快捷键配置已归官方 shortcuts 机制，目录弦表同步见 'codestudio: official shortcuts' effect）
     ctx.effect(() => {
       const sync = (): void => {
         const snapshot = scope.getSnapshot()
@@ -380,10 +380,10 @@ export async function apply(ctx: any): Promise<void> {
       }
       sync()
       return scope.subscribe(sync)
-    }, 'vscode-mode: keybindings setting sync')
+    }, 'codestudio: keybindings setting sync')
   }
   mountSettingsSyncs()
-  if (!settingsSyncMounted) ctx.effect(() => bridge.whenReady(mountSettingsSyncs), 'vscode-mode: settings bridge wait')
+  if (!settingsSyncMounted) ctx.effect(() => bridge.whenReady(mountSettingsSyncs), 'codestudio: settings bridge wait')
 
   // 官方 shortcuts 机制装配（可选服务，有界重试；服务缺失仅降级告警，不阻断装配）：
   // ① 全部指令注册进官方目录（含无默认键位命令，官方 UI 可自定义绑定；冲突默认自动降级未绑定）；
@@ -435,7 +435,7 @@ export async function apply(ctx: any): Promise<void> {
       disposeRegistration?.()
       disposeCatalog?.()
     }
-  }, 'vscode-mode: official shortcuts')
+  }, 'codestudio: official shortcuts')
   if (workspaces?.openPath) {
     ctx.effect(() => installOpenPathRouter({
       workspaces,
@@ -443,7 +443,7 @@ export async function apply(ctx: any): Promise<void> {
       selected: () => selected,
       context: openContext,
       logger: routeLogger,
-    }), 'vscode-mode: file link routing')
+    }), 'codestudio: file link routing')
   }
   // 0.1.3+ 会话文件链接主路径：dsh-client-ui-chat 的 openFile 直接调
   // remote.session.openWorkspacePath（session/openWorkspacePath RPC），绕开
@@ -470,7 +470,7 @@ export async function apply(ctx: any): Promise<void> {
         return
       }
       remoteOpenInstalled = true
-      ctx.effect(() => disposer, 'vscode-mode: remote file link routing')
+      ctx.effect(() => disposer, 'codestudio: remote file link routing')
       log.info('已安装 0.1.3+ 会话文件链接路由（remote.session.openWorkspacePath）')
     }, 2000)
   }
@@ -487,8 +487,8 @@ export async function apply(ctx: any): Promise<void> {
     if (!themeService || typeof ctx.on !== 'function') return undefined
     const disposer = ctx.on('theme/change', emitTheme)
     return typeof disposer === 'function' ? disposer : undefined
-  }, 'vscode-mode: official theme event')
-  ctx.effect(() => observeScheme(emitTheme), 'vscode-mode: theme attribute watch')
+  }, 'codestudio: official theme event')
+  ctx.effect(() => observeScheme(emitTheme), 'codestudio: theme attribute watch')
   emitTheme()
 
   // 中央「文件编辑」页签（旧形态回退）：类 VSCode 编辑器；侧边栏形态（官方/better-sidebar）可用时
@@ -533,7 +533,7 @@ export async function apply(ctx: any): Promise<void> {
       applySideForm()
       return
     }
-    officialDisposer = ctx.effect(() => outcome, 'vscode-mode: official sidebar editor tab')
+    officialDisposer = ctx.effect(() => outcome, 'codestudio: official sidebar editor tab')
     // 编辑 Tab 展开/激活态按工作区落 localStorage（镜像层写穿 host，重启/换端口后仍在）：
     // 冷启动据此自动回到上次的编辑 Tab；官方 openTab 幂等，已激活时不重复调用。
     setEditorTabScope(() => {
@@ -549,10 +549,10 @@ export async function apply(ctx: any): Promise<void> {
     }
     restoreActiveTab()
     // 换 origin 时本地 localStorage 为空：镜像回填完成后重判一次，迟到的回填同样能恢复编辑 Tab
-    ctx.effect(() => onUiStateReady(restoreActiveTab), 'vscode-mode: editor tab state hydration')
+    ctx.effect(() => onUiStateReady(restoreActiveTab), 'codestudio: editor tab state hydration')
     // 官方打开器（下拉「官方侧边栏」选项，动态出现；openResource 能力缺失时跳过）+ 按当前设置同步 file 地址认领
     if (typeof official.service.openResource === 'function') {
-      ctx.effect(() => registry.register(officialSidebarOpener(official.service)), 'vscode-mode: official sidebar opener')
+      ctx.effect(() => registry.register(officialSidebarOpener(official.service)), 'codestudio: official sidebar opener')
       // 原生打开 handler：文件树 openFile 命中 nativeOpenExts 时经 openResource 落官方渲染器
       //（claim 的 canOpen 同步让位该范围，否则地址又被认领转发回本插件）；形态撤下时解绑
       ctx.effect(() => {
@@ -563,7 +563,7 @@ export async function apply(ctx: any): Promise<void> {
           return typeof official.service.openResource === 'function'
         })
         return () => setNativeOpenHandler(null)
-      }, 'vscode-mode: native open handler')
+      }, 'codestudio: native open handler')
     }
     syncFileClaim()
   }
@@ -585,7 +585,7 @@ export async function apply(ctx: any): Promise<void> {
           return { sessionId: scope.sessionId, cwd: scope.cwd }
         },
         registerLegacyFallback: registerLegacyTab,
-      }), 'vscode-mode: sidebar editor tab')
+      }), 'codestudio: sidebar editor tab')
       return
     }
     if (legacyDisposer !== null) return
@@ -636,12 +636,12 @@ export async function apply(ctx: any): Promise<void> {
   registerSlotSafely(ctx, { name: 'conversation.session.header.utilities', id: 'edrv-perf-size', order: 89, label: '会话体积' },
     (props: unknown) => React.createElement(PerfSizeBadge, Object.assign({}, props, { sessions })))
 
-  // 设置页中的 VSCodeMode 专属页签，MCP 管理作为该页签的内部子 Tab。
+  // 设置页中的 CodeStudio 专属页签，MCP 管理作为该页签的内部子 Tab。
   registerSlotSafely(ctx, {
     name: 'settings.section',
-    id: 'vscode-mode',
+    id: 'code-studio',
     order: 30,
-    label: 'VSCodeMode',
+    label: 'CodeStudio',
   }, () => React.createElement(SettingsContext.Provider, { value: bridge.scope() }, React.createElement(McpSettings, {
     openerRegistry: registry,
     compatSummary,
@@ -660,13 +660,13 @@ export async function apply(ctx: any): Promise<void> {
     try { disposeLsp() } catch { /* 同上 */ }
     // 原生打开范围复位回默认集（handler 解绑已由其自身 ctx.effect disposer 承担）
     try { resetNativeOpen() } catch { /* 同上 */ }
-  }, 'vscode-mode: monaco providers teardown')
+  }, 'codestudio: monaco providers teardown')
 
   // 会话晚到补试：冷启动早期 `sessions` 未就绪时 host 答「会话不存在」，首次水合会失败重试；
   // 作用域变化（sid→ws）后同样补一次，保证界面状态尽早回填。
   ctx.effect(() => subscribeScope(ctx, () => {
     if (!uiStateSettled()) void hydrateUiState()
-  }), 'vscode-mode: ui state rehydrate')
+  }), 'codestudio: ui state rehydrate')
 
   // 争取「回填先于界面首次读 localStorage」：宿主若 await 本 apply，此处等到水合结束（或 1.2s 超时兜底）。
   // 失败/超时不抛：镜像内部自带重试与结束事件，界面侧还有迟到回填重跑。

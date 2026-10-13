@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — hover 修饰键（Alt）状态。
+ * dsh-code-studio client — hover 修饰键（Alt）状态。
  * 对齐 CodeBuddy/VS Code 调试浮窗语义：暂停态默认显示调试值，按住 Alt 切换为 LSP 信息。
  * 切换走**显示层行级显隐**（hoverTree.applyAltToHovers）：不重算 hover、不重跑 provider，
  * 因此不受 Monaco「同 anchor 直接早退」影响；状态同步不依赖单一键事件——任意带 altKey 的输入

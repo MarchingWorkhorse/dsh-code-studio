@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 单语言服务器会话（绑定 工作区根 + 语言）。
+ * dsh-code-studio host — 单语言服务器会话（绑定 工作区根 + 语言）。
  * 负责：启动传输 + LSP 客户端握手、文档同步（didOpen/didChange/didSave/didClose）、
  * 请求封装（definition/references/documentSymbol/workspaceSymbol/hover）、状态上报。
  * 作者 ddj 2026-08-27

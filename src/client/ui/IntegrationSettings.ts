@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 「系统集成」设置面板（跨平台）。
+ * dsh-code-studio client — 「系统集成」设置面板（跨平台）。
  * 右键菜单：Windows=HKCU 三类键（reg）/ Linux=Nautilus 脚本 + Dolphin 服务菜单（文件写入）/
  * macOS=Automator 快速操作（一键复制配方手动创建，自动检测/移除）。
  * 深链基址来自设置 integrationBaseUrl（settings.set 持久化）。
@@ -73,7 +73,7 @@ function PlatformNote({ platform, registered }) {
 }
 
 /**
- * 系统集成面板（挂在 VSCodeMode 设置「通用」页底部）。
+ * 系统集成面板（挂在 CodeStudio 设置「通用」页底部）。
  * @author ddj 2026年09月07号
  */
 export function IntegrationSettings() {
@@ -121,7 +121,7 @@ export function IntegrationSettings() {
 
   /** 复制 macOS Automator 配方（含 launcher 实际路径）。 */
   const copyRecipe = () => {
-    const text = automatorRecipe(status?.launcher?.path ?? '$HOME/.dsh/dsh-vscode-mode/shell/dsh-open.sh')
+    const text = automatorRecipe(status?.launcher?.path ?? '$HOME/.dsh/dsh-code-studio/shell/dsh-open.sh')
     navigator.clipboard?.writeText(text)
       .then(() => setMessage('配方已复制，粘贴到备忘录按步骤操作即可。'))
       .catch(() => setMessage(text))

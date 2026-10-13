@@ -1,7 +1,7 @@
 /**
- * dsh-vscode-mode host — SVN 能力：检测（CLI/Tortoise/工作副本根）、状态缓存与命令执行。
+ * dsh-code-studio host — SVN 能力：检测（CLI/Tortoise/工作副本根）、状态缓存与命令执行。
  * 底座 svn CLI：全部调用带 --non-interactive + stdin ignore + graceMs 超时防交互挂起；
- * 只需退出码的调用 stdio 用 inherit（受管环境管道 spawn EPERM，见 dsh-vscode-mode 技能），
+ * 只需退出码的调用 stdio 用 inherit（受管环境管道 spawn EPERM，见 dsh-code-studio 技能），
  * 需要输出的调用先管道、spawn 级失败回退 inherit（输出降级为空）。
  * TortoiseProc 为长驻 GUI 进程：发射后不 await done（只挂 no-op catch 防未处理 rejection）。
  * 作者 ddj 2026年09月16号

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — RPC 分发：类型化方法表替代巨型 switch。
+ * dsh-code-studio host — RPC 分发：类型化方法表替代巨型 switch。
  * 迁移自原 src/index.ts 的 handleRpc，方法名/载荷/错误文案一字不改。
  * 新功能 = shared/rpc.ts 加方法 + 这里加一个 handler，不改其他模块。
  * 作者 ddj 2026-08-20
@@ -579,6 +579,7 @@ export function buildHandlers(
   fileVersions?: FileVersions,
   svnHandlers?: Partial<RpcHandlerMap>,
   dapHandlers?: Partial<RpcHandlerMap>,
+  gitHandlers?: Partial<RpcHandlerMap>,
 ): RpcHandlerMap {
   return {
     // edrv.lsp.* 由 createLspRpc 一次性提供（tracker 跨请求保留），这里并入。
@@ -587,6 +588,8 @@ export function buildHandlers(
     ...((aiHandlers ?? {}) as RpcHandlerMap),
     // svn.* 由 createSvnRpc 提供（SVN 检测/更新/Tortoise 发射），这里并入。
     ...((svnHandlers ?? {}) as RpcHandlerMap),
+    // git.* 由 createGitRpc 提供（git 仓库检测/变更清单/基线差异/补丁），这里并入。
+    ...((gitHandlers ?? {}) as RpcHandlerMap),
     // edrv.dap.* 由 createDapRpc 提供（调试会话单例），这里并入。
     ...((dapHandlers ?? {}) as RpcHandlerMap),
     'edrv.list': async (args) => {
@@ -958,7 +961,7 @@ export function buildHandlers(
       }
     },
     'edrv.debug': async (args) => {
-      // 诊断日志：client 上报 → debugLog 模块缓冲批量落盘 ~/.dsh/dsh-vscode-mode/logs/
+      // 诊断日志：client 上报 → debugLog 模块缓冲批量落盘 ~/.dsh/dsh-code-studio/logs/
       // （console 不一定落盘，文件可靠）。只出现在调试开关开启时（client dbg 默认关）。
       const text = String(args.text ?? '')
       const sc = await requireSession(ctx, args.sessionId)
@@ -1528,8 +1531,9 @@ export async function handleRpc<M extends RpcMethod>(
   fileVersions?: FileVersions,
   svnHandlers?: Partial<RpcHandlerMap>,
   dapHandlers?: Partial<RpcHandlerMap>,
+  gitHandlers?: Partial<RpcHandlerMap>,
 ): Promise<RpcResult<M>> {
-  const handlers = buildHandlers(ctx, registry, searcher, contentSearcher, lspHandlers, aiHandlers, fileVersions, svnHandlers, dapHandlers)
+  const handlers = buildHandlers(ctx, registry, searcher, contentSearcher, lspHandlers, aiHandlers, fileVersions, svnHandlers, dapHandlers, gitHandlers)
   const handler = Object.hasOwn(handlers, method) ? handlers[method] : undefined
   if (typeof handler !== 'function') return { ok: false, error: '未知方法: ' + String(method) } as RpcResult<M>
   return handler(args)

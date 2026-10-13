@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — UI 状态镜像存储（界面状态的跨重启记忆）。
+ * dsh-code-studio host — UI 状态镜像存储（界面状态的跨重启记忆）。
  * 背景：Web GUI 的 origin（含端口）可能每次启动变化，而 localStorage 按 origin 分区，
  * 于是页签/侧栏/预览态等状态随重启一并丢失。这里把客户端 `edrv.*` 键的字符串原值
  * 按工作区镜像到 host 文件（workspace/<hash>/ui.v<schema>.json；全局键走 user/），

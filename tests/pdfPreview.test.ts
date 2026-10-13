@@ -1,6 +1,6 @@
 /**
  * pdfPreview 纯函数单测：PDF 判定（isPdfPath）与 base64 编解码往返。
- * 断言全部使用字符串字面量，不依赖 path.join（CI ubuntu 平台陷阱，见 dsh-vscode-mode-dev 技能）。
+ * 断言全部使用字符串字面量，不依赖 path.join（CI ubuntu 平台陷阱，见 dsh-code-studio-dev 技能）。
  * @author ddj 2026年09月22号
  */
 import { describe, expect, it } from 'vitest'

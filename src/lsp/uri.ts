@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 路径 ↔ file:// URI 转换（纯函数，node 可测）。
+ * dsh-code-studio host — 路径 ↔ file:// URI 转换（纯函数，node 可测）。
  * LSP 的 uri 字段必须是 file:// 绝对 URI；客户端 Monaco 用 edrv:///<encodeURI(path)>。
  * 作者 ddj 2026-08-27
  */

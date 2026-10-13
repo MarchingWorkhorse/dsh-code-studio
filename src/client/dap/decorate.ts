@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — Monaco 调试装饰：断点圆点（gutter）与停帧行高亮。
+ * dsh-code-studio client — Monaco 调试装饰：断点圆点（gutter）与停帧行高亮。
  * 装饰 id 挂在 editor 实例属性上（与 diffRender/underline/navFlash 同款隔离模式），
  * 独立 collection 互不干扰；range 用 IRange 形状普通对象（Monaco 内部归一化，
  * 与 navFlashRangeOf 产物同口径）；编辑器销毁时装饰随实例消失，无需显式清理。

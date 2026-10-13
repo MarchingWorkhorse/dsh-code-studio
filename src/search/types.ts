@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 文件搜索内部契约。
+ * dsh-code-studio host — 文件搜索内部契约。
  * 不暴露给 shared RPC，供 provider、编排和排序层独立演进。
  * 作者 ddj 2026年08月24号
  */

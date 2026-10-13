@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — DAP source 路径归一化与候选排序。
+ * dsh-code-studio host — DAP source 路径归一化与候选排序。
  * 适配器可能上报绝对路径、工作区相对路径、file:// URI 或 Lua chunkname；
  * 这里统一转换，避免调用栈只显示 rawFile 但无法跳转。
  * 作者 ddj 2026年09月29号

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 外部深链落地（Windows 右键菜单 / Unity 外部编辑器）。
+ * dsh-code-studio client — 外部深链落地（Windows 右键菜单 / Unity 外部编辑器）。
  * 启动时解析 location.search 的 edrvOpen 深链：跨源 referrer 守卫防外部网页诱导；
  * 处理完剥离 URL 参数防刷新重开；执行委托 openFlow 打开规则引擎（工作区/对话智能路由）。
  * 另挂 3s 移交轮询（兼活跃心跳）：launcher 投递的打开请求由已打开页面就地执行，避免重复开新页。

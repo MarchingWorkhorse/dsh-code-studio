@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — ripgrep 文件发现 provider。
+ * dsh-code-studio host — ripgrep 文件发现 provider。
  * 通过独立 argv 调用打包 rg，避免先构建巨型全量文件数组。
  * 作者 ddj 2026年08月24号
  */

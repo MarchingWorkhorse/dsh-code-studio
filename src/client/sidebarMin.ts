@@ -1,6 +1,6 @@
 /**
- * dsh-vscode-mode client — 侧边栏最小宽度共享状态。
- * 设置来源：dsh-vscode-mode 命名空间的 sidebarMinWidth 字段（通用设置页可调）；
+ * dsh-code-studio client — 侧边栏最小宽度共享状态。
+ * 设置来源：dsh-code-studio 命名空间的 sidebarMinWidth 字段（通用设置页可调）；
  * 客户端 settings 订阅经 sidebarMinApply 写入，编辑器/侧边栏容器经 getSidebarMinWidth 读取，
  * 变更时由 client/index.ts 派发 edrv:sidebar-min-width 窗口事件通知编辑器重夹。
  * 作者 ddj 2026年09月04号

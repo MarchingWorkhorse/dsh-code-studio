@@ -125,7 +125,7 @@ describe('isMirroredKey', () => {
     expect(isMirroredKey('edrv.cache.explorer.v1.ws:d:/a')).toBe(true)
     expect(isMirroredKey('edrv.cache.entries.v2.ws:d:/a')).toBe(false)
     expect(isMirroredKey(SEEDED_KEY)).toBe(false)
-    expect(isMirroredKey('dsh-vscode-mode.shortcuts-migrated.v1.win32.win32')).toBe(false)
+    expect(isMirroredKey('dsh-code-studio.shortcuts-migrated.v1.win32.win32')).toBe(false)
     expect(isMirroredKey('other-app.key')).toBe(false)
   })
 })

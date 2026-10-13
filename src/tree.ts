@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 目录树纯函数（edrv.listDir 的数据整形与守卫）。
+ * dsh-code-studio host — 目录树纯函数（edrv.listDir 的数据整形与守卫）。
  * 不触 fs/node，仅结构类型，可单测；RPC handler 只做装配，判定都收在这里。
  * 作者 ddj 2026-08-26
  */

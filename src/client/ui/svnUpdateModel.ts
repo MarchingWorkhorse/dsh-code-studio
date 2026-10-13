@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — SVN 更新窗口的纯视图逻辑。
+ * dsh-code-studio client — SVN 更新窗口的纯视图逻辑。
  * @author ddj 2026年09月24号
  */
 import type { SvnUpdatePhase, SvnUpdateRow } from '../../shared/svn.js'

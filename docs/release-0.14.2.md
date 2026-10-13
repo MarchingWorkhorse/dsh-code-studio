@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.14.2 发布说明
+# dsh-code-studio 0.14.2 发布说明
 
 > 2026-09-29；基线 v0.14.1。本版修复文件编辑侧栏的全局内容搜索选项行为，不改变 DSH 版本兼容范围、配置格式或依赖。
 
@@ -16,4 +16,4 @@
 
 ## 安装与回退
 
-通过 `dsh plugin --profile web add dsh-vscode-mode@0.14.2`（确认 npm 已发布后）或固定 Git tag / GitHub Release tgz 安装。替换已安装的同名插件包后重启目标 DSH Host，并刷新原页面，以载入新的 Host 模块；只刷新浏览器不足以更新后端搜索逻辑。回退时安装 `v0.14.1` 对应的已有包并重启 Host；本次无配置迁移。当前本地 Web profile 使用此前已安装、包含本次修复的本地 tgz，其 package 元数据仍为 `0.14.1`，不会因发布 v0.14.2 自动切换；保留原本地 tgz、profile 备份与回退链路，不在本次发布中更动。
+通过 `dsh plugin --profile web add dsh-code-studio@0.14.2`（确认 npm 已发布后）或固定 Git tag / GitHub Release tgz 安装。替换已安装的同名插件包后重启目标 DSH Host，并刷新原页面，以载入新的 Host 模块；只刷新浏览器不足以更新后端搜索逻辑。回退时安装 `v0.14.1` 对应的已有包并重启 Host；本次无配置迁移。当前本地 Web profile 使用此前已安装、包含本次修复的本地 tgz，其 package 元数据仍为 `0.14.1`，不会因发布 v0.14.2 自动切换；保留原本地 tgz、profile 备份与回退链路，不在本次发布中更动。

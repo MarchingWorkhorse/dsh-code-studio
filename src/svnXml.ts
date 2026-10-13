@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — SVN XML 解析基元（零第三方依赖，可单测）。
+ * dsh-code-studio host — SVN XML 解析基元（零第三方依赖，可单测）。
  *
  * 为什么单独成模块：svn 的 `--xml` 输出结构简单且高度同形（`<entry attr="...">` 族 +
  * 文本节点），status/log/info 三处解析共用同一套「实体反转义 + 取属性 + 单趟标签扫描」，

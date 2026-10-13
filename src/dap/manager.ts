@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试会话管理器（DAP 桥核心，适配器通用）。
+ * dsh-code-studio host — 调试会话管理器（DAP 桥核心，适配器通用）。
  * 单例调试会话：spawn 扩展清单声明的 DAP 适配器（node js 或原生 exe）↔ 本管理器翻译成
  * edrv.dap.* 视图。要点（emmylua 源自适配器源码逆向，探针验证；通用语义对齐 DAP 3.x）：
  * - 帧协议与 LSP 相同（Content-Length）→ 复用 lsp/jsonrpc.ts；

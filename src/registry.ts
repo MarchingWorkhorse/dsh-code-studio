@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 工作区记录桶注册表与会话助手。
+ * dsh-code-studio host — 工作区记录桶注册表与会话助手。
  * 迁移自原 src/index.ts 的 registry/sessionOf/cwdOf/bucketOf，语义不改。
  * 作者 ddj 2026-08-20
  */

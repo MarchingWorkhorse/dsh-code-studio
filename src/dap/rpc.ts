@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — 调试 RPC（edrv.dap.*）装配。
+ * dsh-code-studio host — 调试 RPC（edrv.dap.*）装配。
  * 单例 DapSession + 适配器发现（扩展清单驱动，通用不限定语言）+ 进程枚举 +
  * launch.json 读取（全量透传）+ findFile 反向匹配（chunkname → ripgrep 定向查找源文件）。
  * 作者 ddj 2026年09月29号 / 2026年09月21号

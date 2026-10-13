@@ -1,12 +1,12 @@
 /**
- * dsh-vscode-mode client — 兼容层：设置桥选择 / slot 安全注册 / openPath 链式补丁 / 外部插件常量。
+ * dsh-code-studio client — 兼容层：设置桥选择 / slot 安全注册 / openPath 链式补丁 / 外部插件常量。
  * 纯逻辑与薄 ctx 胶水，node 环境可单测（不依赖 DOM）。
  * 作者 ddj 2026年08月24号
  */
 import { log } from './log.js'
 
 /** 本插件包名（与 host compat.PLUGIN_NAME 对应）。 */
-export const PLUGIN_NAME = 'dsh-vscode-mode'
+export const PLUGIN_NAME = 'dsh-code-studio'
 /** 外部侧栏插件名（dsh-web-ui-all 家族的文件打开能力提供方）。 */
 export const SIDEBAR_PLUGIN = 'dsh-better-sidebar'
 

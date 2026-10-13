@@ -171,7 +171,7 @@ function backupProfile(dir: string): ProfileBackup {
     const path = join(dir, name)
     return { path, text: existsSync(path) ? readFileSync(path) : undefined }
   })
-  const backupDir = mkdtempSync(join(dir, '.vscode-mode-backup-'))
+  const backupDir = mkdtempSync(join(dir, '.code-studio-backup-'))
   const link = join(dir, 'node_modules', PLUGIN_NAME)
   const savedLink = join(backupDir, 'module')
   const hadLink = !!lstatSync(link, { throwIfNoEntry: false })

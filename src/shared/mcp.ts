@@ -1,4 +1,4 @@
-/** dsh-vscode-mode MCP 管理共享数据契约。作者 ddj 2026年08月22号 */
+/** dsh-code-studio MCP 管理共享数据契约。作者 ddj 2026年08月22号 */
 
 export type MpcTransport = 'stdio' | 'streamable-http'
 export type MpcStatus = 'connected' | 'connecting' | 'error' | 'disabled' | 'configured' | 'unverified'

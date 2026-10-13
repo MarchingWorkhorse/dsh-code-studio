@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.14.0 发布说明
+# dsh-code-studio 0.14.0 发布说明
 
 > 发布准备记录，2026-09-29。基线为已发布的 `v0.13.1`（tag `c8d9843`）。本版是功能版本：
 > 让插件界面状态（打开的页签与活动页签、光标/滚动位置、侧栏开关与宽度、编辑 Tab 激活态、
@@ -19,7 +19,7 @@ origin，而插件的全部界面状态此前只写在 `localStorage` 里 ——
 - 新增 `src/uiState.ts`：读写 `{version, updatedAt, keys}` 形状的镜像文件，**写前合并**
   （同一文件内不同工作区、不同键互不覆盖），拒绝超限内容。
 - `src/paths.ts` 新增 `uiStateFile(cwd)` / `uiGlobalsFile()`：落
-  `DSH_HOME/dsh-vscode-mode/cache/workspace/<hashOf(cwd)>/ui.v1.json` 与
+  `DSH_HOME/dsh-code-studio/cache/workspace/<hashOf(cwd)>/ui.v1.json` 与
   `cache/user/ui-globals.v1.json`；两者均纳入 `CACHE_SCHEMAS` 清理白名单（版本不符才清，
   当前版本受保护）。
 - RPC 新增两个方法（`src/shared/rpc.ts` 双侧契约 + `src/rpc.ts` handler）：
@@ -96,7 +96,7 @@ origin，而插件的全部界面状态此前只写在 `localStorage` 里 ——
 | 端到端现场验证 | **已做**：冷启动新 origin `127.0.0.1:11960` 实测（日志时间线见下），页签 2 个、活动页签、导航历史 `past=1`、侧栏 `on=true width=300 panel=explorer` 全部恢复；镜像写入失败计数 0 |
 | Linux / macOS | **未**现场验证（本版无平台分支改动） |
 
-现场时间线（`DSH_HOME/dsh-vscode-mode/logs/`）：
+现场时间线（`DSH_HOME/dsh-code-studio/logs/`）：
 
 ```
 10:54:42.019  镜像装配成功（origin=http://127.0.0.1:11960）

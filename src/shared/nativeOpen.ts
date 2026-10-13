@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode shared — 原生打开范围判定（host/client 双面契约）。
+ * dsh-code-studio shared — 原生打开范围判定（host/client 双面契约）。
  * 背景：DSH 文件预览双形态——本插件认领 `dsh-resource://file/**` 进 Monaco 编辑，
  * 官方渲染器（Office 预览/不可预览提示/表格预览）看认领让位。本模块承载「原生打开」
  * 范围的单一事实源：默认集 = 让位清单（插件本来就不认领的后缀），用户可经设置

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — 侧边栏「搜索」面板（VSCode 搜索视图形态）。
+ * dsh-code-studio client — 侧边栏「搜索」面板（VSCode 搜索视图形态）。
  * 内容搜索：edrv.searchContent RPC；结果按文件分组展示命中行（行号 + 高亮 + 文件计数），
  * 点击经 ctx.openFileAt 打开文件并跳转行列。
  * 选项：大小写/全词/正则；折叠区（⚙ 齿轮展开）：包含的文件（📖 toggle = 仅当前打开文件）

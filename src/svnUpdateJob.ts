@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — SVN update job with incremental output and bounded replay.
+ * dsh-code-studio host — SVN update job with incremental output and bounded replay.
  * @author ddj 2026年09月24号
  */
 import { randomUUID } from 'node:crypto'

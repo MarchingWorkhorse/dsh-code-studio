@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 调试会话 store（单例）：host 状态轮询镜像 + 动作封装。
+ * dsh-code-studio client — 调试会话 store（单例）：host 状态轮询镜像 + 动作封装。
  * - 轮询：phase 非 idle/terminated 时 400ms 拉 `edrv.dap.poll`（增量事件游标）；
  *   空闲时停表（零开销）。host 不可达/降级（旧 host 无方法）静默空转。
  * - paused → state.topFrame 驱动 `edrv:debug-stopped` 事件（EditorView 跳转高亮）。

@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * dsh-vscode-mode client — DiffLauncher：全局差异总览 + 归档 圆角下拉。
+ * dsh-code-studio client — DiffLauncher：全局差异总览 + 归档 圆角下拉。
  * 迁移自原 src/client/index.ts 的 DiffLauncher，语义不改。
  * 作者 ddj 2026-08-20
  */
@@ -46,6 +46,7 @@ export function DiffLauncher(props) {
   const sum = props?.sum
   const onClose = props?.onClose
   const onOpenFile = props?.onOpenFile
+  const onReviewFile = props?.onReviewFile
   const [tab, setTab] = React.useState(props?.tab === 'archive' ? 'archive' : 'pending') // 'pending' | 'archive'
   const [archives, setArchives] = React.useState(null)
   const [archiveDetail, setArchiveDetail] = React.useState(null)
@@ -104,7 +105,8 @@ export function DiffLauncher(props) {
       : sum.pendingFiles.map((f) => React.createElement('div', { key: f.path, className: 'edrv-launch-row', title: '打开并跳转到差异 ' + (f.label ?? f.path), onClick: () => onOpenFile(f.path) },
           React.createElement('span', { className: 'edrv-launch-path' }, f.label ?? f.path),
           React.createElement('span', { className: 'edrv-launch-cnt' }, '待处理 ' + f.pending + ' 处'),
-          React.createElement('button', { className: 'edrv-btn-mini edrv-btn-keep', onClick: (e) => { e.stopPropagation(); onOpenFile(f.path) } }, '打开'))))
+          React.createElement('button', { className: 'edrv-btn-mini edrv-btn-keep', onClick: (e) => { e.stopPropagation(); onOpenFile(f.path) } }, '打开'),
+          (onReviewFile ? React.createElement('button', { className: 'edrv-btn-mini', title: '打开 VSCode 式审查视图（双栏 diff，逐块接受/拒绝修订）', onClick: (e) => { e.stopPropagation(); onReviewFile(f.path) } }, '⇔ 审查') : null))))
   } else {
     if (archiveErr && archives === null) body = React.createElement('div', { className: 'edrv-search-empty', style: { color: 'var(--dsw-alias-state-error-primary,#d9534f)' } }, '错误：' + String(archiveErr), React.createElement('button', { onClick: () => loadArchives(), style: btn(false) }, '重试'))
     else if (archives === null) body = React.createElement('div', { className: 'edrv-search-empty' }, '加载中…')

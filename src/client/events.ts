@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 跨组件/跨 slot 的窗口事件助手。
+ * dsh-code-studio client — 跨组件/跨 slot 的窗口事件助手。
  * 迁移自原 src/client/index.ts 的 openEditorView 与事件派发，语义不改；
  * 侧边栏形态（sidebarBridge 已注册路由）优先，否则回退 DOM 页签点击。
  * 作者 ddj 2026-08-20

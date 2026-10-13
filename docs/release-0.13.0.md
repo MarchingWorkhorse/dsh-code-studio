@@ -1,4 +1,4 @@
-# dsh-vscode-mode 0.13.0 发布说明
+# dsh-code-studio 0.13.0 发布说明
 
 > 发布准备记录，2026-09-28。最终构建、验收与发布结果由发布维护者在发布前更新。
 > 基线为已发布的 `v0.12.0`，tag 对应提交 `618fcbb`，该基线 CI 与 GitHub Release 已确认通过。
@@ -53,7 +53,7 @@ MCP 插件。每个活动 agent、每个启用的项目服务各有一个实例�
 
 官方 `failOnStartupError` 默认 false，因此 ACTIVE 本身不能证明握手成功。全局
 「我的 MCP」仍使用原 loader CRUD；管理面名称检查也覆盖无 agent/已禁用的项目配置。
-完整用法见 [MCP 技能](../skills/dsh-vscodemode-mcp/SKILL.md)。
+完整用法见 [MCP 技能](../skills/dsh-codestudio-mcp/SKILL.md)。
 
 ### profile 定位、开发形态与子进程
 

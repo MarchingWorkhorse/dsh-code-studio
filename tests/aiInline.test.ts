@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode tests — AI 内联补全：窗口裁剪 / prompt 拼装 / 输出清理 /
+ * dsh-code-studio tests — AI 内联补全：窗口裁剪 / prompt 拼装 / 输出清理 /
  * 流汇聚（aiInlineComplete：正常/早停/超时/错误/未开启/llm 缺失/自动路由）。
  * 作者 ddj
  */

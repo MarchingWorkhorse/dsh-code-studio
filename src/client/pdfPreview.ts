@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — PDF 文件判定与 base64 编解码（编辑区 PDF 面板用）。
+ * dsh-code-studio client — PDF 文件判定与 base64 编解码（编辑区 PDF 面板用）。
  * 纯函数、无 DOM 依赖，便于单测；PDF_MIME 收敛在 shared/rpc.ts（host base64 响应同源）。
  * @author ddj 2026年09月22号
  */

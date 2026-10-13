@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — LSP 服务器管理器。
+ * dsh-code-studio host — LSP 服务器管理器。
  * 实例注册表（key=root|languageId，refcount 共享），崩溃退避重启，session/disposed 清理。
  * 作者 ddj 2026-08-27
  */

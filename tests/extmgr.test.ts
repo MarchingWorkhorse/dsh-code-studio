@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode tests — extmgr（VSIX 扩展管理）：zip 解压往返 /
+ * dsh-code-studio tests — extmgr（VSIX 扩展管理）：zip 解压往返 /
  * VSIX 清单 / 安装·列表·卸载 / providers 扩展源优先级。
  * 作者 ddj 2026-08-27
  */
@@ -207,7 +207,7 @@ describe('lsp/extmgr VSIX 管理', () => {
   })
 
   it('extensionsRoot 落在 DSH 专属目录', () => {
-    expect(extensionsRoot(home)).toBe(join(home, 'dsh-vscode-mode', 'extensions'))
+    expect(extensionsRoot(home)).toBe(join(home, 'dsh-code-studio', 'extensions'))
   })
 })
 
@@ -216,7 +216,7 @@ describe('lsp/providers 扩展源', () => {
   beforeEach(() => {
     home = mkdtempSync(join(tmpdir(), 'dsh-extsrc-'))
     // 隔离真实机器扩展：只扫描临时 extensions 目录（DSH_LSP_EXT_DIRS 覆盖）
-    process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-vscode-mode', 'extensions')
+    process.env.DSH_LSP_EXT_DIRS = join(home, 'dsh-code-studio', 'extensions')
   })
   afterEach(() => {
     delete process.env.DSH_LSP_EXT_DIRS

@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 指令执行桥（装配层）。
+ * dsh-code-studio client — 指令执行桥（装配层）。
  * 职责两件：① 把内置指令目录注册进注册表（命令栏候选源）；② 注入命令栏执行器。
  * 键位派发全部归官方 shortcuts 机制（shortcutsOfficial.registerOfficialShortcuts 注册官方命令，
  * resolve 走注册表 run）——本桥不再挂窗口键位监听，避免与官方派发双执行。

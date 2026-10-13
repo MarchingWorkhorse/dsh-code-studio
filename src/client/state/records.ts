@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode client — 记录/差异状态纯函数（可单测）。
+ * dsh-code-studio client — 记录/差异状态纯函数（可单测）。
  * 迁移自原 src/client/index.ts 前段，语义一字不改。
  * 作者 ddj 2026-08-20
  */

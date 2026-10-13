@@ -1,4 +1,4 @@
-# dsh-vscode-mode
+# dsh-code-studio
 
 > DSH 上的**类 VSCode 编码体验**：Monaco 文件编辑器 + Agent 差异审查 + LSP 智能。
 > 由 `@dsh-external/dsh-edit-review` 重构而来。
@@ -31,7 +31,7 @@
   （桥已归档，仅作旧版回退）> 中央文件编辑页签（零新依赖完整可用）；
   编辑器顶部与设置页「兼容性」子 Tab 给出对应引导。
 - **文件链接（DSH 0.1.5+）**：聊天 / 文件树链接经官方 `ctx.sidebarRight.openResource`
-  直达右侧栏；「文件链接使用工具」为 自动 / VSCodeMode 时以 extension 档认领
+  直达右侧栏；「文件链接使用工具」为 自动 / CodeStudio 时以 extension 档认领
   `dsh-resource://file/**`（Monaco 打开，含行号定位），为「官方侧边栏」档时走
   官方文本查看器；畸形地址自动回落官方查看器。
 - **文件页签**：脏点 / 关闭 / 「+」打开 / 右键菜单 / 固定（📌 排最前、隐藏 ×、
@@ -73,7 +73,7 @@
 分类 / 当前键位；需要打开文件的命令在空编辑器时自动隐藏。
 
 - **单一数据源**：命令目录（`ui/commandCatalog`）驱动命令栏和官方快捷键目录；
-  键位查看/改绑统一走 DSH 官方快捷键配置（设置 → VSCodeMode → 通用 →
+  键位查看/改绑统一走 DSH 官方快捷键配置（设置 → CodeStudio → 通用 →
   「打开官方快捷键配置」，或 `Ctrl+/`），插件不再自建录键界面，绑定由官方服务持久化。
   旧版 DSH 没有该服务时继续使用原有窗口按键派发，旧 `keybindings` 设置仍可生效。
 - **开放注册表**：`window.__edrvCommands__` 暴露 `register()` 注册命令；插件
@@ -178,7 +178,7 @@ cmaps 支持中文渲染）；工具条进入注释编辑：✎ 文本框 / 🖌
 （展开实时读取、点文件打开、差异角标、活动文件高亮、`edrv:refresh` / 手动 ⟳，
 可通过命令栏切换显隐并持久化），侧栏形态默认收起以节省面板宽度。
 
-- 拖拽调宽下限 = 最小宽度（默认 300，设置 → VSCodeMode → 通用「编辑器」
+- 拖拽调宽下限 = 最小宽度（默认 300，设置 → CodeStudio → 通用「编辑器」
   可调 180–560），拖拽低于最小宽度自动收起。
 - 面板经注册表装配（`ctx.provide('edrvSidebarPanels')`），新增面板只加一条注册，
   不改编辑器布局。
@@ -215,7 +215,7 @@ cmaps 支持中文渲染）；工具条进入注释编辑：✎ 文本框 / 🖌
   全局注入，项目规则按会话工作区注入（单条 16KB / 单域 64KB 截断预算；旧版
   DSH 无该服务时自动降级为纯管理 UI）。RPC：`rules.list/read/save/remove/toggle`。
 
-### 11. MCP 可视化管理（设置 → VSCodeMode）
+### 11. MCP 可视化管理（设置 → CodeStudio）
 
 子 Tab「我的 MCP」（profile 全局）+「项目 MCP」（各项目根 `.mcp.json`，
 对齐 Claude Code / Cursor，随仓库共享）：支持 stdio / streamable-http 的新增、
@@ -230,20 +230,20 @@ cmaps 支持中文渲染）；工具条进入注释编辑：✎ 文本框 / 🖌
 - **配置保护**：reconcile 尊重 `disabled`；读取/解析错误保留最后有效连接，
   不把不可读文件当成空配置。保存保留未知字段和未改动的脱敏凭据。
 
-完整配置、迁移与排错见随包 [MCP 技能](skills/dsh-vscodemode-mcp/SKILL.md)。
+完整配置、迁移与排错见随包 [MCP 技能](skills/dsh-codestudio-mcp/SKILL.md)。
 
 ### 12. 插件自带技能组（v0.3.3）
 
 一组 `SKILL.md` 随包分发并注册进 DSH 技能系统（自定义 skill provider，
 `ctx.skills.registerProvider`）——**装了本插件即可用**，无需手工放到
-`~/.dsh/skills`。当前收录 **`dsh-vscodemode-mcp`**（MCP 配置与使用指南：
+`~/.dsh/skills`。当前收录 **`dsh-codestudio-mcp`**（MCP 配置与使用指南：
 两种作用域 / `.mcp.json` 写法 / `mcp.*` RPC / 命名与冲突 / 工作区隔离 /
-故障排查表）。装载状态见 设置 → VSCodeMode →「兼容性」→「插件技能组」；
+故障排查表）。装载状态见 设置 → CodeStudio →「兼容性」→「插件技能组」；
 编辑 SKILL.md 即时生效（fs.watch → invalidate）。
 
 - **命名硬约束**：技能名必须 kebab-case（`/^[a-z0-9]+(?:-[a-z0-9]+)*$/`），
   下划线非法（`@deepseek-ai/dsh-skill` 直接拒绝）；本插件另加前缀白名单
-  （不以 `dsh-vscodemode-` 开头跳过并告警，避免污染全局技能命名空间）。
+  （不以 `dsh-codestudio-` 开头跳过并告警，避免污染全局技能命名空间）。
 - **frontmatter**：`name`（必填，kebab-case + 前缀）/ `description`（必填，
   模型靠它判断何时加载）/ `whenToUse`（可选）/ `disable-model-invocation`
   （true = 不进模型目录，仅人工显式调用）/ `user-invocable`（false = 禁止
@@ -257,7 +257,7 @@ cmaps 支持中文渲染）；工具条进入注释编辑：✎ 文本框 / 🖌
   `ERR_MODULE_NOT_FOUND`（walk 不到 profile 的 node_modules），且每实例会
   多拉 chokidar watcher；自研零新依赖、开发 / 正式形态行为一致、可单测。
 
-### 13. 会话性能管理（设置 → VSCodeMode →「性能优化」）
+### 13. 会话性能管理（设置 → CodeStudio →「性能优化」）
 
 DSH 启动回放 `~/.dsh/sessions` 全部会话（V8 展开约 10×，可能 OOM）。该子页
 提供四项治理手段：
@@ -296,7 +296,7 @@ DSH 启动回放 `~/.dsh/sessions` 全部会话（V8 展开约 10×，可能 OOM
 
 ### 15. 系统集成（v0.1.53；v0.13.0 更新打开链路）
 
-设置 → VSCodeMode → 通用 →「系统集成」卡片提供文件管理器右键菜单与 Unity
+设置 → CodeStudio → 通用 →「系统集成」卡片提供文件管理器右键菜单与 Unity
 外部脚本编辑器。两者现在共用按 profile 隔离的本机私有 OPEN 请求/ACK 通道，
 无需向 launcher 或 Unity 提供 Host Cookie，也不依赖固定 HTTP 端口。
 
@@ -428,7 +428,7 @@ TortoiseSVN（`TortoiseProc.exe`）仅作 Windows 过渡增强：自研能力覆
   断点按适配器声明语言过滤下发，杜绝跨语言串发。
 - **能力边界**：`emmylua_attach` 仅 Windows（适配器原生限制）；适配器自动探测
   `~/.vscode/extensions`、`~/.vscode-server/extensions` 与插件扩展目录
-  `~/.dsh/dsh-vscode-mode/extensions`（与 LSP 探测根一致）；求值/查看变量需处于暂停态。
+  `~/.dsh/dsh-code-studio/extensions`（与 LSP 探测根一致）；求值/查看变量需处于暂停态。
   `运行到行` = 临时断点 + 继续（命中/手动继续后自动清理，不污染用户断点表）；
   `添加触发的断点...` 当前适配器不支持 → 点击给出明确提示（不做静默失败的假功能）。
 
@@ -442,7 +442,7 @@ DSH 每次启动监听随机端口，`http://127.0.0.1:<port>` 就是浏览器 o
   `saveViewState()`）、侧栏开关/宽度/面板、资源管理器展开与工作区折叠、官方编辑 Tab
   激活态、Markdown 预览态（按文件）、导航历史（前进/后退）、规则分页、搜索面板、
   SVN 过滤与折叠、调试面板监视与折叠、DAP 四段分栏高度、断点（按适配器语言）。
-- **存储位置**：`DSH_HOME/dsh-vscode-mode/cache/workspace/<hashOf(cwd)>/ui.v1.json`
+- **存储位置**：`DSH_HOME/dsh-code-studio/cache/workspace/<hashOf(cwd)>/ui.v1.json`
   （工作区私有）与 `cache/user/ui-globals.v1.json`（跨工作区共享，如工作区折叠）。
   写前合并，同一文件内多工作区/多键互不覆盖；单键超 64 KB 分片上传。
 - **不镜像**：目录条目缓存（`edrv.cache.entries.v2.*`，体积大且可重建）；临时弹窗、
@@ -452,7 +452,7 @@ DSH 每次启动监听随机端口，`http://127.0.0.1:<port>` 就是浏览器 o
   重跑恢复。取回失败按 8×800ms 有界重试，重试耗尽则退回纯 `localStorage`（行为与
   0.14.0 之前一致），不阻断插件加载、不拖慢启动（slot 注册前最多等 600ms）。
 - **自检**：设置页「兼容性」与 RPC `edrv.compat` 可查看运行时报告；镜像读写的时间线记在
-  `DSH_HOME/dsh-vscode-mode/logs/debug.<hashOf(cwd)>.log`（无会话期诊断落在
+  `DSH_HOME/dsh-code-studio/logs/debug.<hashOf(cwd)>.log`（无会话期诊断落在
   `debug.<hashOf('ui-state')>.log`）。
 
 ## 安装
@@ -464,13 +464,13 @@ profile 请替换为实际目标，不要把示例目录当成当前运行 profi
 
 ```bash
 # ① Git 安装（clone + prepare 构建；推荐打固定 tag）
-dsh plugin --profile web add github:Lenonss/DSH_VsCodeMode#v0.14.9
+dsh plugin --profile web add github:Lenonss/DSH_CodeStudio#v0.14.9
 
 # ② npm 注册表（发布到 npm 后）
-dsh plugin --profile web add dsh-vscode-mode@0.14.9
+dsh plugin --profile web add dsh-code-studio@0.14.9
 
 # ③ GitHub Release tgz 直装（Release asset 可用后）
-dsh plugin --profile web add https://github.com/Lenonss/DSH_VsCodeMode/releases/download/v0.14.9/dsh-vscode-mode-0.14.9.tgz
+dsh plugin --profile web add https://github.com/Lenonss/DSH_CodeStudio/releases/download/v0.14.9/dsh-code-studio-0.14.9.tgz
 ```
 
 > **DSH 0.2 兼容范围**：`0.14.1` 起精确放行 `0.2.0-rc.1`，`0.14.4` 再加入
@@ -485,7 +485,7 @@ dsh plugin --profile web add https://github.com/Lenonss/DSH_VsCodeMode/releases/
 > `~/.dsh/profiles/<profile>/pnpm-workspace.yaml` 的 `allowBuilds` 后重跑。
 
 **安装即生效，无需任何手动配置**：本包自带的 `cordis.patch.yml` 是标准 bundle
-自挂载补丁（`- insert: { id: dsh-vscode-mode, name: dsh-vscode-mode }`），加入
+自挂载补丁（`- insert: { id: dsh-code-studio, name: dsh-code-studio }`），加入
 bundles 层后重启 DSH 即自动把插件行挂进 loader 树。**不要**再往 profile 用户层
 `cordis.patch.yml` 手写 `insert`（旧的非标准做法，会与本 bundle 行撞同一 id，
 触发 duplicate loader entry id 启动失败）。
@@ -495,17 +495,17 @@ bundles 层后重启 DSH 即自动把插件行挂进 loader 树。**不要**再�
 
 ```yaml
 # ~/.dsh/profiles/<profile>/cordis.patch.yml（用户层，应用顺序在 bundle 层之后）
-- id: dsh-vscode-mode
+- id: dsh-code-studio
   config:
     imageDir: C:/Users/me/Pictures   # 可选，默认读插件包内 assets/
 ```
 
 > 迁移提示：若你之前按旧版指引在 profile 用户层手写过 `insert`（id 恰为
-> `dsh-vscode-mode`），升级后请把那一段 `insert` 改成上面的 id 定向覆盖
+> `dsh-code-studio`），升级后请把那一段 `insert` 改成上面的 id 定向覆盖
 > （或直接删除），避免与本 bundle 行重复装配。
 
-- 更新：`dsh plugin --profile web update dsh-vscode-mode`
-- 卸载：`dsh plugin --profile web remove dsh-vscode-mode`
+- 更新：`dsh plugin --profile web update dsh-code-studio`
+- 卸载：`dsh plugin --profile web remove dsh-code-studio`
 
 ## 使用指南
 
@@ -520,7 +520,7 @@ bundles 层后重启 DSH 即自动把插件行挂进 loader 树。**不要**再�
 ### 快捷键速查
 
 以下是桌面端常见默认键位；Web / Linux 的浏览器或系统保留键可能不绑定。
-实际生效键位以 **DSH 官方快捷键配置**为准：设置 → VSCodeMode → 通用 →「打开官方
+实际生效键位以 **DSH 官方快捷键配置**为准：设置 → CodeStudio → 通用 →「打开官方
 快捷键配置」（或 `Ctrl+/`）。插件命令与官方命令同表展示、由官方统一校验冲突；
 旧版 DSH 无官方 shortcuts 时沿用原有键位。
 
@@ -567,7 +567,7 @@ bundles 层后重启 DSH 即自动把插件行挂进 loader 树。**不要**再�
 
 ## 配置
 
-键位配置统一走 DSH 官方快捷键：设置 → VSCodeMode → 通用 →「打开官方快捷键配置」
+键位配置统一走 DSH 官方快捷键：设置 → CodeStudio → 通用 →「打开官方快捷键配置」
 （等价 `Ctrl+/`；官方入口不可用时按钮就地给出手动打开方式）。录键、冲突校验、
 按平台默认值、恢复默认都在官方弹窗内完成，插件不再自建录键页面。键位持久化由官方
 服务负责（Desktop：`userData/keybindings.json`；Web：`localStorage` 的
@@ -581,7 +581,7 @@ Web 工作区搜索使用官方当前平台允许的三修饰符组合，最终�
 v0.13.1 起插件不再自建录键界面（原独立「快捷键」设置页与共享录制模块已移除），
 改由通用页的「打开官方快捷键配置」入口直达官方弹窗。
 
-设置 →「VSCodeMode」页：
+设置 →「CodeStudio」页：
 
 | 分区 | 说明 |
 |---|---|
@@ -695,18 +695,18 @@ pdf.js vendor + 图标 + launcher）、`skills/`（插件技能组）、`src/`�
 - **批次 / 融合 / 归档**：每次新 edit/write 递增文件 batch，早于最新批次的未归档
   差异自动"融合"归档；每条差异处理完成立即单条归档；DiffLauncher「归档」页按
   批次浏览 + 回滚。
-- **Client 挂点**：官方右侧 Sidebar Tab（DSH 0.1.5+：类型定义 id `dsh-vscode-mode`、
+- **Client 挂点**：官方右侧 Sidebar Tab（DSH 0.1.5+：类型定义 id `dsh-code-studio`、
   kind `edrvEditor`，正文挂 keyed slot `sidebar.right.pane.tab`；优先级最高）>
   betterSidebar Tab `edrv-editor`（归档，仅旧版回退）> `conversation.view` 页签
   （id `edrv-editor`）+ `conversation.session.header.utilities`（id `edrv-diff-badge`）
   + `conversation.input.dock`（id `edrv-diff-dock`，唯一差异栏）。内部路由 / slot /
-  事件 / CSS 前缀沿用 `edrv-*`（防回归），包身份 `dsh-vscode-mode`。
+  事件 / CSS 前缀沿用 `edrv-*`（防回归），包身份 `dsh-code-studio`。
 - **兼容层**（`src/compat.ts` + `src/client/compat.ts`）：运行时探测
   `@deepseek-ai/dsh-mcp-client`、设置桥（`configForms` 0.1.7+ → `webUiSettings` →
   `settingsScope`，含 15×2s 晚到有界重试）、
   `/edrv` 路由前缀冲突与本插件重复装配（duplicate loader entry）护栏；
   `@deepseek-ai/dsh-settings` / `schemastery` 动态加载（缺失时插件仍可加载，
-  设置持久化降级）。「VSCodeMode」设置页 →「兼容性」子 Tab 或 RPC `edrv.compat`
+  设置持久化降级）。「CodeStudio」设置页 →「兼容性」子 Tab 或 RPC `edrv.compat`
   可查看完整报告。
 - **扩展缝**：新能力 = `shared/rpc.ts` 加方法 + `src/rpc.ts` 加 handler +
   `client/` 加组件，其余模块零改动；`monaco/*` 是可复用的编辑器服务（资源树 /
@@ -733,8 +733,8 @@ pdf.js vendor + 图标 + launcher）、`skills/`（插件技能组）、`src/`�
 ### 开发期注入（超级模组注入器，可选）
 
 - 热装配：`dev_install_package {dir: packages/dsh-edit-review}`
-- 更新：`dev_reload_package {packageName: "dsh-vscode-mode"}`
-- 卸载：`dev_uninject_plugin {match: "dsh-vscode-mode"}`（生产环境用
+- 更新：`dev_reload_package {packageName: "dsh-code-studio"}`
+- 卸载：`dev_uninject_plugin {match: "dsh-code-studio"}`（生产环境用
   `dsh plugin remove`）
 
 ## 常见问题
@@ -798,12 +798,12 @@ Keep All / Undo All 却是亮的。修复：单文件 Keep / Undo 覆盖冲突�
 
 根因与约定：`skills/` 根目录**不要放裸 `.md` 说明文档**（如 README.md）——扁平
 `.md` 会被当作单文件技能解析，缺 frontmatter 时产生告警；约定文档放 `docs/`。
-技能名必须 kebab-case + `dsh-vscodemode-` 前缀（下划线非法），frontmatter 用
+技能名必须 kebab-case + `dsh-codestudio-` 前缀（下划线非法），frontmatter 用
 官方字段名（见[特性 12](#12-插件自带技能组v033)）。
 
 ## 更新日志
 
-完整变更见 [GitHub Releases](https://github.com/Lenonss/DSH_VsCodeMode/releases)。
+完整变更见 [GitHub Releases](https://github.com/Lenonss/DSH_CodeStudio/releases)。
 近期关键版本：
 
 - **v0.14.9**：**编辑快捷键与桌面安全刷新**——`Ctrl+/` 保留官方快捷键入口，行注释改为 `Ctrl+Alt+/`（Web Linux 默认不绑定）；编辑器本地 `Ctrl+D` 调用 Monaco 原生向下复制行，块注释不变。桌面 `Ctrl+Shift+R` 刷新当前界面、不重启 Host；未保存代码/PDF、待保存、保存中或外部冲突时拒绝刷新，界面状态镜像失败/超时也不刷新。真实 GUI 按键和状态恢复尚未验收，详见 [0.14.9 发布说明](docs/release-0.14.9.md)。
@@ -828,7 +828,7 @@ Keep All / Undo All 却是亮的。修复：单文件 Keep / Undo 覆盖冲突�
   界面在回填前写空初值把存档覆盖掉（现为「水合结束前不写存档 + 迟到回填后重跑恢复」）。
   详见 [0.14.0 发布说明](docs/release-0.14.0.md)。
 - **v0.13.1**：**快捷键入口收敛到官方弹窗**——移除插件自建的独立「快捷键」设置页
-  （含行内录键编辑器与共享录制模块 `shortcutRecorder.ts`），改在 VSCodeMode → 通用页
+  （含行内录键编辑器与共享录制模块 `shortcutRecorder.ts`），改在 CodeStudio → 通用页
   提供「打开官方快捷键配置」一键跳转（`openOfficialShortcuts()`；官方入口不可用时
   就地给出手动打开方式）。键位查看、录键、冲突校验与恢复默认全部由 DSH 官方弹窗承担，
   避免同一套录键逻辑两处维护；0.13.0 的绑定转换修复与 Web 三修饰符默认值不变。

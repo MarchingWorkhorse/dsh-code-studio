@@ -1,4 +1,4 @@
-/* dsh-vscode-mode MCP 管理界面样式。
+/* dsh-code-studio MCP 管理界面样式。
    全部使用 DSH 真实主题变量（--dsw-alias-*），不再用不存在的 fg-* 变量。 */
 .vsm-mcp-page{display:flex;flex-direction:column;gap:18px;width:100%;max-width:920px;box-sizing:border-box;color:var(--dsw-alias-label-primary,#e6e6e6);padding-bottom:32px}
 

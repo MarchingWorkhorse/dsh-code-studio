@@ -1,5 +1,5 @@
 /**
- * dsh-vscode-mode host — fs.listDir 查询感知 fallback。
+ * dsh-code-studio host — fs.listDir 查询感知 fallback。
  * provider 不可用时边遍历边匹配，不再伪装有限全量扫描为完整索引。
  * 作者 ddj 2026年08月24号
  */
